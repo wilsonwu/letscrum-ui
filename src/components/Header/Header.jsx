@@ -20,9 +20,13 @@ const pages = [
   {
     path: "/about",
     name: "About",
+  },
+  {
+    path: "/logIn",
+    name: "LogIn"
   }
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Dashboard", "Logout", "Login"];
 
 export const Header = () => {
   const navigate = useNavigate();
