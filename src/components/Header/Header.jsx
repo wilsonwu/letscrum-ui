@@ -1,176 +1,33 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import { useNavigate } from "react-router-dom";
-
-const pages = [
-  {
-    path: "/",
-    name: "Home",
-  },
-  {
-    path: "/about",
-    name: "About",
-  },
-  {
-    path: "/logIn",
-    name: "LogIn"
-  }
-];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import React from "react";
+import { Navbar, Container, Breadcrumb, Form } from 'react-bootstrap';
 
 export const Header = () => {
-  const navigate = useNavigate();
-
-  const [auth, setAuth] = React.useState(true);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
-            LOGO
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.name} onClick={() => {
-                  navigate(page.path);
-                }}>
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page.name}
-                onClick={() => {
-                  navigate(page.path);
-                }}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page.name}
-              </Button>
-            ))}
-          </Box>
-
-          {auth ? (
-            <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleChange}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          ) : (
-            <Box sx={{ flexGrow: 0 }}>
-              <Button
-                onClick={() => {
-                  navigate("/login");
-                }}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                Login
-              </Button>
-            </Box>
-          )}
-
-          
-        </Toolbar>
+    <Navbar style={{ padding: 0 }}>
+      <Container style={{ margin: 0 }}>
+        <Navbar.Brand href="#home">LetScrun</Navbar.Brand>
+        <Breadcrumb as="ol" style={{ margin: 0, paddingTop: "12px" }}>
+          <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+          <Breadcrumb.Item href="#">Library</Breadcrumb.Item>
+          <Breadcrumb.Item active>Data</Breadcrumb.Item>
+        </Breadcrumb>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Form className="d-flex">
+            <Form.Control
+              type="search"
+              placeholder="Search"
+              className="me-4 border-dark rounded-0"
+              aria-label="Search"
+              style={{ width: "12rem", height: "2rem", fontSize: ".8rem"}}
+            />
+            {/* <Button variant="outline-success">Search</Button> */}
+          </Form>
+          <Navbar.Text>
+            <a href="#login" style={{ textDecoration: "none", color: "grey" }}>Log in</a>
+          </Navbar.Text>
+        </Navbar.Collapse>
       </Container>
-    </AppBar>
+    </Navbar>
   );
-};
+}

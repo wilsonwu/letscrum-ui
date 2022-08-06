@@ -1,29 +1,18 @@
-import * as React from "react";
-import Container from "@mui/material/Container";
-import { Header, Footer } from "./components";
-import { Route, Routes } from "react-router-dom";
-import { Home, About, LogIn } from "./pages";
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HomePage, WorkItemsPage, AboutPage, LogInPage } from "./pages";
 
 function App() {
   return (
-    <React.Fragment>
-      <Header />
-      <main>
-        <Container
-          sx={{
-            pt: 2,
-            pb: 2,
-          }}
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/logIn" element={<LogIn />} />
-          </Routes>
-        </Container>
-      </main>
-      <Footer />
-    </React.Fragment>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/logIn" element={<LogInPage />} />
+        <Route path="/workItems" element={<WorkItemsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

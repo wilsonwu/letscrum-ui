@@ -1,3 +1,4 @@
-export * from './Home';
-export * from './About';
-export * from './LogIn';
+export * from './home';
+export * from './about';
+export * from './logIn';
+export * from './workItems';

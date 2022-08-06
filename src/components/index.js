@@ -1,3 +1,5 @@
-export * from './Header';
-export * from './Footer';
-export * from './TaskCard'
+export * from './header';
+export * from './sideMenu'
+export * from './footer';
+export * from './ItemsListOptions'
+
