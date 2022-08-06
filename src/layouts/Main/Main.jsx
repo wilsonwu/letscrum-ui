@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import { Header, Footer, SideMenu } from "../../components";
 import PropTypes from "prop-types";
 
-export const MainLayout = ({ children }) => {
+export const Main = ({ children }) => {
   return (
     <>
       <Header />
@@ -20,6 +20,6 @@ export const MainLayout = ({ children }) => {
   )
 }
 
-MainLayout.propTypes = {
+Main.propTypes = {
   children: PropTypes.node.isRequired
 }

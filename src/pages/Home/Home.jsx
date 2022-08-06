@@ -1,10 +1,10 @@
 import React from "react";
-import { MainLayout } from "../../layout/MainLayout";
+import { Main } from "../../layouts/Main";
 
 export const Home = () => {
   return (
-    <MainLayout>
+    <Main>
       This Home content
-    </MainLayout>
+    </Main>
   );
 }
