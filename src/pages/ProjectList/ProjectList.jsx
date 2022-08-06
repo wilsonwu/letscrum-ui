@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemsListOption } from "../../components"
+import { ProjectCard } from "../../components"
 import { Main } from "../../layouts/Main";
 import { Row } from 'react-bootstrap'
 
@@ -9,7 +9,7 @@ export const ProjectList = () => {
       <Row>
         <h5 className="py-3" style={{ fontWeight: "300"}}>Work Items</h5>
       </Row>
-      <ItemsListOption />
+      <ProjectCard projectId="1" projectName="test" projectDisplayName="Test Project" />
     </Main>
   )
 }
