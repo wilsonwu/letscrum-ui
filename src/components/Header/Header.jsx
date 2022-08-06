@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Container, Breadcrumb, Form } from 'react-bootstrap';
+import { UserMenu } from "../UserMenu";
 
 export const Header = () => {
   return (
@@ -27,6 +28,7 @@ export const Header = () => {
             <a href="#login" style={{ textDecoration: "none", color: "grey" }}>Log in</a>
           </Navbar.Text>
         </Navbar.Collapse>
+        <UserMenu />
       </Container>
     </Navbar>
   );
