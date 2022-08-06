@@ -1,1 +1,1 @@
-export * from './WorkItemsPage'
+export * from './WorkItems'

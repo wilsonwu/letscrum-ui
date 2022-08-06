@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const AboutPage = () => {
+export const About = () => {
   return (
     <div>about</div>
   );

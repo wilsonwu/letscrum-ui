@@ -1,5 +1,5 @@
-export * from './header';
-export * from './sideMenu'
-export * from './footer';
+export * from './Header';
+export * from './SideMenu'
+export * from './Footer';
 export * from './ItemsListOptions'
 
