@@ -1,7 +1,7 @@
 import React from "react";
-import { MainLayout } from "../../layout/mainLayout";
+import { MainLayout } from "../../layout/MainLayout";
 
-export function HomePage() {
+export const Home = () => {
   return (
     <MainLayout>
       This Home content

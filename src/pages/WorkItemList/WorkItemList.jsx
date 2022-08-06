@@ -1,9 +1,9 @@
 import React from "react";
 import { ItemsListOption } from "../../components"
-import { MainLayout } from "../../layout/mainLayout";
+import { MainLayout } from "../../layout/MainLayout";
 import { Row } from 'react-bootstrap'
 
-export const WorkItemsPage = () => {
+export const WorkItemList = () => {
   return (
     <MainLayout>
       <Row>
