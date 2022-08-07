@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, WorkItemList, About, Login } from "./pages";
+import { Home, WorkItemList, About, Login, ProjectList } from "./pages";
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/projectList" element={<ProjectList />} />
         <Route path="/workitemList" element={<WorkItemList />} />
       </Routes>
     </BrowserRouter>
