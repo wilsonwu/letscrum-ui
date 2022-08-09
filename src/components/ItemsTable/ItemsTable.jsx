@@ -81,7 +81,7 @@ export const ItemsTable = () => {
       <Row>
       <Table responsive hover="ture" borderless>
       <thead>
-        <tr>
+        <tr style={{fontSize: "12px", color: "#333", fontWeight: "400"}}>
           <th>ID</th>
           <th>Title</th>
           <th>Assigned To</th>
@@ -90,7 +90,7 @@ export const ItemsTable = () => {
           <th>Tags</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style={{fontSize: "14px", color: "#333", fontWeight: "400"}}>
         <tr>
           <td>66</td>
           <td>test description</td>

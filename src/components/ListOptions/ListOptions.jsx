@@ -7,10 +7,10 @@ export const ListOption = () => {
       <Row>
         <Col sm={2} className="px-0">
           <Dropdown>
-            <Dropdown.Toggle variant="black" className="rounded-0">
+            <Dropdown.Toggle variant="black" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "600"}}>
               Recently updated
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
@@ -18,11 +18,11 @@ export const ListOption = () => {
           </Dropdown>
         </Col>
         <Col sm={2} className="px-0">
-          <Dropdown>
-            <Dropdown.Toggle variant="black" className="rounded-0">
+          <Dropdown >
+            <Dropdown.Toggle variant="black" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
               New Work Item
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
@@ -30,19 +30,19 @@ export const ListOption = () => {
           </Dropdown>
         </Col>
         <Col sm={6} className="px-0">
-          <Button variant="light" className="rounded-0">Open in Queries</Button>{' '}
-          <Button variant="light" className="rounded-0">Column Options</Button>{' '}
-          <Button variant="light" className="rounded-0">Import Work Items</Button>{' '}
-          <Button variant="light" className="rounded-0">Recycle Bin</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Open in Queries</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Column Options</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Import Work Items</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Recycle Bin</Button>{' '}
         </Col>
         <Col sm={2} className="px-0">
-          <Button variant="light" className="rounded-0">Ops</Button>{' '}
-          <Button variant="light" className="rounded-0">Flt</Button>{' '}
-          <Button variant="light" className="rounded-0">Mod</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Ops</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Flt</Button>{' '}
+          <Button variant="light" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>Mod</Button>{' '}
         </Col>
       </Row>
       <Row className="py-2">
-          <div style={{backgroundColor: "black", height: "2px" }}></div>
+          <div style={{backgroundColor: "#333", height: "1px" }}></div>
       </Row>
     </>
   )

@@ -6,8 +6,8 @@ export const Header = () => {
   return (
     <Navbar style={{ padding: 0 }}>
       <Container style={{ margin: 0 }} fluid>
-        <Navbar.Brand href="#home">LetScrun</Navbar.Brand>
-        <Breadcrumb as="ol" style={{ margin: 0, paddingTop: "12px" }}>
+        <Navbar.Brand href="#home">LetScrum</Navbar.Brand>
+        <Breadcrumb as="ol" style={{ margin: 0, paddingTop: "14px", fontSize: "14px", fontWeight: "400" }}>
           <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
           <Breadcrumb.Item href="#">Library</Breadcrumb.Item>
           <Breadcrumb.Item active>Data</Breadcrumb.Item>
