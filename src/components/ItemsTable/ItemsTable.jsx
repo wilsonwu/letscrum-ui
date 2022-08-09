@@ -5,7 +5,7 @@ export const ItemsTable = () => {
   return (
     <>
       <Row className='my-3'>
-        <Navbar bg="light" expand="lg">
+        <Navbar style={{backgroundColor: "rgb(240, 240, 240)"}} expand="lg" className='rounded-1'>
           <Container fluid>
             <Form className="d-flex">
               <Form.Control

@@ -7,7 +7,7 @@ export const ListOption = () => {
       <Row>
         <Col sm={2} className="px-0">
           <Dropdown>
-            <Dropdown.Toggle variant="black" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "600"}}>
+            <Dropdown.Toggle variant="black" className="rounded-0" style={{ fontSize: "14px", color: "#333", fontWeight: "600", backgroundColor: "rgb(240, 240, 240)"}}>
               Recently updated
             </Dropdown.Toggle>
             <Dropdown.Menu style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
@@ -42,7 +42,7 @@ export const ListOption = () => {
         </Col>
       </Row>
       <Row className="py-2">
-          <div style={{backgroundColor: "#333", height: "1px" }}></div>
+          <div style={{backgroundColor: "rgb(240, 240, 240)", height: "1px" }}></div>
       </Row>
     </>
   )

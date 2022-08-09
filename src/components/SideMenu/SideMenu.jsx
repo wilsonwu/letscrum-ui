@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 export const SideMenu = () => {
   return (
     <>
-      <Navbar bg="light" variant="light">
+      <Navbar variant="light" style={{backgroundColor: "rgb(234, 234, 234)"}}>
         <Container >
           <Nav className="me-auto flex-column" >
             <Nav.Link href="#home">Home</Nav.Link>
