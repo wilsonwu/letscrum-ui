@@ -4,7 +4,7 @@ import { Row, Navbar, Nav, Form, Table, Button, Container, NavDropdown, CloseBut
 export const ItemsTable = () => {
   return (
     <>
-      <Row className='my-3'>
+      <Row className='my-1'>
         <Navbar style={{backgroundColor: "rgb(240, 240, 240)"}} expand="lg" className='rounded-1'>
           <Container fluid>
             <Form className="d-flex">

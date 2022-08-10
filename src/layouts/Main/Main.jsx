@@ -8,10 +8,10 @@ export const Main = ({ children }) => {
     <>
       <Header />
       <Row>
-        <Col md={2}>
+        <Col sm={2}>
           <SideMenu />
         </Col>
-        <Col md={10}>
+        <Col sm={10}>
           {children}
         </Col>
       </Row>
