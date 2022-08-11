@@ -1,19 +1,21 @@
 import React from 'react';
 import { Row, Navbar, Nav, Form, Table, Button, Container, NavDropdown, CloseButton } from 'react-bootstrap'
+import './ItemsTable.css'
 
 export const ItemsTable = () => {
   return (
     <>
-      <Row className='my-1'>
-        <Navbar style={{backgroundColor: "rgb(240, 240, 240)"}} expand="lg" className='rounded-1'>
+      <Row className='my-1 me-2'>
+        <Navbar style={{ backgroundColor: "rgb(240, 240, 240)" }} expand="lg" className='rounded-1 '>
           <Container fluid>
             <Form className="d-flex">
               <Form.Control
                 type="search"
                 placeholder="Filter by keyword"
-                className="me-2"
+                className="me-2 rounded-0"
                 aria-label="Search"
                 size="sm"
+                id='itemTableSearch'
               />
             </Form>
             <Navbar.Toggle aria-controls="navbarScroll" />
@@ -79,44 +81,45 @@ export const ItemsTable = () => {
         </Navbar>
       </Row>
       <Row>
-      <Table responsive hover="ture" borderless>
-      <thead>
-        <tr style={{fontSize: "12px", color: "#333", fontWeight: "400"}}>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Assigned To</th>
-          <th>State</th>
-          <th>Area Path</th>
-          <th>Tags</th>
-        </tr>
-      </thead>
-      <tbody style={{fontSize: "14px", color: "#333", fontWeight: "400"}}>
-        <tr>
-          <td>66</td>
-          <td>test description</td>
-          <td>Wilson Wu</td>
-          <td>New</td>
-          <td>iMooGoo</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>65</td>
-          <td>This is a bug report</td>
-          <td>Unassigned</td>
-          <td>New</td>
-          <td>iMooGoo</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>63</td>
-          <td>Todo Task</td>
-          <td>Unassigned</td>
-          <td>New</td>
-          <td>iMooGoo</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </Table>
+
+        <Table responsive hover="ture" borderless>
+          <thead>
+            <tr style={{ fontSize: "12px", color: "#333", fontWeight: "400", height: "2rem", borderBottom: "1px solid rgb(234, 234, 234)" }}>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Assigned To</th>
+              <th>State</th>
+              <th>Area Path</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody style={{ fontSize: "14px", color: "#333", fontWeight: "400" }}>
+            <tr>
+              <td>66</td>
+              <td>test description</td>
+              <td>Wilson Wu</td>
+              <td>New</td>
+              <td>iMooGoo</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>65</td>
+              <td>This is a bug report</td>
+              <td>Unassigned</td>
+              <td>New</td>
+              <td>iMooGoo</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>63</td>
+              <td>Todo Task</td>
+              <td>Unassigned</td>
+              <td>New</td>
+              <td>iMooGoo</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </Table>
       </Row>
     </>
   )

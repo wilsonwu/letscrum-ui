@@ -1,0 +1,10 @@
+#itemTableSearch {
+  background-color: #F0F0F0;
+  border-color: #F0F0F0;
+}
+
+
+#itemTableSearch:focus {
+    background-color: #F0F0F0;
+    box-shadow: none;
+}
