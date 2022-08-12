@@ -5,3 +5,4 @@ export * from './Footer';
 export * from './ListOptions'
 export * from './ProjectCard'
 export * from './ItemsTable'
+export * from './ItemTitle'
