@@ -7,7 +7,7 @@ export const SideMenu = () => {
   return (
     <>
       <Navbar variant="light" style={{backgroundColor: "rgb(234, 234, 234)"}}>
-        <Container >
+        <Container>
           <Nav className="me-auto flex-column" >
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>

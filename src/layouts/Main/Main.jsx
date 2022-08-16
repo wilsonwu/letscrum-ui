@@ -8,7 +8,7 @@ export const Main = ({ children }) => {
     <>
       <Header />
       <Row>
-        <Col sm={2}>
+        <Col sm={2} className="pe-0">
           <SideMenu />
         </Col>
         <Col sm={10}>
