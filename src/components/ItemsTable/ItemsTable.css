@@ -8,3 +8,28 @@
     background-color: #F0F0F0;
     box-shadow: none;
 }
+
+#itemsFilters {
+  max-height: 100px;
+  font-size: .9rem;
+}
+
+#selectItemTypes:hover{
+  background-color: rgb(226, 226, 226);
+}
+
+#selectBelongings:hover{
+  background-color: rgb(226, 226, 226);
+}
+
+#selectItemsStates:hover{
+  background-color: rgb(226, 226, 226);
+}
+
+#selectItemsArea:hover{
+  background-color: rgb(226, 226, 226);
+}
+
+#selectItemsTags:hover{
+  background-color: rgb(226, 226, 226);
+}

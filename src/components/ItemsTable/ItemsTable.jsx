@@ -22,7 +22,8 @@ export const ItemsTable = () => {
             <Navbar.Collapse id="navbarScroll" className="justify-content-end">
               <Nav
                 className="me-2 my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
+                id='itemsFilters'
+                // style={{ maxHeight: '100px', fontSize: ".9rem" }}
                 navbarScroll
               >
                 <NavDropdown title="Types" className='px-3' id="selectItemTypes" >
