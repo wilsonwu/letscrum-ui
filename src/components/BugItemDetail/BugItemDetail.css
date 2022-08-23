@@ -8,13 +8,154 @@
   font-size: .8rem; 
 }
 
-#detailsTab {
+#detailTab {
   color: #333; 
   border: 1px solid rgb(248, 248, 248);
   background-color: rgb(239, 246, 252);
 }
 
-#detailsTab:hover {
+#detailTab:hover {
   color: #333;
   background-color: rgb(239, 246, 252);
-} 
+}
+
+.detailItemTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 0 0 0;
+}
+
+.detailItemDivider {
+  height: 1px;
+  width: 100%;
+  background-color: rgb(234, 234, 234);
+}
+
+
+.detailInputPH {
+  margin: 6px 0;
+  border: 1px solid white;
+  border-radius: 0;
+  font-size: .9rem;
+}
+
+.detailInputPH:focus {
+  margin: 6px 0;
+  border: 1px solid #0d6efd;
+  box-shadow: none;
+}
+
+.detailTitle {
+  font-size: .8rem;
+  color: rgb(170, 170, 170);
+  margin-bottom: 0;
+}
+
+.detailToggle {
+  height: 1.8rem;
+  width: 100%;
+  padding: 2px 5px;
+  color: #333;
+  font-size: .9rem;
+  text-align: left;
+  justify-content: center;
+  border-radius: 0;
+  border: 1px solid white;
+  background-color: white;
+  box-shadow: none;
+}
+
+.detailToggle:hover {
+  color: #333;
+  border: 1px solid rgb(234, 234, 234);
+  background-color: white;
+  box-shadow: none;
+}
+
+.detailToggle:active {
+  color: #333;
+  border: 1px solid rgb(234, 234, 234);
+  background-color: white;
+  box-shadow: none;
+}
+
+.detailToggle:focus {
+  color: #333;
+  border: 1px solid #0d6efd;
+  background-color: white;
+  box-shadow: none;
+}
+
+.detailDropDownMenu {
+  border-radius: 0;
+  width: 100%;
+  border: 1px solid rgb(234, 234, 234);
+  color: #333;
+  font-size: .9rem;
+}
+
+.detailInput {
+  border: 1px solid white;
+  border-radius: 0;
+  height: 1.8rem;
+  width: 100%;
+  padding: 2px 5px;
+  color: #333;
+  font-size: .9rem;
+  box-shadow: none;
+}
+
+.detailInput:hover {
+  border: 1px solid rgb(234, 234, 234);
+  box-shadow: none;
+}
+
+.detailInput:focus {
+  border: 1px solid #0d6efd;
+  box-shadow: none;
+}
+
+.detailItem {
+  margin-top: 4px;
+}
+
+.detailLinkBtn {
+  text-decoration: none;
+  font-size: .8rem;
+  color: #333;
+  padding: 3px;
+  margin-top: 6px;
+  border-radius: 0;
+}
+
+.detailLinkBtn:hover {
+  color: #333;
+  background-color: rgb(222, 246, 252);
+}
+
+.detailLinkToggle {
+  font-size: .8rem;
+  border-radius: 0;
+  color: #333;
+  background-color: white;
+  border: 1px solid white;
+  padding: 3px;
+  margin-top: 6px;
+}
+
+.detailLinkToggle:hover {
+  color: #333;
+  background-color: rgb(222, 246, 252);
+  border: 1px solid rgb(222, 246, 252);
+}
+
+.detailTextBg {
+  background-color: rgb(244, 244, 244);
+  font-size: .8rem;
+  padding: 6px;
+  margin-top: 6px;
+}
+
+.detailTextP {
+  margin-bottom: 0;
+}

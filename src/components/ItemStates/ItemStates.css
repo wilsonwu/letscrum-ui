@@ -27,3 +27,24 @@
   background-color: white;
   border-color: rgb(234, 234, 234);
 }
+
+.stateToggle:active {
+  color: #333;
+  border: 1px solid #0d6efd;
+  background-color: white;
+  box-shadow: none;
+}
+
+.stateToggle:focus {
+  color: #333;
+  border: 1px solid #0d6efd;
+  background-color: white;
+  box-shadow: none;
+}
+
+.stateDropDownMenu {
+  font-size: .8rem;
+  color: #333;
+  border-radius: 0;
+}
+

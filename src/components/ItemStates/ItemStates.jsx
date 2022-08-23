@@ -16,7 +16,7 @@ export const ItemStates = () => {
                 <Dropdown.Toggle className="stateToggle">
                   To Do
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className="stateDropDownMenu">
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
@@ -32,7 +32,7 @@ export const ItemStates = () => {
                 <Dropdown.Toggle className="stateToggle">
                   New defect report
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className="stateDropDownMenu">
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
@@ -51,7 +51,7 @@ export const ItemStates = () => {
                 <Dropdown.Toggle className="stateToggle">
                   iMooGoo
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className="stateDropDownMenu">
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
@@ -67,7 +67,7 @@ export const ItemStates = () => {
                 <Dropdown.Toggle className="stateToggle">
                 iMooGoo\Release 1\Sprint 1
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className="stateDropDownMenu">
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
