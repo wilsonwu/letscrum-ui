@@ -8,7 +8,7 @@ export const ItemTitle = () => {
       <Row className="py-2 px-0 me-2" >
         <div style={{ backgroundColor: "rgb(240, 240, 240)", height: "1px" }}></div>
       </Row>
-      <Row >
+      <Row>
         <Row>
           <Col sm={1} className="itemTypeText">NEW BUG *</Col>
           <Col sm={11} className="itemReqText">Field Title cannot be empty</Col>
@@ -39,11 +39,18 @@ export const ItemTitle = () => {
               Add tag
             </Button>
           </Col>
-          <Col sm={4}>
+          <Col sm={4} >
+            <Row className="align-items-center justify-content-end">
             <Button className="detailSaveBtn">save</Button>
-            <Button className="hotDisableBtn">refresh</Button>
-            <Button className="hotDisableBtn">Revent changes</Button>
-            <Button className="hotBtn">Opts</Button>
+            <Button className="hotDisableBtn">r</Button>
+            <Button className="hotDisableBtn">c</Button>
+            {/* <Button className="hotBtn">Opts</Button> */}
+            <Dropdown.Toggle className="moreOpts">
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="moreDropDownMenu">
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                </Dropdown.Menu>
+                </Row>
           </Col>
         </Row>
       </Row>

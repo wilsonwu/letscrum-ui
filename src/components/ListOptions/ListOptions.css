@@ -1,18 +1,49 @@
+.listFaqOptions {
+  font-size: .9rem;
+  color: #333;
+  }
+
+.listFaqOptions:hover {
+  font-size: .9rem;
+  color: #333;
+  background-color: #F0F0F0;
+  border-color: #F0F0F0;
+  border-radius: 0;
+}
+
+.listFaqOptions:focus {
+  font-size: .9rem;
+  color: #333;
+  background-color: #F0F0F0;
+  border-color: #F0F0F0;
+  border-radius: 0;
+}
+
+.listFaqMenu {
+  font-size: .9rem;
+  color: #333;
+  font-weight: 400;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .listOptionsBtn {
   font-size: .9rem;
   color: #333;
   font-weight: 400;
   border-radius: 0;
   background-color: white;
+  border: none;
 }
 
 .listOptionsBtn:hover {
   background-color: #F0F0F0;
-  border-color: #F0F0F0;
 }
 
-.listFaqOptions:hover {
+.listOptionsBtn:focus {
   background-color: #F0F0F0;
-  border-color: #F0F0F0;
-  border-radius: 0;
+  box-shadow: none;
 }
+
+
+

@@ -8,10 +8,10 @@ export const ListOption = () => {
       <Row>
         <Col sm={2} className="px-0">
           <Dropdown >
-            <Dropdown.Toggle variant="black" className="listFaqOptions" style={{ fontSize: "14px", color: "#333", fontWeight: "600"}}>
+            <Dropdown.Toggle variant="black" className="listFaqOptions" style={{ fontWeight: "600"}}>
               Recently updated
             </Dropdown.Toggle>
-            <Dropdown.Menu className="rounded-1" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
+            <Dropdown.Menu className="rounded-1 listFaqMenu">
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
@@ -20,10 +20,10 @@ export const ListOption = () => {
         </Col>
         <Col sm={2} className="px-0">
           <Dropdown >
-            <Dropdown.Toggle variant="black" className="listFaqOptions" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
+            <Dropdown.Toggle variant="black" className="listFaqOptions" style={{ fontWeight: "400"}}>
               New Work Item
             </Dropdown.Toggle>
-            <Dropdown.Menu className="rounded-1" style={{ fontSize: "14px", color: "#333", fontWeight: "400"}}>
+            <Dropdown.Menu className="rounded-1 listFaqMenu">
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>

@@ -19,9 +19,8 @@ export const Header = () => {
             <Form.Control
               type="search"
               placeholder="Search"
-              className="me-4 border-dark rounded-0"
+              className="me-4 searchInput"
               aria-label="Search"
-              style={{ width: "12rem", height: "2rem", fontSize: ".8rem" }}
             />
             {/* <Button variant="outline-success">Search</Button> */}
           </Form>

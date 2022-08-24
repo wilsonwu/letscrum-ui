@@ -71,6 +71,9 @@
 }
 
 .addTagBtn:focus {
+  background-color: rgb(222, 236, 249);
+  color: #333;
+  border-color: rgb(222, 236, 249);
   box-shadow: none;
 }
 
@@ -81,6 +84,8 @@
   font-size: .9rem;
   color: rgb(170, 170, 170);
   padding: 5px;
+  margin: 0 2.5px;
+  width: 40px;
 }
 
 .detailSaveBtn:hover {
@@ -92,9 +97,20 @@
   padding: 5px;
 }
 
+.detailSaveBtn:focus {
+  background-color: rgb(234, 234, 234);
+  border-color: rgb(234, 234, 234);
+  color: rgb(170, 170, 170);
+  box-shadow: none;
+}
+
 .hotDisableBtn {
   color: rgb(170, 170, 170);
   background-color: white;
+  height: 28px;
+  width: 28px;
+  padding: 5px;
+  margin: 0 2.5px;
   font-size: .9rem;
   border-radius: 0;
   border-color: white;
@@ -108,15 +124,31 @@
   border-color: white;
 }
 
-.hotBtn {
-  color: #333;
+.hotDisableBtn:focus {
+  color: rgb(170, 170, 170);
   background-color: white;
-  font-size: .9rem;
+  border-color: white;
+  box-shadow: none;
+}
+
+.moreOpts {
+  color: #333;
+  height: 28px;
+  width: 28px;
+  padding: 5px;
+  margin: 0 2.5px;
+  background-color: white;
   border-radius: 0;
   border-color: white;
 }
 
-.hotBtn:hover {
+.moreOpts:hover {
+  color: #333;
+  background-color: rgb(222, 236, 249);
+  border-color: rgb(222, 236, 249);
+}
+
+.moreOpts:focus {
   color: #333;
   background-color: rgb(222, 236, 249);
   border-color: rgb(222, 236, 249);

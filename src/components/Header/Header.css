@@ -2,3 +2,15 @@
   color: #333;
   text-decoration: none;
 }
+
+.searchInput {
+  width: 12rem;
+  height: 2rem;
+  font-size: .8rem;
+  border: 1px solid black;
+  border-radius: 0;
+}
+
+.searchInput:focus {
+ box-shadow: none;
+}
