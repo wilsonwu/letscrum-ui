@@ -6,9 +6,29 @@ import store from "./redux/store";
 
 import App from './App';
 
+// const loadLocalStorage = () => {
+//   console.log("load");
+//   try { 
+//     const persistedState = localStorage.getItem('reduxState') 
+//     if (persistedState) 
+//       return JSON.parse(persistedState)
+//   }
+//   catch (e){ 
+//     console.log(e)
+//   }
+// }
+
 const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
+
+// loadLocalStorage();
+
+store.subscribe(()=>{
+  console.log("save");
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+})
+
 root.render(
   <Provider store={store}>
     <React.StrictMode>

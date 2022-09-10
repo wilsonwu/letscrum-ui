@@ -1,9 +1,13 @@
 import React from "react";
-import { Navbar, Container, Breadcrumb, Form } from 'react-bootstrap';
+import { Navbar, Container, Breadcrumb, Form, NavLink } from 'react-bootstrap';
 import './Header.css'
-// import { UserMenu } from "../UserMenu";
+import { UserMenu } from "../UserMenu";
+import { useDispatch } from 'react-redux'
+import { signIn, signOff } from '../../redux/reducers/userSlice'
 
 export const Header = () => {
+  const dispatch = useDispatch()
+
   return (
     <Navbar style={{ padding: 0, borderBottom: "1px solid rgb(240, 240, 240)" }}>
       <Container style={{ margin: 0 }} fluid>
@@ -25,10 +29,13 @@ export const Header = () => {
             {/* <Button variant="outline-success">Search</Button> */}
           </Form>
           <Navbar.Text>
-            <a href="#login" style={{ textDecoration: "none", color: "grey" }}>Log in</a>
+            <NavLink onClick={() => dispatch(signIn({ userId: 1, username: "123" }))} style={{ textDecoration: "none", color: "grey" }}>Log in</NavLink>
+          </Navbar.Text>
+          <Navbar.Text>
+            <NavLink onClick={() => dispatch(signOff())} style={{ textDecoration: "none", color: "grey" }}>Logoff</NavLink>
           </Navbar.Text>
         </Navbar.Collapse>
-        {/* <UserMenu /> */}
+        <UserMenu />
       </Container>
     </Navbar>
   );
