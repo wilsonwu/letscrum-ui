@@ -1,41 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
 import store from "./redux/store";
-
 import App from './App';
-
-// const loadLocalStorage = () => {
-//   console.log("load");
-//   try { 
-//     const persistedState = localStorage.getItem('reduxState') 
-//     if (persistedState) 
-//       return JSON.parse(persistedState)
-//   }
-//   catch (e){ 
-//     console.log(e)
-//   }
-// }
 
 const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
 
-// loadLocalStorage();
-
-store.subscribe(()=>{
-  console.log("save");
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
-})
+let persistor = persistStore(store)
 
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>
-);
+    <PersistGate loading={null} persistor={persistor}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </PersistGate>
+  </Provider>,
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
