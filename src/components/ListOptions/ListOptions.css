@@ -1,9 +1,11 @@
+/* abandon */
+
 .listFaqOptions {
   font-size: .9rem;
   color: #333;
   }
 
-.listFaqOptions:hover {
+  .listFaqOptions:hover {
   font-size: .9rem;
   color: #333;
   background-color: #F0F0F0;
@@ -24,6 +26,7 @@
   color: #333;
   font-weight: 400;
   border: none;
+  border-radius: 1;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

@@ -5,7 +5,7 @@ import "./ItemStates.css"
 export const ItemStates = () => {
   return (
     <>
-      <Row style={{ backgroundColor: "rgb(248, 248, 248)", paddingTop: "1rem", paddingBottom: "1rem", borderTop: "1px solid rgb(234, 234, 234)" }}>
+      <Row className="statePanel">
         {/* LEFT COLUMN */}
         <Col sm={3}>
           {/* state */}

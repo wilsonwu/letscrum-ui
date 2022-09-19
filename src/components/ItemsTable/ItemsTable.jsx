@@ -1,91 +1,91 @@
 import React from 'react';
-import { Row, Navbar, Nav, Form, Table, Button, Container, NavDropdown, CloseButton } from 'react-bootstrap'
+import { Col, Row, Navbar, Form, Table, Container, Dropdown, CloseButton } from 'react-bootstrap'
 import './ItemsTable.css'
 
 export const ItemsTable = () => {
   return (
     <>
-      <Row className='my-1 me-2'>
-        <Navbar style={{ backgroundColor: "rgb(240, 240, 240)" }} expand="lg" className='rounded-1 '>
+    {/* Filter bar */}
+      <Row className='my-1 px-2'>
+        <Navbar style={{ backgroundColor: "rgb(240, 240, 240)" }} expand="lg" className='rounded-1 justify-content-end'>
           <Container fluid>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Filter by keyword"
-                className="me-2 rounded-0"
-                aria-label="Search"
-                size="sm"
-                id='itemTableSearch'
-              />
-            </Form>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll" className="justify-content-end">
-              <Nav
-                className="me-2 my-2 my-lg-0"
-                id='itemsFilters'
-                // style={{ maxHeight: '100px', fontSize: ".9rem" }}
-                navbarScroll
-              >
-                <NavDropdown title="Types" className='px-3' id="selectItemTypes" >
-                  <NavDropdown.Item href="#action3">
-                    <Form.Check type="checkbox" label="bug" />
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item>
-                    <Button variant="light" className='rounded-0'>Clear</Button>
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Assigned to" className='px-3' id="selectBelongings">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="States" className='px-3' id="selectItemsStates">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Area" className='px-3' id="selectItemsArea">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Tags" className='px-3' id="selectItemsTags">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-              <CloseButton className='px-3' />
-            </Navbar.Collapse>
+            <Col>
+              <Form className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Filter by keyword"
+                  className="itemTableSearch"
+                  aria-label="Search"
+                  size="sm"
+                />
+              </Form>
+            </Col>
+
+            <Dropdown className='mx-1'>
+              <Dropdown.Toggle className="filters">
+                Type
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='filtersMenu'>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown className='mx-1'>
+              <Dropdown.Toggle className="filters">
+                Assigned to
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='filtersMenu'>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown className='mx-1'>
+              <Dropdown.Toggle className="filters">
+                States
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='filtersMenu'>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown className='mx-1'>
+              <Dropdown.Toggle className="filters">
+                Area
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='filtersMenu'>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Dropdown className='mx-1'>
+              <Dropdown.Toggle className="filters">
+                Tags
+              </Dropdown.Toggle>
+              <Dropdown.Menu className='filtersMenu'>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <CloseButton className='px-3' />
+
           </Container>
         </Navbar>
       </Row>
-      <Row>
-
+    {/* table */}
+      <Row className='px-2'>
         <Table responsive hover="ture" borderless>
           <thead>
-            <tr style={{ fontSize: "12px", color: "#333", fontWeight: "400", height: "2rem", borderBottom: "1px solid rgb(234, 234, 234)" }}>
+            <tr className='tableRow'>
               <th>ID</th>
               <th>Title</th>
               <th>Assigned To</th>
@@ -94,7 +94,7 @@ export const ItemsTable = () => {
               <th>Tags</th>
             </tr>
           </thead>
-          <tbody style={{ fontSize: "14px", color: "#333", fontWeight: "400" }}>
+          <tbody className='tableBody'>
             <tr>
               <td>66</td>
               <td>test description</td>
@@ -121,6 +121,7 @@ export const ItemsTable = () => {
             </tr>
           </tbody>
         </Table>
+        
       </Row>
     </>
   )

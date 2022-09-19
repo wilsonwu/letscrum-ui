@@ -13,8 +13,13 @@ export const CreateBug = () => {
 
         <Col sm={10}>
           <Row>
-            <Col sm={2}><div style={{ backgroundColor: "#333", width: "1px", padding: "0" }}></div></Col>
-            <Col sm={10}><h6 className="py-3 mb-0 mt-2" style={{ fontWeight: "300" }}>Back to Work Items</h6></Col>
+            <Col sm={2}>
+              <div style={{ backgroundColor: "#333", width: "1px", padding: "0" }}>
+              </div>
+              </Col>
+            <Col sm={10}>
+              <h6 className="py-3 mb-0 mt-2" style={{ fontWeight: "300" }}>Back to Work Items</h6>
+              </Col>
           </Row>
         </Col>
 

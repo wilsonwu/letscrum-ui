@@ -7,10 +7,9 @@ export const BugItemDetail = () => {
     <Row>
       <Tabs
         defaultActiveKey="details"
-        className="mb-3 "
-        id="detailTabs"
+        className="mb-3 detailTabs"
       >
-        <Tab eventKey="details" title="Details" id="detailTab">
+        <Tab eventKey="details" title="Details" className="detailTab">
           <Row>
             <Col sm={6}>
               <Form.Label className="detailItemTitle">
@@ -52,8 +51,8 @@ export const BugItemDetail = () => {
                 Details
               </Form.Label>
               <div className="detailItemDivider"></div>
-              <div className="detailItem">
-                <Form.Label>
+              <div>
+                <Form.Label className="detailTitle">
                   Priority
                 </Form.Label>
                 <Dropdown >
@@ -139,8 +138,8 @@ export const BugItemDetail = () => {
                 Deployment
               </Form.Label>
               <div className="detailItemDivider"></div>
-              <div className="detailTextBg">
-                <p className="detailTextP">
+              <div className="detailPanel">
+                <p className="detailPanelText">
                   To track releases associated with this work item,
                   go to Releases and turn on deployment status reporting for Boards in your pipeline&apos;s
                   Options menu. Learn more about deployment status reporting
@@ -163,8 +162,8 @@ export const BugItemDetail = () => {
                 <Dropdown.Menu className="detailDropDownMenu">
                   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                 </Dropdown.Menu>
-                <div className="detailTextBg">
-                  <p className="detailTextP">
+                <div className="detailPanel">
+                  <p className="detailPanelText">
                     Add an existing work item as a paarent
                   </p></div>
               </div>

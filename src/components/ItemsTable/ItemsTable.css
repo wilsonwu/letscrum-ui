@@ -1,35 +1,58 @@
-#itemTableSearch {
-  background-color: #F0F0F0;
-  border-color: #F0F0F0;
+.itemTableSearch {
+  background-color: var(--bg-color-basic);
+  border-color: var(--bg-color-basic);
+  border-radius: 0;
 }
 
-
-#itemTableSearch:focus {
-    background-color: #F0F0F0;
-    box-shadow: none;
+.itemTableSearch:focus {
+  background-color: var(--bg-color-basic);
+  border: none;
+  box-shadow: none;
 }
 
-#itemsFilters {
-  max-height: 100px;
+.filters {
+font-size: .9rem;
+color:var(--text-color-secondary);
+background-color: var(--bg-color-basic);
+border: none;
+border-radius: 0;
+}
+
+.filters:hover {
+color: var(--text-color-secondary);
+background-color: var(--bg-color-secondary);
+border-radius: 0;
+box-shadow: none;
+}
+
+.filters:focus {
+color: var(--text-color-secondary);
+background-color: var(--bg-color-secondary);
+}
+
+.filters:active {
+color: var(--text-color-secondary);
+background-color: var(--bg-color-secondary);
+}
+
+.filtersMenu {
+font-size: .8rem;
+color: var(--text-color-primary);
+border: none;
+border-radius: 1;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tableRow {
+  font-size: .8rem;
+  color: var(--text-color-primary); 
+  font-weight: 200;
+  height: 2rem;
+  border-bottom: 1px solid var(--bg-color-primary); 
+}
+
+.tableBody {
   font-size: .9rem;
-}
-
-#selectItemTypes:hover{
-  background-color: rgb(226, 226, 226);
-}
-
-#selectBelongings:hover{
-  background-color: rgb(226, 226, 226);
-}
-
-#selectItemsStates:hover{
-  background-color: rgb(226, 226, 226);
-}
-
-#selectItemsArea:hover{
-  background-color: rgb(226, 226, 226);
-}
-
-#selectItemsTags:hover{
-  background-color: rgb(226, 226, 226);
+  color: var(--text-color-primary);
+  font-weight: 400;
 }
