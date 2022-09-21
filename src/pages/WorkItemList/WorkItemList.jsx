@@ -1,5 +1,5 @@
 import React from "react";
-import { ListOption } from "../../components"
+import { ListOption, ItemsTable } from "../../components"
 import { Main } from "../../layouts/Main";
 import { Row } from 'react-bootstrap'
 
@@ -10,7 +10,7 @@ export const WorkItemList = () => {
         <h5 className="py-3 px-3" style={{ fontWeight: "300"}}>Work Items</h5>
       </Row>
       <ListOption />
-      {/* <ItemsTable /> */}
+      <ItemsTable />
     </Main>
   )
 }

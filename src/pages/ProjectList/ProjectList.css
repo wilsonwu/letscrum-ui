@@ -1,0 +1,73 @@
+.projectsContainer {
+  background-color: var(--bg-color-tabs);
+  padding: 2rem;
+  margin: 0;
+}
+
+.userNameTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.creatProjectBtn {
+  width: 8rem;
+  height: 2.2rem;
+  padding: .2rem auto;
+  font-size: 1rem;
+  border-radius: 0;
+  background-color: var(--communication-color-background);
+}
+
+.projectNav {
+  color: var(--text-color-primary);
+}
+
+/* .projectModalDialog {
+  position: fixed;
+  right: 1rem;
+  background-color: white;
+} */
+
+.itemLabel {
+  color: var(--text-color-primary);
+}
+
+.itemInput {
+  border-radius: 2px;
+  border: 1px solid var(--text-color-primary);
+}
+
+.projectVisibility {
+  background-color: var(--bg-color-panel);
+  padding: 1rem;
+  border: 1px solid var(--bg-color-panel);
+  border-radius: 2px;
+}
+
+.projectVisibility:hover {
+  border: 1px solid var(--text-color-primary);
+}
+
+.advancedBtn {
+  font-weight: 600;
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-panel);
+  border: 1px solid var(--bg-color-panel);
+}
+
+.advancedBtn:hover {
+  font-weight: 600;
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-tabs);
+  border: 1px solid var(--bg-color-tabs);
+}
+
+.projectAdvancedItem {
+  width: 100%;
+  color: var(--text-color-primary);
+  text-align: left;
+  background-color: white;
+  border: 1px solid var(--text-color-primary);
+  border-radius: 2px;
+  padding: .2rem .4rem;
+}

@@ -1,0 +1,20 @@
+.projectCardContainer {
+  border: none;
+  background-color: rgb(248, 248, 248);
+}
+
+.projectCard {
+  height: 12rem;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.projectAvatar {
+  width: 50px;
+  height: 50px;
+  background-color: lightblue;
+  padding: 0;
+  border-radius: 3px;
+}

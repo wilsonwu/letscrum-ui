@@ -24,6 +24,7 @@ code {
   --bg-color-highlight: rgb(239, 246, 252);
   --bg-color-hoverlight: rgb(222, 236, 249);
   --bg-color-borderlight: #0d6efd;
+  --communication-color-background: #0078D4;
 }
 
 /* list page >> list options */

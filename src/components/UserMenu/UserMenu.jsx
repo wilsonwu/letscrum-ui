@@ -10,7 +10,7 @@ export const UserMenu = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(user)
+    console.log("userMenu:" + user)
   }, [user]);
 
   return (
