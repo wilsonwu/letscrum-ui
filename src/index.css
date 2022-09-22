@@ -25,6 +25,8 @@ code {
   --bg-color-hoverlight: rgb(222, 236, 249);
   --bg-color-borderlight: #0d6efd;
   --communication-color-background: #0078D4;
+  --communication-color-hover: #0067B5;
+  --text-color-warning: #DA0A00;
 }
 
 /* list page >> list options */

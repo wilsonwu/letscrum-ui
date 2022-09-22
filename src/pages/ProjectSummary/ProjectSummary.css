@@ -1,0 +1,57 @@
+.projectVisibilityBtn {
+  width: 6rem;
+  height: 2rem;
+  color: var(--text-color-primary);
+  font-size: .875rem;
+  font-weight: 600;
+  background-color: var(--bg-color-primary);
+  border: none;
+  border-radius: 3px;
+  padding: .2rem .4rem;
+  margin: 0 .2rem;
+}
+
+.projectVisibilityBtn:hover {
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-secondary);
+}
+
+.projectInviteBtn {
+  width: 6rem;
+  height: 2rem;
+  font-size: .875rem;
+  font-weight: 600;
+  background-color: var(--communication-color-background);
+  border: none;
+  border-radius: 3px;
+  padding: .2rem .4rem;
+  margin: 0 .2rem;
+}
+
+.projectInviteBtn:hover {
+  background-color: var(--communication-color-hover);
+}
+
+.overviewContainer {
+  background-color: var(--bg-color-tabs);
+  padding: 1.5rem 1.8rem;
+}
+
+.card {
+  padding: .8rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cardSubtitle {
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 4rem;
+}
+
+.cardAlert {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}

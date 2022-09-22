@@ -11,7 +11,7 @@ export const Main = ({ children }) => {
         <Col sm={2} className="pe-0">
           <SideMenu />
         </Col>
-        <Col sm={10}>
+        <Col sm={10} className="px-0">
           {children}
         </Col>
       </Row>
