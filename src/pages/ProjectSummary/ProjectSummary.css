@@ -44,6 +44,12 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.cardTitle {
+  width: auto;
+  line-height: 2rem;
+  margin-bottom: 0;
+}
+
 .cardSubtitle {
   font-size: .875rem;
   font-weight: 400;
@@ -54,4 +60,33 @@
   border: none;
   border-radius: 0;
   margin-bottom: 0;
+}
+
+.aboutEditBtn {
+  color: var(--text-color-primary);
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0;
+  margin-right: 1rem;
+  background-color: white;
+  border: none;
+  border-radius: 2px;
+}
+
+.aboutEditBtn:hover {
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-basic);
+}
+
+.periodSwitch {
+  width: auto;
+}
+
+.periodToggle {
+  font-size: .875rem;
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-basic);
+  border: 0;
+  border-radius: 2px;
 }

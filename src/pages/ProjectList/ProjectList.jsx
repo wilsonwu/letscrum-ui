@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ProjectCard } from "../../components";
 import { Users } from "../../layouts"
 import { Container, Row, Col, Button, Nav, Form, Modal, Dropdown } from 'react-bootstrap';
-// import ModalDialog from 'react-bootstrap/ModalDialog';
 import "./ProjectList.css"
 
 export const ProjectList = (props) => {
@@ -12,43 +11,34 @@ export const ProjectList = (props) => {
   return (
     <Users>
       <Container className="projectsContainer">
-        <Row>
-          <Col sm={8}>
-            <h2 className="userNameTitle">wilsonwu</h2>
-          </Col>
-          <Col sm={4}>
-            <Row className="justify-content-end">
-              <Button className="creatProjectBtn" onClick={handleShow}> + New project</Button>
-            </Row>
-          </Col>
+        <Row className="justify-content-between" style={{ paddingRight: "1rem" }}>
+          <h2 className="userNameTitle" style={{ width: "auto" }}>wilsonwu</h2>
+          <Button className="creatProjectBtn" style={{ width: "8rem", lineHeight: "2rem" }} onClick={handleShow}> + New project</Button>
         </Row>
-        <Row style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>
-          <Col sm={9} style={{ paddingLeft: 0, paddingRight: 0 }}>
-            <Nav
-              activeKey="/projects"
-            >
-              <Nav.Item >
-                <Nav.Link href="/projects" className="projectNav">Projects</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#" className="projectNav">My work items</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="#" className="projectNav">My pull requests</Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Col>
-          <Col sm={3} style={{ paddingLeft: 0, paddingRight: 0 }}>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Filter by project"
-                className="itemTableSearch"
-                aria-label="Search"
-                size="sm"
-              />
-            </Form>
-          </Col>
+        <Row style={{ paddingTop: "1rem", paddingBottom: "1rem" }} className="justify-content-between">
+          <Nav
+            activeKey="/projects"
+            style={{ width: "70%" }}
+          >
+            <Nav.Item >
+              <Nav.Link href="/projects" className="projectNav">Projects</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="#" className="projectNav">My work items</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="#" className="projectNav">My pull requests</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <Form style={{ width: "30%" }}>
+            <Form.Control
+              type="search"
+              placeholder="Filter by project"
+              className="itemTableSearch"
+              aria-label="Search"
+              size="sm"
+            />
+          </Form>
         </Row>
         <Row>
           <ProjectCard />
@@ -65,7 +55,6 @@ export const ProjectList = (props) => {
           centered
           scrollable
         >
-          {/* <Modal.Dialog className="projectModalDialog"> */}
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -168,7 +157,6 @@ export const ProjectList = (props) => {
               Create
             </Button>
           </Modal.Footer>
-          {/* </Modal.Dialog> */}
         </Modal>
       </Container>
     </Users>

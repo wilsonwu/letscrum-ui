@@ -10,7 +10,7 @@ export const ProjectCard = () => {
   //   { projectId: "1", projectName: "11", projectDisplayName: "111" }
   // ];
   return (
-    <Row>
+    <>
       <Col>
       <Card className="projectCardContainer">
         <Card.Body className="projectCard">
@@ -59,6 +59,6 @@ export const ProjectCard = () => {
         </Card.Body>
       </Card>
       </Col>
-    </Row>
+    </>
   )
 }

@@ -1,32 +1,21 @@
 import React from "react";
-import { Row, Col } from 'react-bootstrap'
+import { Row, Container } from 'react-bootstrap'
 import { ItemStates, ItemTitle, BugItemDetail } from "../../components";
 import { Main } from "../../layouts/Main";
 
 export const CreateBug = () => {
   return (
     <Main>
-      <Row>
-        <Col sm={2}>
-          <h5 className="py-3 mb-0 mt-1" style={{ fontWeight: "300" }}>Work Items</h5>
-        </Col>
-
-        <Col sm={10}>
-          <Row>
-            <Col sm={2}>
-              <div style={{ backgroundColor: "#333", width: "1px", padding: "0" }}>
-              </div>
-              </Col>
-            <Col sm={10}>
-              <h6 className="py-3 mb-0 mt-2" style={{ fontWeight: "300" }}>Back to Work Items</h6>
-              </Col>
-          </Row>
-        </Col>
-
+      <Container>
+      <Row className="pt-2">
+        <h5 className="py-3 mb-0" style={{ fontWeight: "300", width: "auto", lineHeight: "2rem" }}>Work Items</h5>
+        <div style={{ backgroundColor: "var(--bg-color-basic)", width: "1px", height: "2rem", padding: 0, margin: "1rem .3rem" }} />      
+        <h6 className="py-3 mb-0" style={{ fontWeight: "300", width: "auto", lineHeight: "2rem" }}>Back to Work Items</h6>
       </Row>
       <ItemTitle />
       <ItemStates />
       <BugItemDetail />
+      </Container>
     </Main>
   )
 }
