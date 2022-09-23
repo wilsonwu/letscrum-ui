@@ -1,10 +1,17 @@
 .itemTypeText {
-  font-size: .8rem 
+  height: 1rem;
+  line-height: 1rem;
+  font-size: .75rem;
+  padding-left: 1rem;
+  width: auto;
 }
 
 .itemReqText {
-  font-size: .9rem;
+  height: 1rem;
+  line-height: 1rem;
+  font-size: .875rem;
   color: red;
+  width: auto;
 }
 .createItemTitle {
   height: 40px;
@@ -23,7 +30,7 @@
   height: 2rem;
   width: 100%;
   font-size: .9rem;
-  color: var(--bg-color-primary);
+  color: var(--text-color-primary);
   text-align: left;
   background-color: white;
   border-color: white;

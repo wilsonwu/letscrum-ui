@@ -10,11 +10,11 @@ export const Header = () => {
 
   return (
     <Navbar style={{ padding: 0, borderBottom: "1px solid rgb(240, 240, 240)" }}>
-      <Container style={{ margin: 0 }} fluid>
+      <Container fluid>
         <Navbar.Brand href="#home">LetScrum</Navbar.Brand>
         <Breadcrumb as="ol" style={{ margin: 0, paddingTop: "14px", fontSize: "14px", fontWeight: "400" }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Library</Breadcrumb.Item>
+          <Breadcrumb.Item>Library</Breadcrumb.Item>
           <Breadcrumb.Item active>Data</Breadcrumb.Item>
         </Breadcrumb>
         <Navbar.Toggle />

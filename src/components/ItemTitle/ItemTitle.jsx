@@ -9,50 +9,50 @@ export const ItemTitle = () => {
         <div style={{ backgroundColor: "rgb(240, 240, 240)", height: "1px" }}></div>
       </Row>
       <Row>
-        <Row>
-          <Col sm={1} className="itemTypeText">NEW BUG *</Col>
-          <Col sm={11} className="itemReqText">Field Title cannot be empty</Col>
-        </Row>
-        <Row style={{ paddingTop: ".5rem", paddingBottom: ".5rem" }}>
-          <Col>
-            <Form.Control placeholder="Enter titile" className="createItemTitle" />
-          </Col>
-        </Row>
-        <Row style={{ paddingBottom: ".5rem" }}>
-          <Col sm={4}>
-            <Dropdown>
-              <Dropdown.Toggle variant="light" className="detailToggle">
-                Unassigned
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="detailDropDownMenu">
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-          <Col sm={4} >
-            <Button variant="link" className="commentBtn">
-              counted comments
-            </Button>
-            <Button className="addTagBtn">
-              Add tag
-            </Button>
-          </Col>
-          <Col sm={4} >
-            <Row className="align-items-center justify-content-end">
-              <Button className="detailSaveBtn">save</Button>
-              <Button className="hotDisableBtn">r</Button>
-              <Button className="hotDisableBtn">c</Button>
-              {/* <Button className="hotBtn">Opts</Button> */}
-              <Dropdown.Toggle className="moreOpts">
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="moreDropDownMenu">
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              </Dropdown.Menu>
-            </Row>
-          </Col>
-        </Row>
+        <h6 className="itemTypeText">NEW BUG *</h6>
+        <h6 className="itemReqText">Field Title cannot be empty</h6>
+      </Row>
+      <Row style={{ paddingTop: ".5rem", paddingBottom: ".5rem" }}>
+        <Col>
+          <Form.Control placeholder="Enter titile" className="createItemTitle" />
+        </Col>
+      </Row>
+      <Row style={{ paddingBottom: ".5rem" }}>
+        <Col sm={4}>
+          <Dropdown>
+            <Dropdown.Toggle variant="light" className="detailToggle">
+              Unassigned
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="detailDropDownMenu">
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+        <Col sm={4}>
+          <Button variant="link" className="commentBtn">
+            counted comments
+          </Button>
+          <Button className="addTagBtn">
+            Add tag
+          </Button>
+        </Col>
+
+        <Col sm={4} >
+          <Row className="justify-content-end">
+            <Button className="detailSaveBtn">save</Button>
+            <Button className="hotDisableBtn">r</Button>
+            <Button className="hotDisableBtn">c</Button>
+            {/* <Button className="hotBtn">Opts</Button> */}
+            <Dropdown.Toggle className="moreOpts">
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="moreDropDownMenu">
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+            </Dropdown.Menu>
+          </Row>
+        </Col>
+
       </Row>
     </>
   )

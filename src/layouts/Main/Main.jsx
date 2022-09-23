@@ -9,7 +9,7 @@ export const Main = ({ children }) => {
       <Header />
         <Container fluid>
           <Row >
-            <Col sm={2} className="pe-0">
+            <Col sm={2} className="px-0">
               <SideMenu />
             </Col>
             <Col sm={10} className="px-0">
