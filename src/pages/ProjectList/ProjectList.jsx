@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ProjectCard } from "../../components";
-import { Users } from "../../layouts"
+import { Auth } from "../../layouts"
 import { Container, Row, Col, Button, Nav, Form, Modal, Dropdown } from 'react-bootstrap';
 import "./ProjectList.css"
 
@@ -9,7 +9,7 @@ export const ProjectList = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <Users>
+    <Auth>
       <Container className="projectsContainer">
         <Row className="justify-content-between" style={{ paddingRight: "1rem" }}>
           <h2 className="userNameTitle" style={{ width: "auto" }}>wilsonwu</h2>
@@ -159,6 +159,6 @@ export const ProjectList = (props) => {
           </Modal.Footer>
         </Modal>
       </Container>
-    </Users>
+    </Auth>
   );
 }

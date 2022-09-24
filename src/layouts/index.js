@@ -1,2 +1,2 @@
 export * from "./Main"
-export * from "./Users"
+export * from "./Auth"
