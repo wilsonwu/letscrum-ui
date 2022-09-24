@@ -3,7 +3,7 @@ import { Row, Col, Container } from 'react-bootstrap'
 import { Header, Footer, UserSideSwitch } from "../../components";
 import PropTypes from "prop-types";
 
-export const Auth = ({ children }) => {
+export const Project = ({ children }) => {
   return (
     <>
       <Header />
@@ -22,6 +22,6 @@ export const Auth = ({ children }) => {
   )
 }
 
-Auth.propTypes = {
+Project.propTypes = {
   children: PropTypes.node.isRequired
 }
