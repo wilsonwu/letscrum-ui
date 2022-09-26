@@ -1,9 +1,11 @@
 import React from "react";
 import { Row, Col, Button, Card, Alert, Dropdown, Container } from "react-bootstrap";
 import { Main } from "../../layouts";
+import { useNavigate } from "react-router-dom"
 import './ProjectSummary.css'
 
 export const ProjectSummary = () => {
+  const navigate = useNavigate();
   return (
     <Main>
       <Container>
@@ -59,12 +61,12 @@ export const ProjectSummary = () => {
                 <Card.Subtitle className="cardSubtitle">Boards</Card.Subtitle>
                 <Row>
                   <Col>
-                    <Row>
+                    <Row onClick={ () => navigate("/workitemList")} >
                       <Col sm={4}>
                         123
                         {/* <div style={{ width: "32px", hight: "32px", backgroundColor: "red" }}></div> */}
                       </Col>
-                      <Col sm={8}>
+                      <Col sm={8} >
                         <p style={{ marginBottom: 0 }}>0</p>
                         <p style={{ fontSize: ".8rem", color: "var(--text-color-secondary)", marginBottom: 0 }}>Work items created</p>
                       </Col>

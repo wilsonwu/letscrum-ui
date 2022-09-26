@@ -1,8 +1,10 @@
 import React from 'react';
-import { Col, Row, Navbar, Form, Table, Container, Dropdown, CloseButton } from 'react-bootstrap'
+import { Col, Row, Navbar, Form, Table, Container, Dropdown, CloseButton } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import './ItemsTable.css'
 
 export const ItemsTable = () => {
+  const navigate = useNavigate();
   return (
     <>
     {/* Filter bar */}
@@ -83,7 +85,7 @@ export const ItemsTable = () => {
       </Row>
     {/* table */}
       <Row className='px-2'>
-        <Table responsive hover="ture" borderless>
+        <Table responsive hover="ture" borderless onClick={ () => navigate("/create/Bug")}>
           <thead>
             <tr className='tableRow'>
               <th>ID</th>

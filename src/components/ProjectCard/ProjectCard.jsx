@@ -1,8 +1,10 @@
 import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"
 import "./ProjectCard.css"
 
 export const ProjectCard = () => {
+  const navigate = useNavigate();
   // arguments: projectId, projectName, projectDisplayName
   // const projectData = [
   //   { projectId: "1", projectName: "11", projectDisplayName: "111" },
@@ -21,7 +23,7 @@ export const ProjectCard = () => {
               <Col style={{ padding: 0 }}>
                 <Card.Title>item.projectId</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">item.projectName</Card.Subtitle>
-                <Card.Link href="#">item.projectDisplayName</Card.Link>
+                <Card.Link onClick={ () => navigate("/userName/projectName")}>item.projectDisplayName</Card.Link>
               </Col>
             </Row>
           </Card.Body>
