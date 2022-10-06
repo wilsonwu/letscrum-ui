@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom"
 import "./ProjectCard.css"
 
@@ -12,55 +12,15 @@ export const ProjectCard = () => {
   //   { projectId: "1", projectName: "11", projectDisplayName: "111" }
   // ];
   return (
-    <>
-      <Col>
-        <Card border="light">
-          <Card.Body className="projectCard">
-            <Row>
-              <Col sm="auto">
-                <div className="projectAvatar"></div>
-              </Col>
-              <Col style={{ padding: 0 }}>
-                <Card.Title>item.projectId</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">item.projectName</Card.Subtitle>
-                <Card.Link onClick={ () => navigate("/userName/projectName")}>item.projectDisplayName</Card.Link>
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Col>
-      <Col>
-        <Card border="light">
-          <Card.Body className="projectCard">
-            <Row>
-              <Col sm="auto">
-                <div className="projectAvatar"></div>
-              </Col>
-              <Col style={{ padding: 0 }}>
-                <Card.Title>item.projectId</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">item.projectName</Card.Subtitle>
-                <Card.Link href="#">item.projectDisplayName</Card.Link>
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Col>
-      <Col>
-        <Card border="light">
-          <Card.Body className="projectCard">
-            <Row>
-              <Col sm="auto">
-                <div className="projectAvatar"></div>
-              </Col>
-              <Col style={{ padding: 0 }}>
-                <Card.Title>item.projectId</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">item.projectName</Card.Subtitle>
-                <Card.Link href="#">item.projectDisplayName</Card.Link>
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Col>
-    </>
+    <Card border="light">
+      <Card.Body className="projectCard" style={{ display: "inline-flex" }}>
+        <div className="projectAvatar"></div>
+        <div style={{ paddingLeft: "1rem" }}>
+          <Card.Title style={{ fontSize: "1.125rem", marginBottom: ".825rem"}}>item.projectId</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: ".875rem", fontWeight: "400"}}>item.projectName</Card.Subtitle>
+          <Card.Link onClick={() => navigate("/userName/projectName")} style={{ fontSize: ".875rem"}}>item.projectDisplayName</Card.Link>
+        </div>
+      </Card.Body>
+    </Card>
   )
 }

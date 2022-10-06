@@ -13,9 +13,9 @@ export const SideMenu = () => {
           <Nav className="me-auto flex-column" >
             <Nav.Link onClick={ () => navigate("/")}>Home</Nav.Link>
             <Nav.Link onClick={ () => navigate("/projectList")}>Projects List</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/userName/projectName")}>Project Summary</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/workitemList")}>Work Items List</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/create/Bug")}>Create Bug</Nav.Link>
+            <Nav.Link onClick={ () => navigate("/projectName")}>Project Summary</Nav.Link>
+            <Nav.Link onClick={ () => navigate("/projectName/workitemList")}>Work Items List</Nav.Link>
+            <Nav.Link onClick={ () => navigate("/projectName/create/Bug")}>Create Bug</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

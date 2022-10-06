@@ -1,6 +1,33 @@
-.breadcrumb-item :link{
-  color: #333;
-  text-decoration: none;
+@media screen and (max-width: 768px) {
+  #desktopHeader :only-child{
+    display: none;
+  }
+  .navBarContainer .tabletHeaderBurger {
+    display: block;
+  }
+}
+
+.tabletHeaderBurger {
+  display: none;
+  width: 2rem;
+  padding: 0;
+  margin-right: .5rem;
+  border-radius: 0;
+  border: 1px solid white;
+}
+
+.tabletHeaderBurger:focus {
+  background-color: white;
+  border: 1px solid white;
+}
+
+.navBar {
+  border-bottom: 1px solid var(--bg-color-basic);
+}
+
+.navBarContainer {
+  padding: 0 .8rem;
+  
 }
 
 .searchInput {
@@ -13,4 +40,9 @@
 
 .searchInput:focus {
  box-shadow: none;
+}
+
+.logText {
+  text-decoration: none;
+  color: grey;
 }

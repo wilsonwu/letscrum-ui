@@ -1,24 +1,65 @@
 import React from "react";
-import { Navbar, Container, Breadcrumb, Form, NavLink } from 'react-bootstrap';
+import { Navbar, Container, Form, Nav, Button } from 'react-bootstrap';
+// import { BreadcrumbNav } from "../BreadcrumbNav";
+// import { NavLink as BreadcrmbNavLink } from "react-router-dom";
 import './Header.css'
-import { UserMenu } from "../UserMenu";
+// import { UserMenu } from "../UserMenu";
 import { useDispatch } from 'react-redux'
 import { signIn, signOff } from '../../redux/reducers/userSlice'
+import { matchPath, useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  matchPath({ path: '/', end: false }, location.pathname);
 
   return (
-    <Navbar style={{ padding: 0, borderBottom: "1px solid rgb(240, 240, 240)" }}>
-      <Container fluid>
-        <Navbar.Brand href="#home">LetScrum</Navbar.Brand>
-        <Breadcrumb as="ol" style={{ margin: 0, paddingTop: "14px", fontSize: "14px", fontWeight: "400" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>Library</Breadcrumb.Item>
-          <Breadcrumb.Item active>Data</Breadcrumb.Item>
-        </Breadcrumb>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
+    <Navbar className="navBar">
+      <Container fluid className="navBarContainer">
+        <Button variant="light" className="tabletHeaderBurger">Br</Button>
+        {/* <Navbar.Offcanvas
+              id='offcanvasNavbar-expand-md'
+              aria-labelledby='offcanvasNavbarLabel-expand-md'
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id='offcanvasNavbarLabel-expand-md'>
+                  Offcanvas
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link href="#action2">Link</Nav.Link>
+                  <NavDropdown
+                    title="Dropdown"
+                    id='offcanvasNavbarDropdown-expand-md'
+                  >
+                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">
+                      Another action
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+                <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form>
+              </Offcanvas.Body>
+        </Navbar.Offcanvas> */}
+        <Navbar.Brand onClick={() => navigate("/")}>LetScrum</Navbar.Brand>
+        <Navbar.Collapse id="desktopHeader" className="justify-content-end" >
+          {/* search input */}
           <Form className="d-flex">
             <Form.Control
               type="search"
@@ -26,28 +67,22 @@ export const Header = () => {
               className="me-4 searchInput"
               aria-label="Search"
             />
-            {/* <Button variant="outline-success">Search</Button> */}
           </Form>
-          <Navbar.Text>
-            <NavLink onClick={
-              () => dispatch(signIn({ userId: 1, username: "123" }))
-            }
-              style={
-                { textDecoration: "none", color: "grey" }
-              }>
+          {/* nav menu */}
+          <Nav>
+            <Nav.Link
+              onClick={() => dispatch(signIn({ userId: 1, username: "123" }))}
+              className="logText">
               Log in
-            </NavLink>
-          </Navbar.Text>
-          <Navbar.Text>
-            <NavLink onClick={
-              () => dispatch(signOff())
-            }
-              style={
-                { textDecoration: "none", color: "grey" }
-              }>Logoff</NavLink>
-          </Navbar.Text>
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => dispatch(signOff())}
+              className="logText">
+              Log off
+            </Nav.Link>
+          </Nav>
         </Navbar.Collapse>
-        <UserMenu />
+        {/* <UserMenu /> */}
       </Container>
     </Navbar>
   );

@@ -14,7 +14,7 @@ export const UserMenu = () => {
   }, [user]);
 
   return (
-    <Navbar.Collapse id="navbar-dark-example">
+    <Navbar.Collapse id="navbar-dark-example" className='justify-content-end'>
       <Nav>
         <NavDropdown
           id="nav-dropdown-dark-example"

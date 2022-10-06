@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ProjectCard } from "../../components";
 import { Project } from "../../layouts"
-import { Container, Row, Col, Button, Nav, Form, Modal, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Stack, Button, Nav, Form, Modal, Dropdown } from 'react-bootstrap';
 import "./ProjectList.css"
 
 export const ProjectList = (props) => {
@@ -10,43 +10,52 @@ export const ProjectList = (props) => {
   const handleShow = () => setShow(true);
   return (
     <Project>
-      <Container className="projectsContainer">
-        <Row className="justify-content-between" style={{ paddingRight: "1rem" }}>
-          <h2 className="userNameTitle" style={{ width: "auto" }}>wilsonwu</h2>
-          <Button className="creatProjectBtn" style={{ width: "8rem", lineHeight: "2rem" }} onClick={handleShow}> + New project</Button>
-        </Row>
+      <Container className="projectsContainer" fluid>
+        <Stack direction="horizontal">
+        <h2 className="userNameTitle">wilsonwu</h2>
+          <Button
+            className="createProjectBtn ms-auto"
+            onClick={handleShow}>
+            + New project
+          </Button>
+        </Stack>
+        {/* category tab */}
         <Row style={{ paddingTop: "1rem", paddingBottom: "1rem" }} className="justify-content-between">
-          <Nav
-            activeKey="/projects"
-            style={{ width: "70%" }}
-          >
-            <Nav.Item >
-              <Nav.Link href="/projects" className="projectNav">Projects</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#" className="projectNav">My work items</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link href="#" className="projectNav">My pull requests</Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <Form style={{ width: "30%" }}>
-            <Form.Control
-              type="search"
-              placeholder="Filter by project"
-              className="itemTableSearch"
-              aria-label="Search"
-              size="sm"
-            />
-          </Form>
+        <Col style={{ padding: 0 }} md={12} lg={8}>
+            <Nav activeKey="/projects">
+              <Nav.Item >
+                <Nav.Link href="/projects" className="projectNav">Projects</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="#" className="projectNav">My work items</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="#" className="projectNav">My pull requests</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+          <Col md={12} lg={3}>
+            <Form>
+              <Form.Control
+                type="search"
+                placeholder="Filter by project"
+                className="itemTableSearch"
+                aria-label="Search"
+                size="sm"
+              />
+            </Form>
+          </Col>
         </Row>
         <Row>
-          <ProjectCard />
-          {/* ProjectCard arguments: projectId={1} projectName={test} projectDisplayName={TestProject} */}
+          <Col lg={4} md={12}>
+            {/* ProjectCard arguments: projectId={1} projectName={test} projectDisplayName={TestProject} */}
+            <ProjectCard />
+          </Col>
         </Row>
-        {/* Modal */}
+        {/* create project */}
         <Modal
           show={show}
+          fullscreen='md-down'
           onHide={handleClose}
           animation={false}
           {...props}
@@ -56,28 +65,29 @@ export const ProjectList = (props) => {
           scrollable
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Create new project</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="itemLabel">Email address</Form.Label>
-                <Form.Control type="email" className="itemInput" />
+                <Form.Label className="itemLabel">Project name</Form.Label>
+                <Form.Control type="text" className="itemInput" style={{ height: "1.75rem" }} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label className="itemLabel">Password</Form.Label>
+                <Form.Label className="itemLabel">Description</Form.Label>
                 <Form.Control type="text" as="textarea" rows={3} className="itemInput" />
               </Form.Group>
 
               <Row style={{ marginBottom: ".5rem", padding: "0 1rem" }}>Visibility</Row>
-              <Row style={{ padding: "0 1rem" }}>
-                <Col className="projectVisibility" style={{ marginRight: "1rem" }}>
+              <Row style={{ padding: "0 1rem", display: "inline-flex" }}>
+                <Col md={12} lg
+                  className="projectVisibility" style={{ marginRight: "1rem", marginBottom: "1rem" }}>
                   <Form>
                     <Row>
-                      <Col>
-                        <h6>Public</h6>
-                        <p>Anyone on the internet can view the project. Certain features like
+                      <Col >
+                        <h6 className="visibilityTitle">Public</h6>
+                        <p className="visibilityDescription">Anyone on the internet can view the project. Certain features like
                           TFVC are not supported</p>
                       </Col>
                       <Col>
@@ -90,12 +100,12 @@ export const ProjectList = (props) => {
                     </Row>
                   </Form>
                 </Col>
-                <Col className="projectVisibility">
+                <Col md={12} lg className="projectVisibility"  style={{marginBottom: "1rem"}}>
                   <Form>
                     <Row>
                       <Col>
-                        <h6>Public</h6>
-                        <p>Anyone on the internet can view the project. Certain features like
+                        <h6 className="visibilityTitle">Public</h6>
+                        <p className="visibilityDescription">Anyone on the internet can view the project. Certain features like
                           TFVC are not supported</p>
                       </Col>
                       <Col>
@@ -118,10 +128,10 @@ export const ProjectList = (props) => {
                 <Button className="advancedBtn">Advanced</Button>
               </Row>
 
-              <Row style={{ padding: "1rem 0" }}>
-                <Col style={{ padding: "0 1rem", fontSize: ".875rem" }}>
+              <Row style={{ padding: "1rem 0"}} >
+                <Col md={12} lg={6} style={{ padding: "0 1rem", fontSize: ".875rem", marginBottom: "1rem" }}>
                   Version control
-                  <Dropdown >
+                  <Dropdown>
                     <Dropdown.Toggle className="projectAdvancedItem">
                       Git
                     </Dropdown.Toggle>
@@ -132,9 +142,9 @@ export const ProjectList = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
-                <Col style={{ padding: "0 1rem", fontSize: ".875rem" }}>
+                <Col md={12} lg={6} style={{ padding: "0 1rem", fontSize: ".875rem" }}>
                   Work item process
-                  <Dropdown >
+                  <Dropdown>
                     <Dropdown.Toggle className="projectAdvancedItem">
                       Agile
                     </Dropdown.Toggle>
@@ -150,10 +160,10 @@ export const ProjectList = (props) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="light" style={{ backgroundColor: "var(--bg-color-basic)", borderRadius: 0 }} onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="light" style={{ color: "var(--text-color-disabled)", backgroundColor: "var(--bg-color-basic)", borderRadius: 0 }} onClick={handleClose}>
               Create
             </Button>
           </Modal.Footer>
