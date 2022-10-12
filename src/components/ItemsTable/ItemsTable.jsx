@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Navbar, Form, Table, Container, Dropdown, CloseButton } from 'react-bootstrap';
+import { Row, Navbar, Form, Table, Dropdown, CloseButton, Container, Stack } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './ItemsTable.css'
 
@@ -7,85 +7,80 @@ export const ItemsTable = () => {
   const navigate = useNavigate();
   return (
     <>
-    {/* Filter bar */}
+      {/* Filter bar */}
       <Row className='my-1 px-2'>
-        <Navbar style={{ backgroundColor: "rgb(240, 240, 240)" }} expand="lg" className='rounded-1 justify-content-end'>
+        <Navbar className='rounded-1' style={{ backgroundColor: "var(--bg-color-basic)" }} expand="lg">
           <Container fluid>
-            <Col>
-              <Form className="d-flex">
+            <Stack direction='horizontal'>
+              <Form className='d-flex col-md-10'>
                 <Form.Control
                   type="search"
                   placeholder="Filter by keyword"
-                  className="itemTableSearch"
+                  className="d-flex itemTableSearch"
                   aria-label="Search"
                   size="sm"
                 />
               </Form>
-            </Col>
-
-            <Dropdown className='mx-1'>
-              <Dropdown.Toggle className="filters">
-                Type
-              </Dropdown.Toggle>
-              <Dropdown.Menu className='filtersMenu'>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown className='mx-1'>
-              <Dropdown.Toggle className="filters">
-                Assigned to
-              </Dropdown.Toggle>
-              <Dropdown.Menu className='filtersMenu'>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown className='mx-1'>
-              <Dropdown.Toggle className="filters">
-                States
-              </Dropdown.Toggle>
-              <Dropdown.Menu className='filtersMenu'>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown className='mx-1'>
-              <Dropdown.Toggle className="filters">
-                Area
-              </Dropdown.Toggle>
-              <Dropdown.Menu className='filtersMenu'>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <Dropdown className='mx-1'>
-              <Dropdown.Toggle className="filters">
-                Tags
-              </Dropdown.Toggle>
-              <Dropdown.Menu className='filtersMenu'>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <CloseButton className='px-3' />
-
+              <div id="itemsFilters">
+                <Dropdown className='mx-1 filterDropdown'>
+                  <Dropdown.Toggle className="filters">
+                    Type
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='filtersMenu'>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown className='mx-1 filterDropdown'>
+                  <Dropdown.Toggle className="filters">
+                    Assigned to
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='filtersMenu'>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown className='mx-1 filterDropdown'>
+                  <Dropdown.Toggle className="filters">
+                    States
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='filtersMenu'>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown className='mx-1 filterDropdown'>
+                  <Dropdown.Toggle className="filters">
+                    Area
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='filtersMenu'>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <Dropdown className='mx-1 filterDropdown'>
+                  <Dropdown.Toggle className="filters">
+                    Tags
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className='filtersMenu'>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <CloseButton className='px-3' style={{ hight: "2rem", lineHight: "2rem" }} />
+              </div>
+            </Stack>
           </Container>
         </Navbar>
       </Row>
-    {/* table */}
+      {/* table */}
       <Row className='px-2'>
-        <Table responsive hover="ture" borderless onClick={ () => navigate("/create/Bug")}>
+        <Table responsive hover="ture" borderless onClick={() => navigate("/create/Bug")}>
           <thead>
             <tr className='tableRow'>
               <th>ID</th>
@@ -123,7 +118,7 @@ export const ItemsTable = () => {
             </tr>
           </tbody>
         </Table>
-        
+
       </Row>
     </>
   )

@@ -27,7 +27,7 @@ export const ProjectSummary = (props) => {
           <div style={{ width: "3rem", textAlign: "center" }}>icon</div>
         </Stack>
         <Row className="overviewContainer">
-          <Col sm={8} className="px-0">
+          <Col lg={8} md={12} className="px-0">
             {/* about */}
             <Card className="card">
               <Card.Body>
@@ -43,7 +43,7 @@ export const ProjectSummary = (props) => {
               </Card.Body>
             </Card>
           </Col>
-          <Col sm={4} className="pe-0">
+          <Col id="summaryRightColumn" lg={4} md={12} className="pe-0">
             {/* stats */}
             <Card className="card">
               <Card.Body>

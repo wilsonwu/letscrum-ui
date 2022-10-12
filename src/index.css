@@ -31,6 +31,11 @@ code {
 
 /* list page >> list options */
 
+.dropdownStyle {
+  display: inline;
+  padding: 0;
+  width: auto;
+}
 .listFaqOptions {
   font-size: .9rem;
   color:var(--text-color-primary);
