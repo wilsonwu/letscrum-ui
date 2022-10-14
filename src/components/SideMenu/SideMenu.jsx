@@ -1,24 +1,55 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { NavLink, Outlet } from 'react-router-dom';
+import "./SideMenu.css"
 
 export const SideMenu = () => {
-  const navigate = useNavigate();
+  const menuItems = [
+    {
+      title: "Home",
+      path: "/"
+    },
+    {
+      title: "Projects List",
+      path: "/projectList"
+    },
+    {
+      title: "Project Summary",
+      path: "/imoogoo"
+    },
+    {
+      title: "Work Items List",
+      path: "/projectName/workitemList"
+    },
+    {
+      title: "Create Bug",
+      path: "/create/Bug"
+    }
+  ]
   return (
     <>
-      <Navbar variant="light" style={{backgroundColor: "rgb(234, 234, 234)"}}>
-        <Container>
+      <Navbar variant="light" className='sideMenu'>
+        <Container fluid>
           <Nav className="me-auto flex-column" >
-            <Nav.Link onClick={ () => navigate("/")}>Home</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/projectList")}>Projects List</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/projectName")}>Project Summary</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/projectName/workitemList")}>Work Items List</Nav.Link>
-            <Nav.Link onClick={ () => navigate("/projectName/create/Bug")}>Create Bug</Nav.Link>
+            {menuItems.map((item, index) => (
+              <Nav.Link key={index}>
+                <NavLink
+                  to={item.path}
+                  className="menuItem"
+                  style={({ isActive }) =>
+                  ({
+                    color: isActive ? "var(--text-color-primary)" : "",
+                    fontWeight: isActive ? "bold" : ""
+                  })}
+                >
+                  {item.title}
+                </NavLink>
+              </Nav.Link>
+            ))}
           </Nav>
         </Container>
       </Navbar>
+      <Outlet />
     </>
   );
 }

@@ -1,18 +1,13 @@
 @media screen and (max-width: 768px) {
-  #itemsFilters {
-    display: none;
-  }
-  
+  .filterDropdown {display: none}
 }
 
-@media screen and (min-width: 768px) {
-  #itemsFilters {
-    display: inline-flex;
-  }
+@media screen and (min-width: 7768px) {
+  .filterDropdown {display: inline-block}
 }
+
 
 .itemTableSearch {
-  width: 100%;
   background-color: var(--bg-color-basic);
   border: 1px solid var(--bg-color-basic);
   border-radius: 0;
@@ -22,10 +17,6 @@
   background-color: var(--bg-color-basic);
   border: 1px solid var(--bg-color-basic);
   box-shadow: none;
-}
-
-.filterDropdown {
-  display: inline;
 }
 
 .filters {
@@ -73,4 +64,5 @@
   font-size: .9rem;
   color: var(--text-color-primary);
   font-weight: 400;
+  cursor: pointer;
 }

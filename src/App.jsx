@@ -31,21 +31,15 @@ function App() {
                     )
                   })}
               </Route>
-          )
-        })
-        } */}
-
-
-
+          )})} */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         {/* need to add /userName and modify /projectName relevant stuff */}
         <Route path="/projectList" element={<ProjectList title="Projects List" />} />
-        <Route path="/projectName" element={<ProjectSummary title="Summary" />} >
-          <Route path="workitemList" element={<WorkItemList title="Work items" />} />
-          <Route path="create/Bug" element={<CreateBug />} />
-        </Route> 
+        <Route path="/imoogoo" element={<ProjectSummary title="Summary" />} />
+        <Route path="/projectName/workitemList" element={<WorkItemList title="Work items" />} />
+        <Route path="/create/Bug" element={<CreateBug />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import { Home, WorkItemList, About, Login, ProjectList, CreateBug, ProjectSummary } from "./pages";
+import { createBrowserRouter } from "react-router-dom"
 
-const routes = [
+const routes = createBrowserRouter([
   {
     title: "Home",
     path: "/",
@@ -27,7 +28,7 @@ const routes = [
   },
   {
     title: "Summary",
-    path: "/projectName",
+    path: "/imoogoo",
     element: <ProjectSummary withOutlet />,
     children: [
       {
@@ -42,6 +43,6 @@ const routes = [
       }
     ]
   }
-]
+])
 
 export default routes;

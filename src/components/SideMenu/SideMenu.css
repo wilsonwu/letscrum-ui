@@ -1,0 +1,17 @@
+@media screen and (max-width: 768px) {
+  .sideMenu {display: none;}
+}
+
+.sideMenu {
+  background-color: var(--bg-color-primary)
+}
+.menuItem {
+  font-size: .875rem;
+  text-decoration: none;
+  color: var(--text-color-secondary);
+}
+
+.menuItem:hover {
+  font-size: 600;
+  color: var(--text-color-primary);
+}
