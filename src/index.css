@@ -35,6 +35,7 @@ code {
   display: inline;
   padding: 0;
   width: auto;
+  border-radius: 2px;
 }
 .listFaqOptions {
   font-size: .9rem;

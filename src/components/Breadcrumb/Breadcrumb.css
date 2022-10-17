@@ -1,10 +1,22 @@
-.breadcrumb {
-  margin: 0 .5rem;
-  font-size: .875rem;
-  font-weight: 400;
+@media screen and (max-width: 768px) {
+  #headerBreadcrumb {display: none;}
 }
 
-.breadcrumb-item :link{
-  color: #333;
+.breadcrumb {
+  margin-bottom: 0;
+  padding: .5rem;
+  font-size: .875rem;
+  font-weight: 400;
   text-decoration: none;
+  color: var(--text-color-secondary);
 }
+
+#breadcrumbItem:hover {
+  color: var(--text-color-secondary);
+  background-color: var(--bg-color-basic);
+}
+
+/* #breadcrumbItem::before {
+  content: "/";
+  margin-right: .55rem;
+} */

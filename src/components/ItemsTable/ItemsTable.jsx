@@ -9,7 +9,7 @@ export const ItemsTable = () => {
     <>
       {/* Filter bar */}
       <Stack direction='horizontal'
-        style={{ backgroundColor: "var(--bg-color-basic)", padding: ".25rem 0" }}
+        style={{ backgroundColor: "var(--bg-color-basic)", padding: ".5rem", borderRadius: "3px" }}
       >
         <Form.Control
           type="search"

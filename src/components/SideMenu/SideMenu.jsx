@@ -6,24 +6,24 @@ import "./SideMenu.css"
 export const SideMenu = () => {
   const menuItems = [
     {
+      path: "/",
       title: "Home",
-      path: "/"
     },
     {
+      path: "/projectsList",
       title: "Projects List",
-      path: "/projectsList"
     },
     {
+      path: "/imoogoo",
       title: "Project Summary",
-      path: "/imoogoo"
     },
     {
+      path: "/projectName/workitemList",
       title: "Work Items List",
-      path: "/projectName/workitemList"
     },
     {
+      path: "/create/Bug",
       title: "Create Bug",
-      path: "/create/Bug"
     }
   ]
   return (
