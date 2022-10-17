@@ -11,7 +11,7 @@ export const SideMenu = () => {
     },
     {
       title: "Projects List",
-      path: "/projectList"
+      path: "/projectsList"
     },
     {
       title: "Project Summary",

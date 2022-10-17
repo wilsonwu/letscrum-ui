@@ -5,6 +5,7 @@
 .sideMenu {
   background-color: var(--bg-color-primary)
 }
+
 .menuItem {
   font-size: .875rem;
   text-decoration: none;

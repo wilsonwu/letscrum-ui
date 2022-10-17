@@ -1,36 +1,68 @@
 import React, { useState } from "react";
 import { Navbar, Container, Form, Nav, Button, Offcanvas } from 'react-bootstrap';
-// import { BreadcrumbNav } from "../BreadcrumbNav";
-// import { NavLink as BreadcrmbNavLink } from "react-router-dom";
+import { Breadcrumb } from "../Breadcrumb";
 import './Header.css'
-// import { UserMenu } from "../UserMenu";
 import { useDispatch } from 'react-redux'
 import { signIn, signOff } from '../../redux/reducers/userSlice'
-import { useNavigate } from "react-router-dom";
-import { SideMenu } from "../SideMenu";
+import { useNavigate, NavLink } from "react-router-dom";
+
 
 export const Header = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showSideMenu, setShowSideMenu] = useState(false);
+  const handleSideMenuClose = () => setShowSideMenu(false);
+  const handleSideMenuShow = () => setShowSideMenu(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const location = useLocation();
-  // matchPath({ path: '/', end: false }, location.pathname);
+  const menuItems = [
+    {
+      title: "Home",
+      path: "/"
+    },
+    {
+      title: "Projects List",
+      path: "/projectsList"
+    },
+    {
+      title: "Project Summary",
+      path: "/imoogoo"
+    },
+    {
+      title: "Work Items List",
+      path: "/projectName/workitemList"
+    },
+    {
+      title: "Create Bug",
+      path: "/create/Bug"
+    }
+  ]
 
   return (
     <Navbar className="navBar">
       <Container fluid className="navBarContainer">
-        <Button variant="light" className="tabletHeaderBurger" onClick={handleShow}>Br</Button>
-        <Offcanvas show={show} onHide={handleClose} style={{ width: "80%"}}>
-          
-          <Offcanvas.Body>
-            123
-            <SideMenu />
+        <Button variant="light" className="tabletHeaderBurger" onClick={handleSideMenuShow}>Br</Button>
+        <Offcanvas show={showSideMenu} onHide={handleSideMenuClose} style={{ width: "80%" }}>
+          <Offcanvas.Body style={{ backgroundColor: "var(--bg-color-primary)" }}>
+            <ul className="mobileSideMenu">
+              {menuItems.map((item, index) => (
+                <li key={index} className="menuItemContainer">
+                  <NavLink
+                    to={item.path}
+                    className="menuItem"
+                    style={({ isActive }) =>
+                    ({
+                      color: isActive ? "var(--text-color-primary)" : "",
+                      fontWeight: isActive ? "bold" : ""
+                    })}
+                  >
+                    {item.title}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
           </Offcanvas.Body>
         </Offcanvas>
         <Navbar.Brand onClick={() => navigate("/")}>LetScrum</Navbar.Brand>
+        <Breadcrumb />
         <Navbar.Collapse id="desktopHeader" className="justify-content-end" >
           {/* search input */}
           <Form className="d-flex">

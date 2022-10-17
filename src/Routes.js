@@ -1,48 +1,50 @@
 import React from "react";
 import { Home, WorkItemList, About, Login, ProjectList, CreateBug, ProjectSummary } from "./pages";
-import { createBrowserRouter } from "react-router-dom"
 
-const routes = createBrowserRouter([
+const routes = [
   {
-    title: "Home",
+
     path: "/",
     element: <Home />,
-
+    breadcrumb: "Home",
   },
   {
-    title: "About",
+
     path: "/about",
     element: <About />,
-
+    breadcrumb: "About",
   },
   {
-    title: "LogIn",
+
     path: "/login",
     element: <Login />,
+    breadcrumb: "LogIn",
+  },
+  {
 
+    path: "/projectsList",
+    element: <ProjectList />,
+    breadcrumb: "Projects List",
   },
   {
-    title: "Projects List",
-    path: "/projectList",
-    element: <ProjectList />
-  },
-  {
-    title: "Summary",
+
     path: "/imoogoo",
     element: <ProjectSummary withOutlet />,
-    children: [
-      {
-        title: "Work Items",
-        path: "workitemList",
-        element: <WorkItemList />
-      },
-      {
-        title: "Create Bug",
-        path: "create/bug",
-        element: <CreateBug />
-      }
-    ]
+    breadcrumb: "Summary",
+  },
+  {
+
+    path: "workitemList",
+    element: <WorkItemList />,
+    breadcrumb: "Work Items",
+  },
+  {
+
+    path: "create/bug",
+    element: <CreateBug />,
+    breadcrumb: "Create Bug",
   }
-])
+
+]
 
 export default routes;

@@ -36,7 +36,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         {/* need to add /userName and modify /projectName relevant stuff */}
-        <Route path="/projectList" element={<ProjectList title="Projects List" />} />
+        <Route path="/projectsList" element={<ProjectList title="Projects List" />} />
         <Route path="/imoogoo" element={<ProjectSummary title="Summary" />} />
         <Route path="/projectName/workitemList" element={<WorkItemList title="Work items" />} />
         <Route path="/create/Bug" element={<CreateBug />} />

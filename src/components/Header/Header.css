@@ -45,3 +45,26 @@
   text-decoration: none;
   color: grey;
 }
+
+.menuItemContainer {
+  padding: .5rem 0;
+}
+
+.menuItem {
+  
+  font-size: .875rem;
+  text-decoration: none;
+  color: var(--text-color-secondary);
+  
+}
+
+.menuItem:hover {
+  font-size: 600;
+  color: var(--text-color-primary);
+}
+
+.mobileSideMenu {
+  padding: 0;
+  list-style-type: none;
+  height: auto;
+}
