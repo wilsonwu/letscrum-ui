@@ -1,0 +1,18 @@
+{
+  "item": {
+      "id": "1",
+      "name": "admin",
+      "email": "admin@letscrum.io",
+      "password": "",
+      "isSuperAdmin": true,
+      "isAdmin": false,
+      "roleName": "",
+      "capacity": 0,
+      "createdAt": "1666017887",
+      "updatedAt": "1666017887",
+      "token": {
+          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njg2MTAxOTUsImp0aSI6IjEifQ.-3gN_fc4u9JurKfZOUJ356K2c-uKEugdM0I3QcLNvvg",
+          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzEyMDIxOTUsImp0aSI6IjEifQ.TM7ZLs_XFnPOPfECDbo9GP5yohNpF1NMnznrDOcgS08"
+      }
+  }
+}

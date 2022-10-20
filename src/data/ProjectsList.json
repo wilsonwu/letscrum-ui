@@ -1,0 +1,51 @@
+{
+  "items": [
+      {
+          "id": "1",
+          "name": "test",
+          "displayName": "test",
+          "createdUser": {
+              "id": "1",
+              "name": "admin",
+              "email": "",
+              "password": "",
+              "isSuperAdmin": false,
+              "isAdmin": false,
+              "roleName": "",
+              "capacity": 0,
+              "createdAt": "0",
+              "updatedAt": "0",
+              "token": null
+          },
+          "createdAt": "1666018324",
+          "updatedAt": "1666018324",
+          "members": []
+      },
+      {
+          "id": "2",
+          "name": "test2",
+          "displayName": "test2",
+          "createdUser": {
+              "id": "1",
+              "name": "admin",
+              "email": "",
+              "password": "",
+              "isSuperAdmin": false,
+              "isAdmin": false,
+              "roleName": "",
+              "capacity": 0,
+              "createdAt": "0",
+              "updatedAt": "0",
+              "token": null
+          },
+          "createdAt": "1666018324",
+          "updatedAt": "1666018324",
+          "members": []
+      }
+  ],
+  "pagination": {
+      "total": 2,
+      "page": 1,
+      "size": 10
+  }
+}

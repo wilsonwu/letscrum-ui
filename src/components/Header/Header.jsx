@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Navbar, Container, Form, Nav, Button, Offcanvas } from 'react-bootstrap';
-import { Breadcrumb } from "../Breadcrumb";
+// import { Breadcrumb } from "../Breadcrumb";
 import './Header.css'
-import { useDispatch } from 'react-redux'
-import { signIn, signOff } from '../../redux/reducers/userSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { signOff } from '../../redux/reducers/userSlice'
 import { useNavigate, NavLink } from "react-router-dom";
 
 
@@ -11,6 +11,7 @@ export const Header = () => {
   const [showSideMenu, setShowSideMenu] = useState(false);
   const handleSideMenuClose = () => setShowSideMenu(false);
   const handleSideMenuShow = () => setShowSideMenu(true);
+  const userName = useSelector((state) => state.user.userName);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const menuItems = [
@@ -62,7 +63,7 @@ export const Header = () => {
           </Offcanvas.Body>
         </Offcanvas>
         <Navbar.Brand onClick={() => navigate("/")}>LetScrum</Navbar.Brand>
-        <Breadcrumb />
+        {/* <Breadcrumb /> */}
         <Navbar.Collapse id="desktopHeader" className="justify-content-end" >
           {/* search input */}
           <Form className="d-flex">
@@ -75,16 +76,11 @@ export const Header = () => {
           </Form>
           {/* nav menu */}
           <Nav>
-            <Nav.Link
-              onClick={() => dispatch(signIn({ userId: 1, username: "123" }))}
-              className="logText">
-              Log in
-            </Nav.Link>
-            <Nav.Link
-              onClick={() => dispatch(signOff())}
-              className="logText">
-              Log off
-            </Nav.Link>
+            <Nav.Link className="logText" onClick={() => dispatch(signOff())}>Log off</Nav.Link>
+            <Nav.Link className="logText" onClick={() => navigate("/login")}>Log in</Nav.Link>
+            {
+              console.log("Header usesrName: ", userName)
+            }
           </Nav>
         </Navbar.Collapse>
         {/* <UserMenu /> */}

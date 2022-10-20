@@ -5,7 +5,7 @@ import '../../index.css'
 
 export const ListOption = () => {
   return (
-    <Stack direction="horizontal">
+    <Stack direction="horizontal" style={{ paddingBottom: ".5rem"}}>
       <Dropdown className="dropdownStyle">
         <Dropdown.Toggle variant="black" className="listFaqOptions" style={{ fontWeight: "600" }}>
           Recently updated
