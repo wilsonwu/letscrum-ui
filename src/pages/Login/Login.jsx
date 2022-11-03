@@ -19,7 +19,6 @@ export const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     dispatch(signIn({ email, password }));
-    console.log("submitted token: ", token);
   }
 
   return (

@@ -18,9 +18,9 @@ const routes = [
     breadcrumb: "LogIn"
   },
   {
-    path: "/projectsList",
+    path: "/projects/?page=:currentPage",
     element: <ProjectList />,
-    breadcrumb: "Projects List"
+    breadcrumb: "Project List"
   },
   {
     path: "/imoogoo",

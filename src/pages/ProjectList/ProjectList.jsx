@@ -1,18 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ProjectCard } from "../../components";
 import { Project } from "../../layouts"
-import { Container, Row, Col, Stack, Button, Nav, Form, Modal, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Stack, Button, Nav, Form, Modal, Dropdown, Spinner, Pagination } from 'react-bootstrap';
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ProjectList.css"
 
 export const ProjectList = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [loading, setLoading] = useState(true);
+  const [projectsList, setProjectsList] = useState();
+  const [pagination, setPagination] = useState();
+  const [currentPage, setCurrentPage] = useState(useParams().currentPage);
+  const [keywords, setKeywords] = useState();
+  const navigate = useNavigate();
+  const handleChangePage = (e) => {
+    let changeTo = e.target.textContent;
+    setCurrentPage(changeTo);
+    navigate('../projects/?page='+changeTo, {replace: true });
+  }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const keywords = form.projectsSearch.value;
+    console.log("keyWords is: ", keywords);
+    setKeywords(keywords);
+  }
+  const ThePagination = (pagination) => {
+    let paginationItems = [];
+    const totalPages = Math.ceil(pagination.total / 10);
+    for (let i = 1; i <= totalPages; i++) {
+      paginationItems.push(
+        <Pagination.Item key={i}
+          active={i===currentPage}
+          onClick={handleChangePage}
+        >{i}</Pagination.Item>
+      )
+    }
+    return <Pagination className="justify-content-end">{paginationItems}</Pagination>
+  }
+
+  useEffect(() => {
+    async function fetchProjectList() {
+      try {
+        let url = `https://imoogoo.com/api/v1/projects?keywords=${keywords}page=${currentPage}&size=9`
+        if (currentPage === undefined) {
+          url = `https://imoogoo.com/api/v1/projects?page=1&size=9`
+        }
+        const config = {
+          headers:{
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njk5ODgzMDMsImp0aSI6IjEifQ.y2LLzrXQ14aKn_GObDIcx_TITU0gsNinNT4dS1l46h8'
+          }
+        };
+        const response = await axios.get(url, config)
+        setProjectsList(response.data.items);
+        setPagination(response.data.pagination);
+        setLoading(false);
+        return response.data
+      } catch (e) {
+        console.log(e.message);
+        setLoading(false);
+      }
+    }
+    fetchProjectList()
+  }, [currentPage, keywords])
+
   return (
     <Project>
       <Container className="projectsContainer" fluid>
         <Stack direction="horizontal">
-        <h2 className="userNameTitle">wilsonwu</h2>
+          <h2 className="userNameTitle">wilsonwu</h2>
           <Button
             className="createProjectBtn ms-auto"
             onClick={handleShow}>
@@ -21,10 +80,10 @@ export const ProjectList = (props) => {
         </Stack>
         {/* category tab */}
         <Row style={{ paddingTop: "1rem", paddingBottom: "1rem" }} className="justify-content-between">
-        <Col style={{ padding: 0 }} md={12} lg={8}>
+          <Col style={{ padding: 0 }} md={12} lg={8}>
             <Nav activeKey="/projects">
               <Nav.Item >
-                <Nav.Link href="/projects" className="projectNav">Projects</Nav.Link>
+                <Nav.Link href="/project" className="projectNav">Projects</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link href="#" className="projectNav">My work items</Nav.Link>
@@ -35,8 +94,9 @@ export const ProjectList = (props) => {
             </Nav>
           </Col>
           <Col md={12} lg={3}>
-            <Form>
+            <Form onSubmit={handleSearch}>
               <Form.Control
+                id="projectsSearch"
                 type="search"
                 placeholder="Filter by project"
                 className="itemTableSearch"
@@ -46,11 +106,26 @@ export const ProjectList = (props) => {
             </Form>
           </Col>
         </Row>
+        {/* projects list */}
         <Row>
-          <Col lg={4} md={12}>
-            {/* ProjectCard arguments: projectId={1} projectName={test} projectDisplayName={TestProject} */}
-            <ProjectCard />
-          </Col>
+          {
+            loading ?
+              <Spinner />
+              : <>
+                {
+                  projectsList.map((item) =>
+                    <Col lg={4} md={12} key={item.id}>
+                      <ProjectCard
+                        projectId={item.id}
+                        projectName={item.name}
+                        projectDisplayName={item.displayName}
+                        onClick={() => navigate('/imoogoo')} // navigate to a specific projectSummary
+                      />
+                    </Col>)
+                }
+                {ThePagination(pagination)}
+              </>
+          }
         </Row>
         {/* create project */}
         <Modal
@@ -100,7 +175,7 @@ export const ProjectList = (props) => {
                     </Row>
                   </Form>
                 </Col>
-                <Col md={12} lg className="projectVisibility"  style={{marginBottom: "1rem"}}>
+                <Col md={12} lg className="projectVisibility" style={{ marginBottom: "1rem" }}>
                   <Form>
                     <Row>
                       <Col>
@@ -128,7 +203,7 @@ export const ProjectList = (props) => {
                 <Button className="advancedBtn">Advanced</Button>
               </Row>
 
-              <Row style={{ padding: "1rem 0"}} >
+              <Row style={{ padding: "1rem 0" }} >
                 <Col md={12} lg={6} style={{ padding: "0 1rem", fontSize: ".875rem", marginBottom: "1rem" }}>
                   Version control
                   <Dropdown>

@@ -21,7 +21,7 @@ export const Header = () => {
     },
     {
       title: "Projects List",
-      path: "/projectsList"
+      path: "/project/:currentPage/:theSize"
     },
     {
       title: "Project Summary",
@@ -76,10 +76,13 @@ export const Header = () => {
           </Form>
           {/* nav menu */}
           <Nav>
-            <Nav.Link className="logText" onClick={() => dispatch(signOff())}>Log off</Nav.Link>
-            <Nav.Link className="logText" onClick={() => navigate("/login")}>Log in</Nav.Link>
             {
-              console.log("Header usesrName: ", userName)
+              userName ?
+                <Nav.Link className="logText" onClick={() => dispatch(signOff())}>Hi {userName} Log off </Nav.Link>
+                // <span>userName is fullfilled{console.log("userName is fullfilled", userName)}</span>
+                :
+                //  <span>userName is null {console.log("userName is null")}</span>
+                <Nav.Link className="logText" onClick={() => navigate("/login")}>Log in</Nav.Link>
             }
           </Nav>
         </Navbar.Collapse>

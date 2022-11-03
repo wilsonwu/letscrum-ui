@@ -10,8 +10,8 @@ export const SideMenu = () => {
       title: "Home",
     },
     {
-      path: "/projectsList",
-      title: "Projects List",
+      path: "/projects/",
+      title: "Project List",
     },
     {
       path: "/imoogoo",

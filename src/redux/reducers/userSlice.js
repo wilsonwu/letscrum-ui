@@ -13,13 +13,17 @@ const initialState = {
 export const signIn = createAsyncThunk(
   'users/signIn',
   async ({ email, password }) => {
-    const response = await axios.post('http://localhost:3001/letscrum/api/users', {
-      email: email,
-      password: password,
-    })
-      .then(response => console.log("POST response: ", response.data.item))
-      .catch(error => console.log("POST error: ", error.message));
-    return response.data.item
+    try {
+      const response = await axios.post('http://localhost:3001/letscrum/api/users', {
+        email: email,
+        password: password,
+      })
+      console.log("POST response: ", response);
+      return response.data.item;
+    } catch(error) {
+      console.log("POST error: ", error.message);
+      return error.message
+    }
     // [response.data.item.token.accessToken, response.data.item.token.refreshToken, response.data.item.id, response.data.item.name]
     // {
     //   accessToken: response.data.item.token.accessToken, 
