@@ -29,19 +29,13 @@
   color: var(--text-color-primary);
 }
 
-/* .projectModalDialog {
-  position: fixed;
-  right: 1rem;
-  background-color: white;
-} */
-
 .itemLabel {
   font-size: .875rem;
   color: var(--text-color-primary);
 }
 
 .itemInput {
-  /* height: 1.75rem; */
+  height: 1.75rem;
   line-height: 1.5rem;
   border-radius: 2px;
   border: 1px solid var(--text-color-disabled);
@@ -62,6 +56,10 @@
   border: 2px solid var(--communication-color-background);
 }
 
+.visibilityContainer {
+  display: flex;
+  align-items: flex-start;
+}
 .visibilityTitle {
   font-size: .875rem;
   color: var(--text-color-primary);
@@ -81,6 +79,13 @@
 }
 
 .advancedBtn:hover {
+  font-weight: 600;
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-tabs);
+  border: 1px solid var(--bg-color-tabs);
+}
+
+.advancedBtn:focus {
   font-weight: 600;
   color: var(--text-color-primary);
   background-color: var(--bg-color-tabs);

@@ -4,27 +4,53 @@ import { Project } from "../../layouts"
 import { Container, Row, Col, Stack, Button, Nav, Form, Modal, Dropdown, Spinner, Pagination } from 'react-bootstrap';
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./ProjectList.css"
 
 export const ProjectList = (props) => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.user.accessToken)
+  const userName = useSelector((state) => state.user.userName)
+  const [showNewPro, setShowNewPro] = useState(false);
+  const handleNewProClose = () => setShowNewPro(false);
+  const handleNewProShow = () => setShowNewPro(true);
   const [loading, setLoading] = useState(true);
   const [projectsList, setProjectsList] = useState();
   const [pagination, setPagination] = useState();
   const [currentPage, setCurrentPage] = useState(useParams().currentPage);
   const [keywords, setKeywords] = useState();
-  const navigate = useNavigate();
+  const [validated, setValidated] = useState(false);
+  async function createProject ({ projectTitle }) {
+    try {
+      var qs = require('qs');
+      const config = { headers: { Authorization: `Bearer ${token}` }}
+      const response = await axios.post(`https://imoogoo.com/api/v1/projects`, qs.stringify({
+        display_name: projectTitle
+      }), config)
+      console.log("response: ", response)
+      return response
+    } catch (e) {
+      console.log(e.message)
+    }
+  }
+  const handleSubmitCreate = () => {
+    const createForm = document.getElementById("createProjectForm");
+    const projectTitle = createForm.projectTitleInput.value;
+    if (createForm.checkValidity()) {
+      setValidated(true);
+      createProject({projectTitle});
+    }
+    handleNewProClose();
+  }
   const handleChangePage = (e) => {
     let changeTo = e.target.textContent;
     setCurrentPage(changeTo);
-    navigate('../projects/?page='+changeTo, {replace: true });
+    navigate('../projects/?page=' + changeTo, { replace: true });
   }
   const handleSearch = (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const keywords = form.projectsSearch.value;
+    const searchForm = e.currentTarget;
+    const keywords = searchForm.projectsSearch.value;
     console.log("keyWords is: ", keywords);
     setKeywords(keywords);
   }
@@ -34,7 +60,7 @@ export const ProjectList = (props) => {
     for (let i = 1; i <= totalPages; i++) {
       paginationItems.push(
         <Pagination.Item key={i}
-          active={i===currentPage}
+          active={i === currentPage}
           onClick={handleChangePage}
         >{i}</Pagination.Item>
       )
@@ -45,16 +71,25 @@ export const ProjectList = (props) => {
   useEffect(() => {
     async function fetchProjectList() {
       try {
-        let url = `https://imoogoo.com/api/v1/projects?keywords=${keywords}page=${currentPage}&size=9`
-        if (currentPage === undefined) {
+        let url = `https://imoogoo.com/api/v1/projects?page=${currentPage}&size=9&keyword=${keywords}`
+        if (currentPage === undefined && keywords === undefined) {
           url = `https://imoogoo.com/api/v1/projects?page=1&size=9`
         }
-        const config = {
-          headers:{
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njk5ODgzMDMsImp0aSI6IjEifQ.y2LLzrXQ14aKn_GObDIcx_TITU0gsNinNT4dS1l46h8'
+        if (currentPage === undefined && keywords) {
+          url = `https://imoogoo.com/api/v1/projects?page=1&size=9&keyword=${keywords}`
+        }
+        if (currentPage && keywords === undefined) {
+          url = `https://imoogoo.com/api/v1/projects?page=${currentPage}&size=9`
+        }
+        const config = { 
+          headers: { 
+            Authorization: `Bearer ${token}`,
           }
         };
         const response = await axios.get(url, config)
+        console.log("currentPage: ", currentPage)
+        console.log("url: ", url);
+        console.log("response: ", response);
         setProjectsList(response.data.items);
         setPagination(response.data.pagination);
         setLoading(false);
@@ -65,16 +100,16 @@ export const ProjectList = (props) => {
       }
     }
     fetchProjectList()
-  }, [currentPage, keywords])
+  }, [currentPage, keywords, token])
 
   return (
     <Project>
       <Container className="projectsContainer" fluid>
         <Stack direction="horizontal">
-          <h2 className="userNameTitle">wilsonwu</h2>
+          <h2 className="userNameTitle">{userName}</h2>
           <Button
             className="createProjectBtn ms-auto"
-            onClick={handleShow}>
+            onClick={handleNewProShow}>
             + New project
           </Button>
         </Stack>
@@ -129,9 +164,9 @@ export const ProjectList = (props) => {
         </Row>
         {/* create project */}
         <Modal
-          show={show}
+          show={showNewPro}
           fullscreen='md-down'
-          onHide={handleClose}
+          onHide={handleNewProClose}
           animation={false}
           {...props}
           size="lg"
@@ -142,56 +177,40 @@ export const ProjectList = (props) => {
           <Modal.Header closeButton>
             <Modal.Title>Create new project</Modal.Title>
           </Modal.Header>
+
           <Modal.Body>
-            <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="itemLabel">Project name</Form.Label>
-                <Form.Control type="text" className="itemInput" style={{ height: "1.75rem" }} />
+            <Form validated={validated} id="createProjectForm">
+              <Form.Group className="mb-3">
+                <Form.Label className="itemLabel">Project name *</Form.Label>
+                <Form.Control required type="text" className="itemInput" id="projectTitleInput" />
+                <Form.Control.Feedback type="invalid">Should not be empty</Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3">
                 <Form.Label className="itemLabel">Description</Form.Label>
                 <Form.Control type="text" as="textarea" rows={3} className="itemInput" />
               </Form.Group>
 
               <Row style={{ marginBottom: ".5rem", padding: "0 1rem" }}>Visibility</Row>
               <Row style={{ padding: "0 1rem", display: "inline-flex" }}>
-                <Col md={12} lg
-                  className="projectVisibility" style={{ marginRight: "1rem", marginBottom: "1rem" }}>
-                  <Form>
-                    <Row>
-                      <Col >
-                        <h6 className="visibilityTitle">Public</h6>
-                        <p className="visibilityDescription">Anyone on the internet can view the project. Certain features like
-                          TFVC are not supported</p>
-                      </Col>
-                      <Col>
-                        <Form.Check
-                          type="radio"
-                          reverse
-                          id="public"
-                        />
-                      </Col>
-                    </Row>
-                  </Form>
+                <Col as="label" md={12} lg className="projectVisibility" style={{ marginRight: "1rem", marginBottom: "1rem" }}>
+                  <Stack direction="horizontal" className="visibilityContainer">
+                    <div style={{ width: "90%" }}>
+                      <h6 className="visibilityTitle">Public</h6>
+                      <p className="visibilityDescription">Anyone on the internet can view the project. Certain features like
+                        TFVC are not supported</p>
+                    </div>
+                    <Form.Check type="radio" reverse name="visibilityRadio" style={{ width: "10%" }} />
+                  </Stack>
                 </Col>
-                <Col md={12} lg className="projectVisibility" style={{ marginBottom: "1rem" }}>
-                  <Form>
-                    <Row>
-                      <Col>
-                        <h6 className="visibilityTitle">Public</h6>
-                        <p className="visibilityDescription">Anyone on the internet can view the project. Certain features like
-                          TFVC are not supported</p>
-                      </Col>
-                      <Col>
-                        <Form.Check
-                          type="radio"
-                          reverse
-                          id="public"
-                        />
-                      </Col>
-                    </Row>
-                  </Form>
+                <Col as="label" md={12} lg className="projectVisibility" style={{ marginBottom: "1rem" }}>
+                  <Stack direction="horizontal" className="visibilityContainer">
+                    <div style={{ width: "90%" }}>
+                      <h6 className="visibilityTitle">Private</h6>
+                      <p className="visibilityDescription">Only people you give access to will be able to view this project.</p>
+                    </div>
+                    <Form.Check type="radio" reverse name="visibilityRadio" defaultChecked style={{ width: "10%" }} />
+                  </Stack>
                 </Col>
               </Row>
 
@@ -231,17 +250,19 @@ export const ProjectList = (props) => {
                   </Dropdown>
                 </Col>
               </Row>
-
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="light" style={{ backgroundColor: "var(--bg-color-basic)", borderRadius: 0 }} onClick={handleClose}>
+            <Button variant="light" style={{ backgroundColor: "var(--bg-color-basic)", borderRadius: 0 }}
+              onClick={handleNewProClose} >
               Cancel
             </Button>
-            <Button variant="light" style={{ color: "var(--text-color-disabled)", backgroundColor: "var(--bg-color-basic)", borderRadius: 0 }} onClick={handleClose}>
+            <Button variant="light" style={{ color: "white", backgroundColor: "var(--communication-color-background)", borderRadius: 0 }}
+              onClick={handleSubmitCreate}>
               Create
             </Button>
           </Modal.Footer>
+
         </Modal>
       </Container>
     </Project>

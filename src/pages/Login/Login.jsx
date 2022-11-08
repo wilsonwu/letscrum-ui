@@ -16,9 +16,9 @@ export const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const email = form.email.value;
+    const userName = form.userName.value;
     const password = form.password.value;
-    dispatch(signIn({ email, password }));
+    dispatch(signIn({ userName, password }));
   }
 
   return (
@@ -29,10 +29,10 @@ export const Login = () => {
             <Form.Group className="mb-3">
               <Form.Label>Username</Form.Label>
               <Form.Control
-                id="email"
-                type="email"
-                placeholder="admin@letscrum.io"
-                defaultValue="admin@letscrum.io"
+                id="userName"
+                type="text"
+                placeholder="admin"
+                defaultValue="admin"
                 readOnly
               />
             </Form.Group>
@@ -44,7 +44,7 @@ export const Login = () => {
                 id="password"
                 type="password"
                 placeholder="Password"
-                defaultValue=""
+                defaultValue="aaaaaa"
                 readOnly
               />
             </Form.Group>

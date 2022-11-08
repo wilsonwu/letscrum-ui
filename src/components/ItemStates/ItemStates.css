@@ -50,6 +50,7 @@
 }
 
 .stateDropDownMenu {
+  width: 100%;
   font-size: .8rem;
   color: var(--text-color-primary);
   border-radius: 0;

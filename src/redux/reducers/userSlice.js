@@ -12,10 +12,10 @@ const initialState = {
 
 export const signIn = createAsyncThunk(
   'users/signIn',
-  async ({ email, password }) => {
+  async ({ userName, password }) => {
     try {
-      const response = await axios.post('http://localhost:3001/letscrum/api/users', {
-        email: email,
+      const response = await axios.post('https://imoogoo.com/api/v1/signin', {
+        name: userName,
         password: password,
       })
       console.log("POST response: ", response);
@@ -24,13 +24,6 @@ export const signIn = createAsyncThunk(
       console.log("POST error: ", error.message);
       return error.message
     }
-    // [response.data.item.token.accessToken, response.data.item.token.refreshToken, response.data.item.id, response.data.item.name]
-    // {
-    //   accessToken: response.data.item.token.accessToken, 
-    //   refreshToken: response.data.item.token.refreshToken,
-    //   userId: response.data.item.id,
-    //   userName: response.data.item.name,
-    // }
   }
 )
 
@@ -56,10 +49,6 @@ export const userSlice = createSlice({
       state.refreshToken = action.payload.token.refreshToken;
       state.userId = action.payload.id;
       state.userName = action.payload.name;
-      // state.accessToken = action.payload[accessToken];
-      // state.refreshToken = action.payload[refreshToken];
-      // state.userId = action.payload[userId];
-      // state.username = action.payload[userName];
     },
     [signIn.rejected.type]: (state, action) => {
       state.loading = false;
