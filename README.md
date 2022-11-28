@@ -1,4 +1,4 @@
-# vuefirst
+# letscrum-vue
 
 ## Project setup
 ```

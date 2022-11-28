@@ -110,9 +110,9 @@ export default {
         this.loading = true;
         this.$store.commit('signIn', {
           id: 1,
-          clientId: 'vuefirst',
-          username: 'vuefirst',
-          email: 'vuefirst@vuefirst.com',
+          clientId: 'letscrum-vue',
+          username: 'letscrum-vue',
+          email: 'letscrum-vue@letscrum-vue.com',
           phone: '123',
           accessToken: 'token',
           refreshToken: 'token'
@@ -121,9 +121,6 @@ export default {
         this.$store.commit('setAvatarUrl', '');
         this.loading = false;
         this.$router.push('/');
-      }
-      else {
-        console.log('error');
       }
     }
   }

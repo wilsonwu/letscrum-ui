@@ -26,7 +26,7 @@ export default {
       meta: [
         { name: 'description', content: this.$t('meta.description') },
         { name: 'keywords', content: this.$t('meta.keywords') },
-        { property: 'og:url', content: 'https://vuefirst/' },
+        { property: 'og:url', content: 'https://letscrum-vue/' },
         { property: 'og:description', content: this.$t('meta.description') },
         { property: 'og:type', content: 'website' }
       ]

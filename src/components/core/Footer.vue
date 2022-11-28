@@ -16,7 +16,7 @@
         </v-btn>
         <v-btn text="" disabled>
           {{ new Date().getFullYear() }} —
-          <strong>vuefirst</strong>
+          <strong>letscrum-vue</strong>
         </v-btn>
       </v-col>
     </v-row>
