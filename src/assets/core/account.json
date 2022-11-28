@@ -1,0 +1,10 @@
+[
+  {
+    "name": "signIn",
+    "path": "/signin"
+  },
+  {
+    "name": "signUp",
+    "path": "/signup"
+  }
+]
