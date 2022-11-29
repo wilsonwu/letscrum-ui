@@ -2,15 +2,13 @@
   <v-app>
     <core-appbar
       :menus="menus"
-      :logoUrl="logoUrl"
       :accounts="accounts"
       :userMenus="userMenus"
       :user="user"
     />
-    <core-drawer :menus="menus" />
-    <v-main class="content">
+    <core-drawer :menus="menus" :logoUrl="logoUrl" />
+    <v-main>
       <router-view></router-view>
-      <help :show="showHelp"></help>
     </v-main>
     <core-footer :links="links" :dark="dark" :language="language"/>
   </v-app>
@@ -25,12 +23,8 @@ export default {
   components: {
     CoreDrawer: () => import('@/components/core/Drawer.vue'),
     CoreAppbar: () => import('@/components/core/Appbar.vue'),
-    CoreFooter: () => import('@/components/core/Footer.vue'),
-    Help: () => import('@/components/Help.vue')
+    CoreFooter: () => import('@/components/core/Footer.vue')
   },
-  data: () => ({
-    showHelp: false
-  }),
   computed: {
     ...mapGetters([
       'menus',
@@ -48,9 +42,5 @@ export default {
 <style>
 .countFont {
   font-size: 11px;
-}
-.content {
-  width: 1260px;
-  margin: auto;
 }
 </style>

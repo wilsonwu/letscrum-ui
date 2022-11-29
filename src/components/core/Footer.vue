@@ -1,5 +1,5 @@
 <template>
-  <v-footer padless>
+  <v-footer padless absolute>
     <v-row justify="center" no-gutters>
       <v-btn
         v-for="(link, i) in links"

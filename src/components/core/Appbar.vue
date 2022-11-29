@@ -1,14 +1,5 @@
 <template>
-  <v-app-bar app>
-    <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"></v-app-bar-nav-icon>
-    <v-img
-      :src="logoUrl"
-      contain
-      class="mr-5"
-      width="110"
-      max-width="110"
-      @click="$vuetify.goTo(0)"
-    />
+  <v-app-bar app dense flat>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn
         text

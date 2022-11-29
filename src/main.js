@@ -11,14 +11,11 @@ Vue.config.productionTip = false;
 Vue.use(VueMeta);
 
 const dark = localStorage.dark === 'true';
-if (dark === true) {
-  vuetify.framework.theme.dark = true;
-  store.commit('setTheme', true);
-}
-else {
-  vuetify.framework.theme.dark = false;
-  store.commit('setTheme', false);
-}
+vuetify.framework.theme.dark = dark;
+store.commit('setTheme', dark);
+
+const drawer = localStorage.drawer === 'true';
+store.commit('setDrawer', drawer);
 
 if (localStorage.accessToken && localStorage.refreshToken) {
   store.commit('refresh', {

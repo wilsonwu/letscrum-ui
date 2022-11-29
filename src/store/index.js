@@ -103,20 +103,22 @@ export default new Vuex.Store({
       state.profile.avatarUrl = null;
     },
     setDrawer(state, payload) {
+      localStorage.drawer = payload;
       state.drawer = payload;
     },
     toggleDrawer(state) {
+      localStorage.drawer = !state.drawer;
       state.drawer = !state.drawer;
     },
     setTheme(state, payload) {
-      state.dark = payload;
-      state.logoUrl = state.dark ? '/assets/images/logo-dark.png' : '/assets/images/logo.png';
       localStorage.dark = payload;
       localStorage.logoUrl = payload ? '/assets/images/logo-dark.png' : '/assets/images/logo.png';
+      state.dark = payload;
+      state.logoUrl = state.dark ? '/assets/images/logo-dark.png' : '/assets/images/logo.png';
     },
     setLanguage(state, payload) {
-      state.language = payload;
       localStorage.language = payload;
+      state.language = payload;
     }
   },
   actions: {
@@ -134,6 +136,7 @@ export default new Vuex.Store({
     menus: (state) => state.menus,
     logoUrl: (state) => state.logoUrl,
     dark: (state) => state.dark,
+    drawer: (state) => state.drawer,
     language: (state) => state.language
   }
 });
