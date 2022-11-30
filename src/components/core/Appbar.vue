@@ -1,5 +1,12 @@
 <template>
   <v-app-bar app dense flat>
+    <v-img
+      :src="logoUrl"
+      contain
+      class="mr-5"
+      width="110"
+      max-width="110"
+    />
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn
         text
@@ -10,12 +17,12 @@
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-text-field
-        hide-details
-        single-line
-        append-outer-icon="mdi-magnify"
-        @click:append-outer="{}"
-        class="mr-2"
-      ></v-text-field>
+      hide-details
+      single-line
+      append-outer-icon="mdi-magnify"
+      @click:append-outer="{}"
+      class="mr-2"
+    ></v-text-field>
     <v-btn text="" rounded @click="changeLanguage">{{ $t('core.toLanguage') }}</v-btn>
     <v-btn icon @click="changeTheme">
       <v-icon>mdi-theme-light-dark</v-icon>

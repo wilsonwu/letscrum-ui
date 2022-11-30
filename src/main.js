@@ -17,10 +17,10 @@ store.commit('setTheme', dark);
 const drawer = localStorage.drawer === 'true';
 store.commit('setDrawer', drawer);
 
-if (localStorage.accessToken && localStorage.refreshToken) {
+if (localStorage.tokenAccessToken && localStorage.tokenRefreshToken) {
   store.commit('refresh', {
-    accessToken: localStorage.accessToken,
-    refreshToken: localStorage.refreshToken
+    accessToken: localStorage.tokenAccessToken,
+    refreshToken: localStorage.tokenRefreshToken
   });
 }
 

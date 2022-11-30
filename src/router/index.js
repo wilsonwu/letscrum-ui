@@ -8,12 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../views/Home.vue')
-  },
-  {
-    path: '/first',
-    name: 'Chia',
-    component: () => import('../views/First.vue')
+    component: () => import('../views/ProjectList.vue')
   },
   {
     path: '/about',
@@ -59,7 +54,7 @@ const routes = [
       }
     ],
     beforeEnter: (to, from, next) => {
-      if (store.getters.accessToken) {
+      if (store.getters.isSignedIn) {
         next();
       }
       else {
@@ -72,7 +67,7 @@ const routes = [
     name: 'SignIn',
     component: () => import('@/views/SignIn.vue'),
     beforeEnter: (to, from, next) => {
-      if (!store.getters.accessToken) {
+      if (!store.getters.isSignedIn) {
         next();
       }
       else {
@@ -85,7 +80,7 @@ const routes = [
     name: 'SignUp',
     component: () => import('../views/SignUp.vue'),
     beforeEnter: (to, from, next) => {
-      if (!store.getters.accessToken) {
+      if (!store.getters.isSignedIn) {
         next();
       }
       else {

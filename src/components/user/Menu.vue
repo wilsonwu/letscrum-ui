@@ -9,11 +9,10 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar color="grey">
-            <v-icon v-if="!profile.avatarUrl" dark>mdi-account-circle</v-icon>
-            <v-img v-else :src="profile.avatarUrl" :alt="profile.nickname"></v-img>
+            <v-icon dark>mdi-account-circle</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{ profile.nickname }}</v-list-item-title>
+            <v-list-item-title>{{ user.name }}</v-list-item-title>
           </v-list-item-content>
           <v-list-item-action>
             <v-btn rounded color="red" dark>VIP</v-btn>
@@ -49,7 +48,7 @@
   </v-menu>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex';
+import { mapMutations } from 'vuex';
 
 // Utilities
 export default {
@@ -58,7 +57,6 @@ export default {
   props: ['userMenus', 'user'],
   components: {},
   computed: {
-    ...mapGetters(['profile'])
   },
   methods: {
     ...mapMutations(['signOut'])

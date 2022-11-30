@@ -19,88 +19,72 @@ export default new Vuex.Store({
     userMenus: UserMenu,
     user: {
       id: 0,
-      clientId: null,
-      username: null,
+      name: null,
       email: null,
-      phone: null,
+      isSuperAdmin: false
+    },
+    token: {
       accessToken: null,
       refreshToken: null
     },
-    profile: {
-      nickname: null,
-      avatarUrl: null
+    project: {
+      id: 0,
+      name: null,
+      displayName: null
     }
   },
   mutations: {
     signIn(state, data) {
       const {
         id,
-        clientId,
-        username,
+        name,
         email,
-        phone,
+        isSuperAdmin,
         accessToken,
         refreshToken
       } = data;
-      localStorage.id = id;
-      localStorage.clientId = clientId;
-      localStorage.username = username;
-      localStorage.email = email;
-      localStorage.phone = phone;
-      localStorage.accessToken = accessToken;
-      localStorage.refreshToken = refreshToken;
+      localStorage.userId = id;
+      localStorage.userName = name;
+      localStorage.userEmail = email;
+      localStorage.userIsSuperAdmin = isSuperAdmin;
+      localStorage.tokenAccessToken = accessToken;
+      localStorage.tokenRefreshToken = refreshToken;
       state.user = {
         id,
-        clientId,
-        username,
+        name,
         email,
-        phone,
+        isSuperAdmin
+      };
+      state.token = {
         accessToken,
         refreshToken
       };
     },
-    setNickname(state, payload) {
-      localStorage.nickname = payload;
-      state.profile.nickname = payload;
-    },
-    setAvatarUrl(state, payload) {
-      localStorage.avatarUrl = payload;
-      state.profile.avatarUrl = payload;
-    },
     refresh(state, payload) {
       if (payload.accessToken && payload.refreshToken) {
-        localStorage.accessToken = payload.accessToken;
-        localStorage.refreshToken = payload.refreshToken;
-        state.user.id = localStorage.id;
-        state.user.clientId = localStorage.clientId;
-        state.user.username = localStorage.username;
-        state.user.email = localStorage.email;
-        state.user.phone = localStorage.phone;
-        state.user.accessToken = localStorage.accessToken;
-        state.user.refreshToken = localStorage.refreshToken;
-        state.profile.nickname = localStorage.nickname;
-        state.profile.avatarUrl = localStorage.avatarUrl;
+        localStorage.tokenAccessToken = payload.accessToken;
+        localStorage.tokenRefreshToken = payload.refreshToken;
+        state.user.id = localStorage.userId;
+        state.user.name = localStorage.userName;
+        state.user.email = localStorage.userEmail;
+        state.user.isSuperAdmin = localStorage.userIsSuperAdmin;
+        state.token.accessToken = localStorage.tokenAccessToken;
+        state.token.refreshToken = localStorage.tokenRefreshToken;
       }
     },
     signOut(state) {
-      localStorage.removeItem('id');
-      localStorage.removeItem('clientId');
-      localStorage.removeItem('username');
-      localStorage.removeItem('email');
-      localStorage.removeItem('phone');
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('nickname');
-      localStorage.removeItem('avatarUrl');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('userIsSuperAdmin');
+      localStorage.removeItem('tokenAccessToken');
+      localStorage.removeItem('tokenRefreshToken');
       state.user.id = 0;
-      state.user.clientId = null;
-      state.user.username = null;
+      state.user.name = null;
       state.user.email = null;
-      state.user.phone = null;
-      state.user.accessToken = null;
-      state.user.refreshToken = null;
-      state.profile.nickname = null;
-      state.profile.avatarUrl = null;
+      state.user.isSuperAdmin = null;
+      state.token.accessToken = null;
+      state.token.refreshToken = null;
     },
     setDrawer(state, payload) {
       localStorage.drawer = payload;
@@ -126,12 +110,13 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    isSignedIn: (state) => (!((state.user.accessToken === undefined || state.user.accessToken === null || state.user.accessToken === ''))),
-    accessToken: (state) => (state.user.accessToken ? state.user.accessToken : ''),
+    isSignedIn: (state) => (!((state.token.accessToken === undefined || state.token.accessToken === null || state.token.accessToken === ''))),
+    accessToken: (state) => (state.token.accessToken ? state.token.accessToken : ''),
     accounts: (state) => state.accounts,
     userMenus: (state) => state.userMenus,
     user: (state) => state.user,
-    profile: (state) => state.profile,
+    token: (state) => state.token,
+    project: (state) => state.project,
     links: (state) => state.links,
     menus: (state) => state.menus,
     logoUrl: (state) => state.logoUrl,

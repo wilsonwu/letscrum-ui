@@ -7,8 +7,9 @@
       :user="user"
       :dark="dark"
       :language="language"
+      :logoUrl="logoUrl"
     />
-    <core-drawer v-if="$store.getters.isSignedIn" :menus="menus" :logoUrl="logoUrl" />
+    <core-drawer v-if="$store.getters.isSignedIn && $store.getters.project.id > 0" :menus="menus" />
     <v-main>
       <router-view></router-view>
     </v-main>

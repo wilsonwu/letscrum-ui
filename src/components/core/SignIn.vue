@@ -40,6 +40,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import { postSignIn } from '@/apis/index';
 
 export default {
   name: 'CoreSignIn',
@@ -76,19 +77,23 @@ export default {
     signIn() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        this.$store.commit('signIn', {
-          id: 1,
-          clientId: 'letscrum-vue',
-          username: 'letscrum-vue',
-          email: 'letscrum-vue@letscrum-vue.com',
-          phone: '123',
-          accessToken: 'token',
-          refreshToken: 'token'
+        postSignIn({
+          name: 'admin',
+          password: 'aaaaaa'
+        }).then((res) => {
+          if (res.status === 200) {
+            this.$store.commit('signIn', {
+              id: res.data.item.id,
+              name: res.data.item.name,
+              email: res.data.item.email,
+              isSuperAdmin: res.data.item.isSuperAdmin,
+              accessToken: res.data.item.token.accessToken,
+              refreshToken: res.data.item.token.refreshToken
+            });
+            this.loading = false;
+            this.$router.push('/');
+          }
         });
-        this.$store.commit('setNickname', 'Vue First');
-        this.$store.commit('setAvatarUrl', '');
-        this.loading = false;
-        this.$router.push('/');
       }
     }
   }
