@@ -5,12 +5,13 @@
       :accounts="accounts"
       :userMenus="userMenus"
       :user="user"
+      :dark="dark"
+      :language="language"
     />
-    <core-drawer :menus="menus" :logoUrl="logoUrl" />
+    <core-drawer v-if="$store.getters.isSignedIn" :menus="menus" :logoUrl="logoUrl" />
     <v-main>
       <router-view></router-view>
     </v-main>
-    <core-footer :links="links" :dark="dark" :language="language"/>
   </v-app>
 </template>
 
@@ -22,8 +23,7 @@ export default {
   name: 'App',
   components: {
     CoreDrawer: () => import('@/components/core/Drawer.vue'),
-    CoreAppbar: () => import('@/components/core/Appbar.vue'),
-    CoreFooter: () => import('@/components/core/Footer.vue')
+    CoreAppbar: () => import('@/components/core/Appbar.vue')
   },
   computed: {
     ...mapGetters([

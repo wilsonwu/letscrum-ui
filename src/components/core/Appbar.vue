@@ -9,6 +9,12 @@
       >{{ $t('core.menus.' + menu.name + '.text') }}</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
+    <v-btn text="" rounded @click="changeLanguage">{{ $t('core.toLanguage') }}</v-btn>
+    <v-btn icon @click="changeTheme">
+      <v-icon>mdi-theme-light-dark</v-icon>
+    </v-btn>
+    <core-account :accounts="accounts" v-if="!$store.getters.isSignedIn"></core-account>
+    <user-menu :userMenus="userMenus" :user="user" v-else></user-menu>
     <div v-if="!$store.getters.isSignedIn">
       <v-btn
         v-for="(account, i) in accounts"
@@ -18,8 +24,6 @@
         class="hidden-sm-and-down ml-2"
       >{{ $t('core.accounts.' + account.name + '.text') }}</v-btn>
     </div>
-    <core-account :accounts="accounts" v-if="!$store.getters.isSignedIn"></core-account>
-    <user-menu :userMenus="userMenus" :user="user" v-else></user-menu>
   </v-app-bar>
 </template>
 
@@ -27,17 +31,31 @@
 import { mapMutations } from 'vuex';
 
 export default {
-  props: ['menus', 'logoUrl', 'accounts', 'userMenus', 'user'],
+  props: ['menus', 'logoUrl', 'accounts', 'userMenus', 'user', 'dark', 'language'],
   components: {
     UserMenu: () => import('@/components/user/Menu.vue'),
     CoreAccount: () => import('@/components/core/Account.vue')
   },
   methods: {
-    ...mapMutations(['toggleDrawer']),
+    ...mapMutations(['toggleDrawer', 'setTheme', 'setLanguage']),
     onDrawerChange(e, item) {
       e.stopPropagation();
       if (item.to || !item.href) return;
       this.$vuetify.goTo(item.href);
+    },
+    changeTheme() {
+      this.$vuetify.theme.dark = !this.dark;
+      this.setTheme(this.$vuetify.theme.dark);
+    },
+    changeLanguage() {
+      if (this.language === 'cn') {
+        this.setLanguage('en');
+      }
+      else {
+        this.setLanguage('cn');
+      }
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
     }
   }
 };

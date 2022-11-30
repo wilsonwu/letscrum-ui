@@ -1,13 +1,9 @@
 <template>
   <v-navigation-drawer
       :mini-variant.sync="drawer"
-      permanent
       app
   >
     <v-list-item class="px-2">
-        <v-list-item-avatar>
-          <v-img :src="logoUrl"></v-img>
-        </v-list-item-avatar>
 
         <v-list-item-title>John Leider</v-list-item-title>
 
@@ -19,13 +15,11 @@
         </v-btn>
       </v-list-item>
 
-      <v-divider></v-divider>
-
-      <v-list dense>
+      <v-list>
         <v-list-item
         >
           <v-list-item-icon>
-            <v-icon>tem.icon</v-icon>
+            <v-icon>mdi-chevron-left</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
