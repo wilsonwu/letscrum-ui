@@ -9,6 +9,13 @@
       >{{ $t('core.menus.' + menu.name + '.text') }}</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
+    <v-text-field
+        hide-details
+        single-line
+        append-outer-icon="mdi-magnify"
+        @click:append-outer="{}"
+        class="mr-2"
+      ></v-text-field>
     <v-btn text="" rounded @click="changeLanguage">{{ $t('core.toLanguage') }}</v-btn>
     <v-btn icon @click="changeTheme">
       <v-icon>mdi-theme-light-dark</v-icon>

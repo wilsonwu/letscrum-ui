@@ -1,11 +1,14 @@
 <template>
   <v-navigation-drawer
       :mini-variant.sync="drawer"
+      permanent
       app
   >
     <v-list-item class="px-2">
-
-        <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-avatar color="red">
+          <span class="white--text text-h5">PL</span>
+        </v-list-item-avatar>
+        <v-list-item-title>Project Letscrum</v-list-item-title>
 
         <v-btn
           icon
