@@ -19,6 +19,8 @@
     <v-text-field
       hide-details
       single-line
+      dense
+      placeholder="Search"
       append-outer-icon="mdi-magnify"
       @click:append-outer="{}"
       class="mr-2"

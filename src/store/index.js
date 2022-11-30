@@ -34,7 +34,22 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    signIn(state, data) {
+    refresh(state, payload) {
+      if (payload.accessToken && payload.refreshToken) {
+        localStorage.tokenAccessToken = payload.accessToken;
+        localStorage.tokenRefreshToken = payload.refreshToken;
+        state.user.id = localStorage.userId;
+        state.user.name = localStorage.userName;
+        state.user.email = localStorage.userEmail;
+        state.user.isSuperAdmin = localStorage.userIsSuperAdmin;
+        state.token.accessToken = localStorage.tokenAccessToken;
+        state.token.refreshToken = localStorage.tokenRefreshToken;
+        state.project.id = localStorage.projectId;
+        state.project.name = localStorage.projectName;
+        state.project.displayName = localStorage.projectDisplayName;
+      }
+    },
+    signIn(state, payload) {
       const {
         id,
         name,
@@ -42,7 +57,7 @@ export default new Vuex.Store({
         isSuperAdmin,
         accessToken,
         refreshToken
-      } = data;
+      } = payload;
       localStorage.userId = id;
       localStorage.userName = name;
       localStorage.userEmail = email;
@@ -60,18 +75,6 @@ export default new Vuex.Store({
         refreshToken
       };
     },
-    refresh(state, payload) {
-      if (payload.accessToken && payload.refreshToken) {
-        localStorage.tokenAccessToken = payload.accessToken;
-        localStorage.tokenRefreshToken = payload.refreshToken;
-        state.user.id = localStorage.userId;
-        state.user.name = localStorage.userName;
-        state.user.email = localStorage.userEmail;
-        state.user.isSuperAdmin = localStorage.userIsSuperAdmin;
-        state.token.accessToken = localStorage.tokenAccessToken;
-        state.token.refreshToken = localStorage.tokenRefreshToken;
-      }
-    },
     signOut(state) {
       localStorage.removeItem('userId');
       localStorage.removeItem('userName');
@@ -79,12 +82,41 @@ export default new Vuex.Store({
       localStorage.removeItem('userIsSuperAdmin');
       localStorage.removeItem('tokenAccessToken');
       localStorage.removeItem('tokenRefreshToken');
+      localStorage.removeItem('projectId');
+      localStorage.removeItem('projectName');
+      localStorage.removeItem('projectDisplayName');
       state.user.id = 0;
       state.user.name = null;
       state.user.email = null;
       state.user.isSuperAdmin = null;
       state.token.accessToken = null;
       state.token.refreshToken = null;
+      state.project.id = 0;
+      state.project.name = null;
+      state.project.displayName = null;
+    },
+    setProject(state, payload) {
+      const {
+        id,
+        name,
+        displayName
+      } = payload;
+      localStorage.projectId = id;
+      localStorage.projectName = name;
+      localStorage.projectDisplayName = displayName;
+      state.project = {
+        id,
+        name,
+        displayName
+      };
+    },
+    clearProject(state) {
+      localStorage.removeItem('projectId');
+      localStorage.removeItem('projectName');
+      localStorage.removeItem('projectDisplayName');
+      state.project.id = 0;
+      state.project.name = null;
+      state.project.displayName = null;
     },
     setDrawer(state, payload) {
       localStorage.drawer = payload;
