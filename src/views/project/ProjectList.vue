@@ -15,10 +15,10 @@
     </v-row>
     <v-divider class="my-1"></v-divider>
     <v-row no-gutters>
-      <v-col cols="12" md="4" class="pa-1" v-for="i in 10" :key="i">
+      <v-col cols="12" md="4" class="pa-1" v-for="(project, i) in projects" :key="i">
         <project-card
-          @click="setProject({ id: 1, name: '123', displayName: '333' })"
-        ></project-card>
+          :project="project"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -29,19 +29,25 @@ import { mapMutations } from 'vuex';
 import { getProjects } from '@/apis/project';
 
 export default {
-  name: 'App',
+  name: 'ProjectList',
   components: {
     ProjectCard: () => import('@/components/project/Card.vue')
   },
   computed: {},
+  data: () => ({
+    projects: []
+  }),
   mounted() {
     this.clearProject();
     getProjects().then((res) => {
       console.log(res);
+      if (res.status === 200) {
+        this.projects = res.data.items;
+      }
     });
   },
   methods: {
-    ...mapMutations(['setProject', 'clearProject'])
+    ...mapMutations(['clearProject'])
   }
 };
 </script>
