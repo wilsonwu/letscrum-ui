@@ -6,9 +6,22 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/projects',
     name: 'Home',
-    component: () => import('../views/ProjectList.vue')
+    component: () => import('../views/project/ProjectList.vue'),
+    beforeEnter: (to, from, next) => {
+      if (!store.getters.isSignedIn) {
+        next({ path: '/' });
+      }
+      store.commit('setBreadcrumbs', {
+        text: 'Projects',
+        disabled: false,
+        href: to.fullPath
+      });
+      console.log(to);
+      console.log(from);
+      next();
+    }
   },
   {
     path: '/about',
@@ -58,12 +71,12 @@ const routes = [
         next();
       }
       else {
-        next({ path: '/signin' });
+        next({ path: '/' });
       }
     }
   },
   {
-    path: '/signin',
+    path: '/',
     name: 'SignIn',
     component: () => import('@/views/SignIn.vue'),
     beforeEnter: (to, from, next) => {
@@ -71,20 +84,7 @@ const routes = [
         next();
       }
       else {
-        next({ path: '/user' });
-      }
-    }
-  },
-  {
-    path: '/signup',
-    name: 'SignUp',
-    component: () => import('../views/SignUp.vue'),
-    beforeEnter: (to, from, next) => {
-      if (!store.getters.isSignedIn) {
-        next();
-      }
-      else {
-        next({ path: '/user' });
+        next({ path: '/projects' });
       }
     }
   }

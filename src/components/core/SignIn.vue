@@ -91,7 +91,7 @@ export default {
               refreshToken: res.data.item.token.refreshToken
             });
             this.loading = false;
-            this.$router.push('/');
+            this.$router.push('/projects');
           }
         });
       }

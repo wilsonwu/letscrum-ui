@@ -15,6 +15,7 @@
         :to="menu.path"
       >{{ $t('core.menus.' + menu.name + '.text') }}</v-btn>
     </v-toolbar-items>
+    <v-breadcrumbs :items="$store.getters.breadcrumbs"></v-breadcrumbs>
     <v-spacer></v-spacer>
     <v-text-field
       hide-details
@@ -25,10 +26,20 @@
       @click:append-outer="{}"
       class="mr-2"
     ></v-text-field>
+    <v-divider
+      vertical
+      inset
+      class="mx-1"
+    ></v-divider>
     <v-btn text="" rounded @click="changeLanguage">{{ $t('core.toLanguage') }}</v-btn>
     <v-btn icon @click="changeTheme">
       <v-icon>mdi-theme-light-dark</v-icon>
     </v-btn>
+    <v-divider
+      vertical
+      inset
+      class="mx-1"
+    ></v-divider>
     <core-account :accounts="accounts" v-if="!$store.getters.isSignedIn"></core-account>
     <user-menu :userMenus="userMenus" :user="user" v-else></user-menu>
     <div v-if="!$store.getters.isSignedIn">

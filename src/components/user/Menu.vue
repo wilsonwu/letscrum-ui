@@ -48,7 +48,6 @@
   </v-menu>
 </template>
 <script>
-import { mapMutations } from 'vuex';
 
 // Utilities
 export default {
@@ -59,7 +58,10 @@ export default {
   computed: {
   },
   methods: {
-    ...mapMutations(['signOut'])
+    signOut() {
+      this.$store.commit('signOut');
+      this.$router.push('/');
+    }
   }
 };
 </script>

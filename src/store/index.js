@@ -17,6 +17,7 @@ export default new Vuex.Store({
     links: Link,
     accounts: Account,
     userMenus: UserMenu,
+    breadcrumbs: [],
     user: {
       id: 0,
       name: null,
@@ -94,6 +95,7 @@ export default new Vuex.Store({
       state.project.id = 0;
       state.project.name = null;
       state.project.displayName = null;
+      state.breadcrumbs = [];
     },
     setProject(state, payload) {
       const {
@@ -135,6 +137,19 @@ export default new Vuex.Store({
     setLanguage(state, payload) {
       localStorage.language = payload;
       state.language = payload;
+    },
+    pushBreadcrumbs(state, payload) {
+      state.breadcrumbs.push(payload);
+    },
+    popBreadcrumbs(state) {
+      state.breadcrumbs.slice(0, state.breadcrumbs.length - 1);
+    },
+    setBreadcrumbs(state, payload) {
+      state.breadcrumbs = [];
+      state.breadcrumbs.push(payload);
+    },
+    clearBreadcrumbs(state) {
+      state.breadcrumbs = [];
     }
   },
   actions: {
@@ -154,6 +169,7 @@ export default new Vuex.Store({
     logoUrl: (state) => state.logoUrl,
     dark: (state) => state.dark,
     drawer: (state) => state.drawer,
-    language: (state) => state.language
+    language: (state) => state.language,
+    breadcrumbs: (state) => state.breadcrumbs
   }
 });
