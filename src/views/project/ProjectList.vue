@@ -19,6 +19,10 @@
         <project-card :project="project"></project-card>
       </v-col>
     </v-row>
+    <v-pagination
+      v-model="page"
+      :length="pages"
+    ></v-pagination>
   </v-container>
 </template>
 
@@ -31,21 +35,43 @@ export default {
   components: {
     ProjectCard: () => import('@/components/project/Card.vue')
   },
-  computed: {},
+  computed: {
+    pages: {
+      get() {
+        return Math.ceil(this.total / this.size);
+      }
+    }
+  },
+  watch: {
+    page(val) {
+      this.loadProjects(val);
+    }
+  },
   data: () => ({
+    size: 12,
+    page: 0,
+    total: 0,
     projects: []
   }),
   mounted() {
     this.clearProject();
-    getProjects().then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-        this.projects = res.data.items;
-      }
-    });
+    this.loadProjects(1);
   },
   methods: {
-    ...mapMutations(['clearProject'])
+    ...mapMutations(['clearProject']),
+    loadProjects(currentPage) {
+      getProjects({
+        page: currentPage,
+        size: this.size
+      }).then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          this.projects = res.data.items;
+          this.page = res.data.pagination.page;
+          this.total = res.data.pagination.total;
+        }
+      });
+    }
   }
 };
 </script>
