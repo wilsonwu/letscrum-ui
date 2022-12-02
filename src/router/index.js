@@ -37,9 +37,9 @@ const routes = [
     }
   },
   {
-    path: '/projects/:id',
+    path: '/projects/:id/overview',
     name: 'Home',
-    component: () => import('../views/project/Home.vue'),
+    component: () => import('../views/project/Overview.vue'),
     beforeEnter: (to, from, next) => {
       toSignIn(next);
       store.commit('setBreadcrumbs', [{

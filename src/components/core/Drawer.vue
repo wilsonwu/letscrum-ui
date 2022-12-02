@@ -2,22 +2,45 @@
   <v-navigation-drawer :mini-variant.sync="drawer" permanent app>
     <v-list-item class="px-2">
         <v-list-item-avatar color="red">
-          <span class="white--text text-h5">PL</span>
+          <span class="white--text text-h5">{{ project.displayName.substring(0, 1) }}</span>
         </v-list-item-avatar>
-        <v-list-item-title>{{ $store.getters.project.displayName }}</v-list-item-title>
+        <v-list-item-title>{{ project.displayName }}</v-list-item-title>
         <v-btn icon @click.stop="drawer = !drawer">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
       </v-list-item>
 
       <v-list>
+        <v-list-item :to="'/projects/' + project.id + '/overview'">
+          <v-list-item-icon>
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Overview</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item :to="'/projects/' + project.id + '/sprints'">
+          <v-list-item-icon>
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Sprints</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item>
           <v-list-item-icon>
             <v-icon>mdi-chevron-left</v-icon>
           </v-list-item-icon>
-
           <v-list-item-content>
-            <v-list-item-title>item.title</v-list-item-title>
+            <v-list-item-title>Backlogs</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Work items</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -26,7 +49,7 @@
 
 <script>
 // Utilities
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'CoreDrawer',
@@ -34,6 +57,7 @@ export default {
   data: () => ({
   }),
   computed: {
+    ...mapGetters(['project']),
     drawer: {
       get() {
         return this.$store.state.drawer;
