@@ -145,14 +145,19 @@ export default new Vuex.Store({
       state.breadcrumbs.slice(0, state.breadcrumbs.length - 1);
     },
     setBreadcrumbs(state, payload) {
-      state.breadcrumbs = [];
-      state.breadcrumbs.push(payload);
+      state.breadcrumbs = [...payload];
     },
     clearBreadcrumbs(state) {
       state.breadcrumbs = [];
     }
   },
   actions: {
+    signIn(context, payload) {
+      context.commit('signIn', payload);
+      if (payload.success) {
+        payload.success();
+      }
+    }
   },
   modules: {
   },

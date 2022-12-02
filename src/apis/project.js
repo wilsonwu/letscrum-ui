@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { baseUrl, version } from './base';
 
-export const getProjects = (params) => axios.get(`${baseUrl}${version}/projects`, { params });
+const version = '/v1';
 
-export const getProject = (projectId) => axios.get(`${baseUrl}${version}/projects/${projectId}`);
+export const getProjects = (params) => axios.get(`${version}/projects`, { params });
+
+export const getProject = (projectId) => axios.get(`${version}/projects/${projectId}`);

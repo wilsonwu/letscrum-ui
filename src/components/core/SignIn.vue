@@ -32,14 +32,14 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer />
-      <v-btn block :disabled="!valid" :loading="loading" @click="signIn">{{
+      <v-btn block :disabled="!valid" :loading="loading" @click="onSignIn">{{
         $t("signIn.signInBtn")
       }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { postSignIn } from '@/apis/index';
 
 export default {
@@ -74,7 +74,8 @@ export default {
     }
   },
   methods: {
-    signIn() {
+    ...mapMutations(['signIn']),
+    onSignIn() {
       if (this.$refs.form.validate()) {
         this.loading = true;
         postSignIn({
@@ -82,7 +83,7 @@ export default {
           password: 'aaaaaa'
         }).then((res) => {
           if (res.status === 200) {
-            this.$store.commit('signIn', {
+            this.signIn({
               id: res.data.item.id,
               name: res.data.item.name,
               email: res.data.item.email,
@@ -90,9 +91,11 @@ export default {
               accessToken: res.data.item.token.accessToken,
               refreshToken: res.data.item.token.refreshToken
             });
+            this.$router.go('/projects');
             this.loading = false;
-            this.$router.push('/projects');
           }
+        }).catch(() => {
+          this.loading = false;
         });
       }
     }

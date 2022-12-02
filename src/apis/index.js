@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { version } from './base';
+
+const version = '/v1';
 
 export const postSignIn = (params) => axios.post(`${version}/signin`, params);
 

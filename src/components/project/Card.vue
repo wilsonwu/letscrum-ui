@@ -2,7 +2,7 @@
   <v-card
     class="mx-auto"
     outlined
-    :to="'/project/' + project.name"
+    :to="'/projects/' + project.id"
     tile
   >
     <v-list-item three-line>

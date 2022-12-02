@@ -53,7 +53,7 @@ export default {
     total: 0,
     projects: []
   }),
-  mounted() {
+  created() {
     this.clearProject();
     this.loadProjects(1);
   },
