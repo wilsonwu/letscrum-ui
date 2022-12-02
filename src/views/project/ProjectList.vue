@@ -16,9 +16,7 @@
     <v-divider class="my-1"></v-divider>
     <v-row no-gutters>
       <v-col cols="12" md="4" class="pa-1" v-for="(project, i) in projects" :key="i">
-        <project-card
-          :project="project"
-        />
+        <project-card :project="project"></project-card>
       </v-col>
     </v-row>
   </v-container>

@@ -2,7 +2,7 @@
   <v-card
     class="mx-auto"
     outlined
-    :to="'/project/'"
+    :to="'/project/' + project.name"
     tile
   >
     <v-list-item three-line>
@@ -13,10 +13,10 @@
       ></v-list-item-avatar>
       <v-list-item-content>
         <div class="text-overline mb-4">
-          Members
+          {{ project.members.length }} Members
         </div>
         <v-list-item-title class="text-h5 mb-1">
-          {{ project }}
+          {{ project.displayName }}
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -27,11 +27,7 @@
 export default {
   name: 'ProjectCard',
   props: ['project'],
-  created() {
-  },
-  mounted() {
-  },
-  methods: {},
-  computed: {
+  methods: {
   }
 };
+</script>
