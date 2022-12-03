@@ -2,7 +2,7 @@
   <v-container>
   <v-row no-gutters>
     <v-col>
-      <h2 class="pa-1">Work Dashboard</h2>
+      <h2 class="pa-1">{{ project.name }}</h2>
     </v-col>
     <v-col>
       <v-btn outlined class="float-right ma-1" tile>
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import { getProject } from '@/apis/project';
+import { mapMutations, mapGetters } from 'vuex';
+import { getGetProject } from '@/apis/project';
 
 export default {
   name: 'Project',
@@ -34,13 +34,16 @@ export default {
     total: 0,
     projects: []
   }),
+  computed: {
+    ...mapGetters(['project'])
+  },
   created() {
     this.loadProject();
   },
   methods: {
     ...mapMutations(['setProject']),
     loadProject() {
-      getProject(this.$route.params.id).then((res) => {
+      getGetProject(this.$route.params.id).then((res) => {
         console.log(res);
         if (res.status === 200) {
           this.setProject({
