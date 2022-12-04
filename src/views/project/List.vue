@@ -72,16 +72,10 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn
-                text
-                @click="dialog = false"
-              >
+              <v-btn text @click="dialog = false">
                 Close
               </v-btn>
-              <v-btn
-                text
-                @click="onCreateProject"
-              >
+              <v-btn text @click="onCreateProject">
                 Create
               </v-btn>
             </v-card-actions>

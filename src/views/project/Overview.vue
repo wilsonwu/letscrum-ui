@@ -7,9 +7,9 @@
     <v-col>
       <v-btn outlined class="float-right ma-1" tile>
         <v-icon left>
-          mdi-plus
+          mdi-pencil
         </v-icon>
-        New Project
+        Edit Project
       </v-btn>
     </v-col>
   </v-row>
