@@ -15,9 +15,17 @@
         :to="menu.path"
       >{{ $t('core.menus.' + menu.name + '.text') }}</v-btn>
     </v-toolbar-items>
-    <v-breadcrumbs :items="$store.getters.breadcrumbs"></v-breadcrumbs>
+    <v-breadcrumbs :items="$store.getters.breadcrumbs">
+      <template v-slot:item="{ item }">
+        <v-breadcrumbs-item>
+          <v-btn plain small tile :to="item.href" :disabled="item.disabled">
+            {{ item.text.toUpperCase() }}
+          </v-btn>
+        </v-breadcrumbs-item>
+      </template>
+    </v-breadcrumbs>
     <v-spacer></v-spacer>
-    <v-text-field
+    <!-- <v-text-field
       hide-details
       single-line
       dense
@@ -30,7 +38,7 @@
       vertical
       inset
       class="mx-1"
-    ></v-divider>
+    ></v-divider> -->
     <v-btn text="" rounded @click="changeLanguage">{{ $t('core.toLanguage') }}</v-btn>
     <v-btn icon @click="changeTheme">
       <v-icon>mdi-theme-light-dark</v-icon>

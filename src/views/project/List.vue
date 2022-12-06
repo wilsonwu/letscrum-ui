@@ -86,7 +86,7 @@
     <v-divider class="my-1"></v-divider>
     <v-row no-gutters>
       <v-col cols="12" md="4" class="pa-1" v-for="(project, i) in projects" :key="i">
-        <project-card :project="project"></project-card>
+        <project-list-card :project="project"></project-list-card>
       </v-col>
     </v-row>
     <v-pagination
@@ -104,7 +104,7 @@ import { getUsers } from '@/apis/user';
 export default {
   name: 'ProjectList',
   components: {
-    ProjectCard: () => import('@/components/project/Card.vue')
+    ProjectListCard: () => import('@/components/project/ListCard.vue')
   },
   computed: {
     pages: {
@@ -123,7 +123,7 @@ export default {
   },
   data: () => ({
     size: 12,
-    page: 0,
+    page: 1,
     total: 0,
     projects: [],
     project: {

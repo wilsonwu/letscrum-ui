@@ -27,7 +27,7 @@ import { mapMutations, mapGetters } from 'vuex';
 import { getGetProject } from '@/apis/project';
 
 export default {
-  name: 'Project',
+  name: 'ProjectOverview',
   data: () => ({
     size: 12,
     page: 0,

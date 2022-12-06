@@ -23,23 +23,57 @@ const routes = [
   {
     path: '/projects',
     name: 'Home',
-    component: () => import('../views/project/List.vue'),
+    component: () => import('@/views/project/List.vue'),
     beforeEnter: (to, from, next) => {
       toSignIn(next);
       store.commit('setBreadcrumbs', [{
-        text: 'All Projects',
+        text: 'All',
         disabled: false,
         href: '/projects'
       }]);
-      console.log(to);
-      console.log(from);
       next();
     }
   },
   {
     path: '/projects/:id/overview',
     name: 'Home',
-    component: () => import('../views/project/Overview.vue'),
+    component: () => import('@/views/project/Overview.vue'),
+    beforeEnter: (to, from, next) => {
+      toSignIn(next);
+      console.log('from: ', from, 'to: ', to);
+      store.commit('setBreadcrumbs', [{
+        text: 'All',
+        disabled: false,
+        href: '/projects'
+      },
+      {
+        text: 'Project',
+        disabled: false,
+        href: `/projects/${to.params.id}/overview`
+      },
+      {
+        text: 'Overview',
+        disabled: true,
+        href: to.fullPath
+      }]);
+      next();
+    }
+  },
+  {
+    path: '/projects/:id/sprints/:sid',
+    name: 'Sprints',
+    component: () => import('@/views/project/Sprints.vue'),
+    redirect: '/projects/:id/sprints/:sid/taskboard',
+    children: [
+      {
+        path: 'taskboard',
+        component: () => import('@/views/sprint/Taskboard.vue')
+      },
+      {
+        path: 'capacity',
+        component: () => import('@/views/sprint/Capacity.vue')
+      }
+    ],
     beforeEnter: (to, from, next) => {
       toSignIn(next);
       store.commit('setBreadcrumbs', [{
@@ -50,10 +84,13 @@ const routes = [
       {
         text: 'Project',
         disabled: false,
+        href: `/projects/${to.params.id}/overview`
+      },
+      {
+        text: 'Sprints',
+        disabled: true,
         href: to.fullPath
       }]);
-      console.log(to);
-      console.log(from);
       next();
     }
   },
