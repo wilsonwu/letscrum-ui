@@ -40,7 +40,7 @@
                           v-model="sprint.name"
                         ></v-text-field>
                       </v-col>
-
+                      <v-col cols="12">
                         <v-menu
                           ref="menu"
                           v-model="menu"
@@ -51,24 +51,13 @@
                           min-width="auto"
                         >
                           <template v-slot:activator="{ on, attrs }">
-                            <v-col cols="6">
-                              <v-text-field
-                                v-model="startDate"
-                                label="Picker in menu"
-                                readonly
-                                v-bind="attrs"
-                                v-on="on"
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="6">
-                              <v-text-field
-                                v-model="endDate"
-                                label="Picker in menu"
-                                readonly
-                                v-bind="attrs"
-                                v-on="on"
-                              ></v-text-field>
-                            </v-col>
+                            <v-text-field
+                              v-model="rangeDate"
+                              label="Picker in menu"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
                           </template>
                           <v-date-picker
                             v-model="date"
@@ -93,6 +82,7 @@
                             </v-btn>
                           </v-date-picker>
                         </v-menu>
+                      </v-col>
                     </v-row>
                   </v-container>
                 </v-card-text>
@@ -148,8 +138,9 @@ export default {
   name: 'ProjectSprints',
   data: () => ({
     date: [],
-    startDate: null,
-    endDate: null,
+    startDate: '',
+    endDate: '',
+    rangeDate: null,
     menu: false,
     dialog: false,
     sprint: {
@@ -176,18 +167,13 @@ export default {
   }),
   watch: {
     date(val) {
-      console.log(val);
+      this.startDate = val[0] ? val[0] : '';
+      this.endDate = val[1] ? val[1] : '';
       if (val[0] > val[1]) {
-        const temp = val[0];
-        // eslint-disable-next-line prefer-destructuring, no-param-reassign
-        val[0] = val[1];
-        // eslint-disable-next-line no-param-reassign
-        val[1] = temp;
+        this.startDate = val[1] ? val[1] : '';
+        this.endDate = val[0] ? val[0] : '';
       }
-      // eslint-disable-next-line prefer-destructuring
-      this.startDate = val[1];
-      // eslint-disable-next-line prefer-destructuring
-      this.endDate = val[0];
+      this.rangeDate = `${this.startDate} - ${this.endDate}`;
     }
   },
   computed: {
