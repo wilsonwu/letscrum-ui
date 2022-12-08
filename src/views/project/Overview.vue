@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex';
-import { getGetProject } from '@/apis/project';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ProjectOverview',
@@ -35,25 +34,11 @@ export default {
     projects: []
   }),
   computed: {
-    ...mapGetters(['project'])
+    ...mapGetters(['project', 'sprint'])
   },
   created() {
-    this.loadProject();
   },
   methods: {
-    ...mapMutations(['setProject']),
-    loadProject() {
-      getGetProject(this.$route.params.id).then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          this.setProject({
-            id: res.data.item.id,
-            name: res.data.item.name,
-            displayName: res.data.item.displayName
-          });
-        }
-      });
-    }
   }
 };
 </script>

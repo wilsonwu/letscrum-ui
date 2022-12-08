@@ -19,7 +19,7 @@
             <v-list-item-title>Overview</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item :to="'/projects/' + project.id + '/sprints/1'">
+        <v-list-item :to="'/projects/' + project.id + '/sprints/' + sprint.id">
           <v-list-item-icon>
             <v-icon>mdi-chevron-left</v-icon>
           </v-list-item-icon>
@@ -57,7 +57,7 @@ export default {
   data: () => ({
   }),
   computed: {
-    ...mapGetters(['project']),
+    ...mapGetters(['project', 'sprint']),
     drawer: {
       get() {
         return this.$store.state.drawer;

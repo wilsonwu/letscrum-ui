@@ -2,33 +2,39 @@
   <v-container>
     <v-row no-gutters>
       <v-col>
-        <h2>Sprint 1</h2>
+        <h2>{{ sprint.name }}</h2>
       </v-col>
       <v-col>
         <v-menu offset-y bottom left min-width="300">
           <template v-slot:activator="{ on, attrs }">
             <v-btn v-bind="attrs" v-on="on" plain tile large class="float-right">
-              Sprint 1
+              {{ sprint.name }}
               <v-icon right>
                 mdi-chevron-down
               </v-icon>
             </v-btn>
           </template>
           <v-list>
-            <v-virtual-scroll height="350" item-height="64" :items="sprints">
+            <v-virtual-scroll height="350" item-height="64" itemIndex="5" :items="sprints">
               <template v-slot:default="{ item }">
-                <v-list-item two-line @click="console.log('456')">
+                <v-list-item
+                  two-line
+                  @click="onSetSprint(item.id, item.name, item.startDate, item.endDate)"
+                >
                   <v-list-item-content>
                     <v-list-item-title>{{ item.name }}</v-list-item-title>
-                    <v-list-item-subtitle>2021-10-30 - 2021-11-15</v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                      {{ new Date(item.startDate * 1000).toISOString().substr(0, 10) }}
+                       - {{ new Date(item.endDate * 1000).toISOString().substr(0, 10) }}
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-action>
                     <v-list-item-action-text>
                       <v-chip
-                        color="primary"
+                        :color="item.status === 'CURRENT' ? 'primary' : ''"
                         small
                       >
-                        Current
+                        {{ item.status }}
                       </v-chip>
                     </v-list-item-action-text>
                   </v-list-item-action>
@@ -59,7 +65,7 @@
                         <v-text-field
                           label="Name"
                           required
-                          v-model="sprint.name"
+                          v-model="sprintName"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
@@ -97,7 +103,7 @@
                   <v-btn text @click="dialog = false">
                     Close
                   </v-btn>
-                  <v-btn text>
+                  <v-btn text @click="onCreateSprint">
                     Create
                   </v-btn>
                 </v-card-actions>
@@ -118,37 +124,21 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+import { getGetSprints, postCreateSprint } from '@/apis/sprint';
+
 export default {
   name: 'ProjectSprints',
   data: () => ({
     date: [],
+    sprintName: '',
     startDate: '',
     endDate: '',
     rangeDate: null,
     menu: false,
     menu1: false,
     dialog: false,
-    sprint: {
-      name: null
-    },
-    sprints: [{
-      name: '123'
-    },
-    {
-      name: '123'
-    },
-    {
-      name: '123'
-    },
-    {
-      name: '123'
-    },
-    {
-      name: '123'
-    },
-    {
-      name: '123'
-    }]
+    sprints: []
   }),
   watch: {
     date(val) {
@@ -162,10 +152,47 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['project', 'sprint'])
   },
   created() {
+    this.onLoadSprints();
   },
   methods: {
+    ...mapMutations(['setSprint']),
+    onCreateSprint() {
+      postCreateSprint(this.project.id, {
+        name: this.sprintName,
+        start_date: Math.floor(new Date(this.startDate).getTime() / 1000),
+        end_date: Math.floor(new Date(this.endDate).getTime() / 1000)
+      }).then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          console.log(res.data);
+          this.onLoadSprints();
+          this.dialog = false;
+        }
+      });
+    },
+    onLoadSprints() {
+      getGetSprints(this.project.id, {
+        page: 1,
+        size: 999
+      }).then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          this.sprints = res.data.items;
+        }
+      });
+    },
+    onSetSprint(id, name, startDate, endDate) {
+      this.setSprint({
+        id,
+        name,
+        startDate,
+        endDate
+      });
+      this.$router.push(`/projects/${this.project.id}/sprints/${this.sprint.id}`);
+    }
   }
 };
 </script>

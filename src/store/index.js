@@ -32,6 +32,12 @@ export default new Vuex.Store({
       id: 0,
       name: null,
       displayName: null
+    },
+    sprint: {
+      id: 0,
+      name: null,
+      startDate: null,
+      endDate: null
     }
   },
   mutations: {
@@ -48,6 +54,10 @@ export default new Vuex.Store({
         state.project.id = localStorage.projectId;
         state.project.name = localStorage.projectName;
         state.project.displayName = localStorage.projectDisplayName;
+        state.sprint.id = localStorage.sprintId;
+        state.sprint.name = localStorage.sprintName;
+        state.sprint.startDate = localStorage.sprintStartDate;
+        state.sprint.endDate = localStorage.sprintEndDate;
       }
     },
     signIn(state, payload) {
@@ -112,6 +122,24 @@ export default new Vuex.Store({
         displayName
       };
     },
+    setSprint(state, payload) {
+      const {
+        id,
+        name,
+        startDate,
+        endDate
+      } = payload;
+      localStorage.sprintId = id;
+      localStorage.sprintName = name;
+      localStorage.sprintStartDate = startDate;
+      localStorage.sprintEndDate = endDate;
+      state.sprint = {
+        id,
+        name,
+        startDate,
+        endDate
+      };
+    },
     clearProject(state) {
       localStorage.removeItem('projectId');
       localStorage.removeItem('projectName');
@@ -169,6 +197,7 @@ export default new Vuex.Store({
     user: (state) => state.user,
     token: (state) => state.token,
     project: (state) => state.project,
+    sprint: (state) => state.sprint,
     links: (state) => state.links,
     menus: (state) => state.menus,
     logoUrl: (state) => state.logoUrl,
