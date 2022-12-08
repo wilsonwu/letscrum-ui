@@ -15,6 +15,28 @@
             </v-btn>
           </template>
           <v-list>
+            <v-virtual-scroll height="350" item-height="64" :items="sprints">
+              <template v-slot:default="{ item }">
+                <v-list-item two-line @click="console.log('456')">
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.name }}</v-list-item-title>
+                    <v-list-item-subtitle>2021-10-30 - 2021-11-15</v-list-item-subtitle>
+                  </v-list-item-content>
+                  <v-list-item-action>
+                    <v-list-item-action-text>
+                      <v-chip
+                        color="primary"
+                        small
+                      >
+                        Current
+                      </v-chip>
+                    </v-list-item-action-text>
+                  </v-list-item-action>
+                </v-list-item>
+              </template>
+            </v-virtual-scroll>
+          </v-list>
+          <v-list>
             <v-dialog v-model="dialog" persistent max-width="600">
               <template v-slot:activator="{ on, attrs }">
                 <v-list-item v-bind="attrs" v-on="on">
@@ -42,10 +64,9 @@
                       </v-col>
                       <v-col cols="12">
                         <v-menu
-                          ref="menu"
                           v-model="menu"
                           :close-on-content-click="false"
-                          :return-value.sync="date"
+                          :nudge-right="40"
                           transition="scale-transition"
                           offset-y
                           min-width="auto"
@@ -53,7 +74,7 @@
                           <template v-slot:activator="{ on, attrs }">
                             <v-text-field
                               v-model="rangeDate"
-                              label="Picker in menu"
+                              label="Picker without buttons"
                               readonly
                               v-bind="attrs"
                               v-on="on"
@@ -62,26 +83,11 @@
                           <v-date-picker
                             v-model="date"
                             no-title
-                            scrollable
                             range
-                          >
-                            <v-spacer></v-spacer>
-                            <v-btn
-                              text
-                              color="primary"
-                              @click="menu = false"
-                            >
-                              Cancel
-                            </v-btn>
-                            <v-btn
-                              text
-                              color="primary"
-                              @click="$refs.menu.save(date)"
-                            >
-                              OK
-                            </v-btn>
-                          </v-date-picker>
+                          ></v-date-picker>
                         </v-menu>
+                      </v-col>
+                      <v-col cols="12">
                       </v-col>
                     </v-row>
                   </v-container>
@@ -97,28 +103,6 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-          </v-list>
-          <v-list>
-            <v-virtual-scroll height="350" item-height="64" :items="sprints">
-              <template v-slot:default="{ item }">
-                <v-list-item two-line @click="console.log('456')">
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.name }}</v-list-item-title>
-                    <v-list-item-subtitle>2021-10-30 - 2021-11-15</v-list-item-subtitle>
-                  </v-list-item-content>
-                  <v-list-item-action>
-                    <v-list-item-action-text>
-                      <v-chip
-                        color="primary"
-                        small
-                      >
-                        Current
-                      </v-chip>
-                    </v-list-item-action-text>
-                  </v-list-item-action>
-                </v-list-item>
-              </template>
-            </v-virtual-scroll>
           </v-list>
         </v-menu>
       </v-col>
@@ -142,6 +126,7 @@ export default {
     endDate: '',
     rangeDate: null,
     menu: false,
+    menu1: false,
     dialog: false,
     sprint: {
       name: null
