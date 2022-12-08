@@ -15,7 +15,7 @@
         :to="menu.path"
       >{{ $t('core.menus.' + menu.name + '.text') }}</v-btn>
     </v-toolbar-items>
-    <v-breadcrumbs :items="$store.getters.breadcrumbs">
+    <v-breadcrumbs :items="breadcrumbs">
       <template v-slot:item="{ item }">
         <v-breadcrumbs-item>
           <v-btn plain small tile :to="item.href" :disabled="item.disabled">
@@ -48,9 +48,9 @@
       inset
       class="mx-1"
     ></v-divider>
-    <core-account :accounts="accounts" v-if="!$store.getters.isSignedIn"></core-account>
+    <core-account :accounts="accounts" v-if="!isSignedIn"></core-account>
     <user-menu :userMenus="userMenus" :user="user" v-else></user-menu>
-    <div v-if="!$store.getters.isSignedIn">
+    <div v-if="!isSignedIn">
       <v-btn
         v-for="(account, i) in accounts"
         :key="i"
@@ -63,13 +63,16 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   props: ['menus', 'logoUrl', 'accounts', 'userMenus', 'user', 'dark', 'language'],
   components: {
     UserMenu: () => import('@/components/user/Menu.vue'),
     CoreAccount: () => import('@/components/core/Account.vue')
+  },
+  computed: {
+    ...mapGetters(['breadcrumbs', 'isSignedIn'])
   },
   methods: {
     ...mapMutations(['toggleDrawer', 'setTheme', 'setLanguage']),
