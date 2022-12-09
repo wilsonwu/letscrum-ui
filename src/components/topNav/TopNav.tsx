@@ -2,14 +2,19 @@ import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Box, Stack, Breadcrumbs, Link, Typography, TextField, InputAdornment, Avatar } from '@mui/material'
 import { SearchOutlined, PlaylistAddCheckOutlined, HelpOutlineOutlined, ManageAccountsOutlined } from '@mui/icons-material'
-import { deepPurple } from '@mui/material/colors'
+import { deepPurple, grey } from '@mui/material/colors'
 
 const BreadcrumbItems = styled(Breadcrumbs)({
   '& .MuiBreadcrumbs-li': {
     padding: '0 .5rem',
     lineHeight: '3rem',
-    fontWeight: 400,
-    fontSize: '.875rem'
+    fontWeight: '300',
+    fontSize: '.875rem',
+    color: grey[500]
+  },
+  '& .MuiBreadcrumbs-separator': {
+    fontWeight: '300',
+    color: grey[500]
   },
   '& .MuiTypography-root': {
     fontSize: '.875rem',
@@ -17,15 +22,48 @@ const BreadcrumbItems = styled(Breadcrumbs)({
     borderRadius: 2,
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: '#fafafa'
+      backgroundColor: grey[100]
+    },
+    '&:active': {
+      backgroundColor: grey[50]
     }
   }
 })
+const SearchInputTitle = styled('div')({
+  width: 'auto',
+  height: '2rem',
+  color: grey[500],
+  fontSize: '.875rem',
+  fontWeight: '300',
+  borderRadius: '2px',
+  borderTopWidth: '1px',
+  borderTopStyle: 'solid',
+  borderTopColor: grey[500],
+  borderBottomWidth: '1px',
+  borderBottomStyle: 'solid',
+  borderBottomColor: grey[500],
+  borderLeftWidth: '1px',
+  borderLeftStyle: 'solid',
+  borderLeftColor: grey[500],
+  padding: '0 .75rem'
+})
 const SearchInput = styled(TextField)({
   '& .MuiInputBase-root': {
-    padding: 1,
-    borderRadius: 2,
-    marginRight: '1rem'
+    marginRight: '1rem',
+    padding: 1
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderRadius: 2,
+      borderColor: grey[500]
+    },
+    '&:hover fieldset': {
+      borderColor: grey[500]
+    },
+    '&.Mui-focused fieldset': {
+      borderWidth: 1,
+      borderColor: grey[500]
+    }
   },
   '& .MuiInputAdornment-root': {
     width: '2rem',
@@ -35,20 +73,38 @@ const SearchInput = styled(TextField)({
     alignItems: 'center'
   },
   '& .MuiSvgIcon-root': {
-    fontSize: '.875rem'
+    fontSize: '.875rem',
+    color: grey[500]
   },
   '& .MuiInputBase-input': {
     width: '12.5rem',
     padding: '2px 3px',
     height: '1.75rem',
     fontSize: '.875rem',
+    fontWeight: '300',
+    color: grey[900],
     transition: 'width .3s',
     '&:focus': {
       width: '18.75rem'
     }
   }
 })
-const TopNavCtn = styled('div')({
+const TopNavContainer = styled(Stack)({
+  justifyContent: 'space-between',
+  height: '3rem',
+  borderBottomWidth: '1px',
+  borderBottomStyle: 'solid',
+  borderBottomColor: grey[300]
+})
+const LogoContainer = styled('div')({
+  display: 'flex',
+  width: 'auto',
+  padding: '0 .5rem',
+  lineHeight: '3rem',
+  justifyContent: 'center',
+  alignItems: 'center'
+})
+const SearchBarContainer = styled('div')({
   display: 'flex',
   width: 'auto',
   lineHeight: '3rem',
@@ -62,7 +118,7 @@ const TopNavItem = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   '&:hover': {
-    backgroundColor: '#fafafa',
+    backgroundColor: grey[100],
     cursor: 'pointer'
   }
 })
@@ -71,15 +127,15 @@ export const TopNav: React.FunctionComponent = () => {
   const [isFoucs, setIsFocus] = useState<boolean>(false)
   return (
     <Box>
-      <Stack direction='row' sx={{ justifyContent: 'space-between', height: '3rem', borderBottom: '1px solid #e0e0e0' }}>
-        <TopNavCtn sx={{ padding: '0 8px' }}>
+      <TopNavContainer direction='row'>
+        <LogoContainer>
           <Typography>
             LetScrum
           </Typography>
-        </TopNavCtn>
-        {isFoucs
-          ? <></>
-          : <BreadcrumbItems aria-label="breadcrumb">
+        </LogoContainer>
+        {/* add projectId verification */}
+        {isFoucs ||
+          <BreadcrumbItems aria-label="breadcrumb">
             <Link underline="hover" color="inherit" href="/">
               MUI
             </Link>
@@ -99,21 +155,13 @@ export const TopNav: React.FunctionComponent = () => {
             </Link>
           </BreadcrumbItems>
         }
-        <TopNavCtn sx={{ marginLeft: 'auto' }}>
-          {isFoucs
-            ? <div style={{
-              width: 'auto',
-              height: '2rem',
-              borderTop: '1px solid grey',
-              borderBottom: '1px solid grey',
-              borderLeft: '1px solid grey',
-              padding: '0 .75rem'
-            }}>
+        <SearchBarContainer sx={{ marginLeft: 'auto' }}>
+          {isFoucs &&
+            <SearchInputTitle>
               <Typography sx={{ textAlign: 'center', fontSize: '.875rem', lineHeight: '2rem' }}>
                 This project
               </Typography>
-            </div>
-            : <></>
+            </SearchInputTitle>
           }
           <SearchInput
             placeholder="Search"
@@ -134,21 +182,21 @@ export const TopNav: React.FunctionComponent = () => {
               setIsFocus(!isFoucs)
             }}
           />
-        </TopNavCtn>
+        </SearchBarContainer>
         <TopNavItem>
-          <PlaylistAddCheckOutlined sx={{ fontSize: '1rem' }} />
+          <PlaylistAddCheckOutlined sx={{ fontSize: '1rem', color: grey[500] }} />
         </TopNavItem>
         <TopNavItem>
-          <HelpOutlineOutlined sx={{ fontSize: '1rem', color: 'disabled' }} />
+          <HelpOutlineOutlined sx={{ fontSize: '1rem', color: grey[500] }} />
         </TopNavItem>
         <TopNavItem>
-          <ManageAccountsOutlined sx={{ fontSize: '1rem', color: 'disabled' }} />
+          <ManageAccountsOutlined sx={{ fontSize: '1rem', color: grey[500] }} />
         </TopNavItem>
         <TopNavItem>
           <Avatar sx={{ bgcolor: deepPurple[500], width: '2rem', height: '2rem' }}>
             L</Avatar>
         </TopNavItem>
-      </Stack>
+      </TopNavContainer>
     </Box>
   )
 }
