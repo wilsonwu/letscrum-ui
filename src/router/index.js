@@ -70,6 +70,10 @@ const routes = [
         component: () => import('@/views/sprint/Taskboard.vue')
       },
       {
+        path: 'backlog',
+        component: () => import('@/views/sprint/Backlog.vue')
+      },
+      {
         path: 'capacity',
         component: () => import('@/views/sprint/Capacity.vue')
       }

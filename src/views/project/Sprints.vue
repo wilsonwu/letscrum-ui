@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="ma-2">
     <v-row no-gutters>
       <v-col>
         <h2>{{ sprint.name }}</h2>
@@ -15,9 +15,10 @@
             </v-btn>
           </template>
           <v-list>
-            <v-virtual-scroll height="350" item-height="64" itemIndex="5" :items="sprints">
+            <v-virtual-scroll height="350" item-height="64" :items="sprints">
               <template v-slot:default="{ item }">
                 <v-list-item
+                  :to="'/projects/' + project.id + '/sprints/' + item.id"
                   two-line
                   @click="onSetSprint(item.id, item.name, item.startDate, item.endDate)"
                 >
@@ -25,7 +26,7 @@
                     <v-list-item-title>{{ item.name }}</v-list-item-title>
                     <v-list-item-subtitle>
                       {{ new Date(item.startDate * 1000).toISOString().substr(0, 10) }}
-                       - {{ new Date(item.endDate * 1000).toISOString().substr(0, 10) }}
+                      - {{ new Date(item.endDate * 1000).toISOString().substr(0, 10) }}
                     </v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-action>
@@ -113,14 +114,8 @@
         </v-menu>
       </v-col>
     </v-row>
-    <v-row no-gutters>
-      <v-col>
-        <router-link to="taskboard">Board</router-link>
-        <router-link to="capacity">Capi</router-link>
-      </v-col>
-    </v-row>
     <router-view></router-view>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -136,7 +131,6 @@ export default {
     endDate: '',
     rangeDate: null,
     menu: false,
-    menu1: false,
     dialog: false,
     sprints: []
   }),
@@ -191,7 +185,6 @@ export default {
         startDate,
         endDate
       });
-      this.$router.push(`/projects/${this.project.id}/sprints/${this.sprint.id}`);
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="ma-2">
   <v-row no-gutters>
     <v-col>
       <h2 class="pa-1">{{ project.name }}</h2>
@@ -19,7 +19,7 @@
       <project-card :project="project"></project-card>
     </v-col>
   </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>

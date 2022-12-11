@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="ma-2">
     <v-row no-gutters>
       <v-col>
         <h2 class="pa-1">Project List</h2>
@@ -93,7 +93,7 @@
       v-model="page"
       :length="pages"
     ></v-pagination>
-  </v-container>
+  </div>
 </template>
 
 <script>

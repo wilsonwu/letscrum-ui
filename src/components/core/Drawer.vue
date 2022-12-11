@@ -1,8 +1,10 @@
 <template>
   <v-navigation-drawer :mini-variant.sync="drawer" permanent app>
     <v-list-item class="px-2">
-        <v-list-item-avatar color="red">
-          <span class="white--text text-h5">{{ project.displayName.substring(0, 1) }}</span>
+        <v-list-item-avatar color="blue">
+          <span class="white--text text-h5">
+            {{ project.displayName.substring(0, 1).toUpperCase() }}
+          </span>
         </v-list-item-avatar>
         <v-list-item-title>{{ project.displayName }}</v-list-item-title>
         <v-btn icon @click.stop="drawer = !drawer">
