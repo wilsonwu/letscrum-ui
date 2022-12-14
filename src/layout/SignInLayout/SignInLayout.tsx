@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 interface SignInFormProps {
   children: React.ReactNode
@@ -8,7 +8,9 @@ interface SignInFormProps {
 export const SignInLayout: React.FC<SignInFormProps> = (props: SignInFormProps) => {
   return (
     <Box>
-      {props.children}
+      <Container sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {props.children}
+      </Container>
     </Box>
   )
 }

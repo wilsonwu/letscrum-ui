@@ -1,8 +1,10 @@
 import React from 'react'
-import { TopNav } from '../../components'
+import { MainLayout } from '../../layout/mainLayout/MainLayout'
 
 export const OrganizationPage: React.FunctionComponent = () => {
   return (
-    <TopNav />
+    <MainLayout>
+      123
+    </MainLayout>
   )
 }

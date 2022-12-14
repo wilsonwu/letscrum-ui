@@ -1,1 +1,2 @@
-export * from './SignInLayout'
+export * from './signInLayout'
+export * from './mainLayout'

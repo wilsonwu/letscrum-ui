@@ -3,6 +3,17 @@ import { Box, TextField, Button } from '@mui/material'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { userSignIn, selectUserLoading, selectUserError, selectUserAccessToken } from '../../redux/reducers/userSlice'
 import { useNavigate } from 'react-router-dom'
+import { Stack } from '@mui/system'
+import styled from '@emotion/styled'
+
+const InputContainer = styled(Stack)({
+  width: '20rem',
+  padding: '2rem 0 0 0'
+})
+const SubmitContainer = styled(Stack)({
+  width: '20rem',
+  padding: '6rem 0 0 0'
+})
 
 export const SignInForm: React.FunctionComponent = () => {
   const [inputName, setInputName] = useState<string | null>(null)
@@ -39,72 +50,60 @@ export const SignInForm: React.FunctionComponent = () => {
       {
         loading
           ? <>
-            <TextField
-              required
-              id="name"
-              label="Enter your nanme"
-              defaultValue="Enter your nanme"
-              variant="standard"
-              onChange={handleChange}
-              disabled
-            />
-            <TextField
-              required
-              id="password"
-              label="Enter password"
-              type="password"
-              defaultValue="Enter password"
-              variant="standard"
-              onChange={handleChange}
-              disabled
-            />
-            <Button variant="contained" onClick={handleSignIn} disabled>
-              Submit
-            </Button>
+            <Stack>
+              <TextField
+                required
+                name="name"
+                label="Enter your nanme"
+                variant="standard"
+                onChange={handleChange}
+                disabled
+              />
+            </Stack>
+            <Stack>
+              <TextField
+                required
+                name="password"
+                label="Enter password"
+                type="password"
+                variant="standard"
+                onChange={handleChange}
+                disabled
+              />
+            </Stack>
+            <Stack>
+              <Button variant="contained" onClick={handleSignIn} disabled>
+                Submit
+              </Button>
+            </Stack>
           </>
           : <>
-            <TextField
-              required
-              id="name"
-              label="Enter your nanme"
-              defaultValue="Enter your nanme"
-              variant="standard"
-              onChange={handleChange}
-            />
-            <TextField
-              required
-              id="password"
-              label="Enter password"
-              type="password"
-              defaultValue="Enter password"
-              variant="standard"
-              onChange={handleChange}
-            />
-            <Button variant="contained" onClick={handleSignIn}>
-              Submit
-            </Button>
+            <InputContainer>
+              <TextField
+                required
+                id="name"
+                label="Enter your nanme"
+                variant="standard"
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              <TextField
+                required
+                id="password"
+                label="Enter password"
+                type="password"
+                variant="standard"
+                onChange={handleChange}
+              />
+            </InputContainer>
+            <SubmitContainer>
+              <Button variant="contained" onClick={handleSignIn}>
+                Submit
+              </Button>
+            </SubmitContainer>
           </>
       }
-      <TextField
-        required
-        id="name"
-        label="Enter your nanme"
-        defaultValue="Enter your nanme"
-        variant="standard"
-        onChange={handleChange}
-      />
-      <TextField
-        required
-        id="password"
-        label="Enter password"
-        type="password"
-        defaultValue="Enter password"
-        variant="standard"
-        onChange={handleChange}
-      />
-      <Button variant="contained" onClick={handleSignIn}>
-        Submit
-      </Button>
     </Box>
   )
 }

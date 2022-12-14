@@ -3,6 +3,9 @@ import { styled } from '@mui/material/styles'
 import { Box, Stack, Breadcrumbs, Link, Typography, TextField, InputAdornment, Avatar } from '@mui/material'
 import { SearchOutlined, PlaylistAddCheckOutlined, HelpOutlineOutlined, ManageAccountsOutlined } from '@mui/icons-material'
 import { deepPurple, grey } from '@mui/material/colors'
+import { useAppSelector } from '../../redux/hooks'
+import { selectUserAccessToken } from '../../redux/reducers/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const BreadcrumbItems = styled(Breadcrumbs)({
   '& .MuiBreadcrumbs-li': {
@@ -122,9 +125,19 @@ const TopNavItem = styled('div')({
     cursor: 'pointer'
   }
 })
+const TopNavToSignIn = styled(Typography)({
+  fontWeight: '300',
+  fontSize: '.875rem',
+  color: grey[500]
+})
 
 export const TopNav: React.FunctionComponent = () => {
   const [isFoucs, setIsFocus] = useState<boolean>(false)
+  const jwt = useAppSelector(selectUserAccessToken)
+  const navigate = useNavigate()
+  const handleToSignIn = (): void => {
+    navigate('./signIn', { replace: true })
+  }
   return (
     <Box>
       <TopNavContainer direction='row'>
@@ -133,8 +146,8 @@ export const TopNav: React.FunctionComponent = () => {
             LetScrum
           </Typography>
         </LogoContainer>
-        {/* add projectId verification */}
-        {isFoucs ||
+        {
+          isFoucs ||
           <BreadcrumbItems aria-label="breadcrumb">
             <Link underline="hover" color="inherit" href="/">
               MUI
@@ -193,8 +206,16 @@ export const TopNav: React.FunctionComponent = () => {
           <ManageAccountsOutlined sx={{ fontSize: '1rem', color: grey[500] }} />
         </TopNavItem>
         <TopNavItem>
-          <Avatar sx={{ bgcolor: deepPurple[500], width: '2rem', height: '2rem' }}>
-            L</Avatar>
+          {
+            (jwt != null)
+              ? <Avatar sx={{ bgcolor: deepPurple[500], width: '2rem', height: '2rem' }}>
+                L</Avatar>
+              : <TopNavItem onClick={handleToSignIn}>
+                <TopNavToSignIn>
+                  Sign In
+                </TopNavToSignIn>
+              </TopNavItem>
+          }
         </TopNavItem>
       </TopNavContainer>
     </Box>
