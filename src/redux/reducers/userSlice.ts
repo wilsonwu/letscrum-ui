@@ -32,7 +32,7 @@ const initialState: UserState = {
 
 export const userSignIn = createAsyncThunk(
   'user/signIn',
-  async (param: { inputName: string, inputPwd: string }): Promise<UserState> => {
+  async (param: { inputName: string | null, inputPwd: string | null }): Promise<UserState> => {
     try {
       const response = await axios.post('https://imoogoo.com/api/v1/signin', {
         name: param.inputName,
