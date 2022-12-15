@@ -4,8 +4,8 @@ import { Box, Stack, Breadcrumbs, Link, Typography, TextField, InputAdornment, A
 import { SearchOutlined, PlaylistAddCheckOutlined, HelpOutlineOutlined, ManageAccountsOutlined } from '@mui/icons-material'
 import { deepPurple, grey } from '@mui/material/colors'
 import { useAppSelector } from '../../redux/hooks'
-import { selectUserAccessToken } from '../../redux/reducers/userSlice'
-import { useNavigate } from 'react-router-dom'
+import { selectUserName } from '../../redux/reducers/userSlice'
+import { Outlet } from 'react-router-dom'
 
 const BreadcrumbItems = styled(Breadcrumbs)({
   '& .MuiBreadcrumbs-li': {
@@ -125,19 +125,11 @@ const TopNavItem = styled('div')({
     cursor: 'pointer'
   }
 })
-const TopNavToSignIn = styled(Typography)({
-  fontWeight: '300',
-  fontSize: '.875rem',
-  color: grey[500]
-})
 
 export const TopNav: React.FunctionComponent = () => {
   const [isFoucs, setIsFocus] = useState<boolean>(false)
-  const jwt = useAppSelector(selectUserAccessToken)
-  const navigate = useNavigate()
-  const handleToSignIn = (): void => {
-    navigate('./signIn', { replace: true })
-  }
+  const name = useAppSelector(selectUserName)
+  const displayName = name?.toString().toUpperCase().charAt(0)
   return (
     <Box>
       <TopNavContainer direction='row'>
@@ -206,18 +198,12 @@ export const TopNav: React.FunctionComponent = () => {
           <ManageAccountsOutlined sx={{ fontSize: '1rem', color: grey[500] }} />
         </TopNavItem>
         <TopNavItem>
-          {
-            (jwt != null)
-              ? <Avatar sx={{ bgcolor: deepPurple[500], width: '2rem', height: '2rem' }}>
-                L</Avatar>
-              : <TopNavItem onClick={handleToSignIn}>
-                <TopNavToSignIn>
-                  Sign In
-                </TopNavToSignIn>
-              </TopNavItem>
-          }
+          <Avatar sx={{ bgcolor: deepPurple[500], width: '1.5rem', height: '1.5rem' }}>
+            {displayName}
+          </Avatar>
         </TopNavItem>
       </TopNavContainer>
+      <Outlet />
     </Box>
   )
 }

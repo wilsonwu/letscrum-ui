@@ -34,6 +34,9 @@ export const userSignIn = createAsyncThunk(
   'user/signIn',
   async (param: { inputName: string | null, inputPwd: string | null }): Promise<UserState> => {
     try {
+      param.inputName = 'admin'
+      param.inputPwd = 'aaaaaa'
+      console.log('trying async', param.inputName, param.inputPwd)
       const response = await axios.post('https://imoogoo.com/api/v1/signin', {
         name: param.inputName,
         password: param.inputPwd
@@ -57,6 +60,7 @@ export const userSlice = createSlice({
       .addCase(userSignIn.fulfilled, (state, action) => {
         state.loading = false
         state.token.accessToken = action.payload.token.accessToken
+        state.name = action.payload.name
       })
       .addCase(userSignIn.rejected, (state, action) => {
         state.loading = false
@@ -68,4 +72,5 @@ export const userSlice = createSlice({
 export const selectUserLoading = (state: RootState): boolean => state.user.loading
 export const selectUserError = (state: RootState): any => state.user.error
 export const selectUserAccessToken = (state: RootState): string | null => state.user.token.accessToken
+export const selectUserName = (state: RootState): string | null => state.user.name
 export default userSlice.reducer

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react'
 import { Box, TextField, Button } from '@mui/material'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { userSignIn, selectUserLoading, selectUserError, selectUserAccessToken } from '../../redux/reducers/userSlice'
+import { userSignIn, selectUserLoading, selectUserAccessToken } from '../../redux/reducers/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import styled from '@emotion/styled'
@@ -19,10 +19,14 @@ export const SignInForm: React.FunctionComponent = () => {
   const [inputName, setInputName] = useState<string | null>(null)
   const [inputPwd, setInputPwd] = useState<string | null>(null)
   const loading = useAppSelector(selectUserLoading)
-  const error = useAppSelector(selectUserError)
+  // temporarily leave error alone
+  // const error = useAppSelector(selectUserError)
   const jwt = useAppSelector(selectUserAccessToken)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/', { replace: true })
+  }, [jwt])
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const input = e.target.value
     switch (e.target.name) {
@@ -38,29 +42,24 @@ export const SignInForm: React.FunctionComponent = () => {
   }
   const handleSignIn = (): void => {
     void dispatch(userSignIn({ inputName, inputPwd }))
-      .then(() => {
-        useEffect(() => {
-          navigate('/', { replace: true })
-        }, [jwt])
-      })
-      .catch(() => alert(error))
   }
   return (
     <Box>
       {
         loading
           ? <>
-            <Stack>
+            <InputContainer>
               <TextField
                 required
                 name="name"
                 label="Enter your nanme"
                 variant="standard"
                 onChange={handleChange}
+                defaultValue='admin'
                 disabled
               />
-            </Stack>
-            <Stack>
+            </InputContainer>
+            <InputContainer>
               <TextField
                 required
                 name="password"
@@ -68,14 +67,15 @@ export const SignInForm: React.FunctionComponent = () => {
                 type="password"
                 variant="standard"
                 onChange={handleChange}
+                defaultValue='aaaaaa'
                 disabled
               />
-            </Stack>
-            <Stack>
+            </InputContainer>
+            <SubmitContainer>
               <Button variant="contained" onClick={handleSignIn} disabled>
                 Submit
               </Button>
-            </Stack>
+            </SubmitContainer>
           </>
           : <>
             <InputContainer>
@@ -85,6 +85,7 @@ export const SignInForm: React.FunctionComponent = () => {
                 label="Enter your nanme"
                 variant="standard"
                 onChange={handleChange}
+                defaultValue='admin'
               />
             </InputContainer>
             <InputContainer>
@@ -95,6 +96,7 @@ export const SignInForm: React.FunctionComponent = () => {
                 type="password"
                 variant="standard"
                 onChange={handleChange}
+                defaultValue='aaaaaa'
               />
             </InputContainer>
             <SubmitContainer>
