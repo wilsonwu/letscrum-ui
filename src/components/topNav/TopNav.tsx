@@ -129,7 +129,7 @@ const TopNavItem = styled('div')({
 export const TopNav: React.FunctionComponent = () => {
   const [isFoucs, setIsFocus] = useState<boolean>(false)
   const name = useAppSelector(selectUserName)
-  const displayName = name?.toString().toUpperCase().charAt(0)
+  const displayLetter = name?.toString().toUpperCase().charAt(0)
   return (
     <Box>
       <TopNavContainer direction='row'>
@@ -199,7 +199,7 @@ export const TopNav: React.FunctionComponent = () => {
         </TopNavItem>
         <TopNavItem>
           <Avatar sx={{ bgcolor: deepPurple[500], width: '1.5rem', height: '1.5rem' }}>
-            {displayName}
+            {displayLetter ?? 'X'}
           </Avatar>
         </TopNavItem>
       </TopNavContainer>

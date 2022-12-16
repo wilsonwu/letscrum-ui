@@ -1,7 +1,7 @@
-import React, { useState, ChangeEvent, useEffect } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import { Box, TextField, Button } from '@mui/material'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { userSignIn, selectUserLoading, selectUserAccessToken } from '../../redux/reducers/userSlice'
+import { userSignIn, selectUserLoading, selectUserError, selectUserAccessToken } from '../../redux/reducers/userSlice'
 import { useNavigate } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import styled from '@emotion/styled'
@@ -20,13 +20,10 @@ export const SignInForm: React.FunctionComponent = () => {
   const [inputPwd, setInputPwd] = useState<string | null>(null)
   const loading = useAppSelector(selectUserLoading)
   // temporarily leave error alone
-  // const error = useAppSelector(selectUserError)
+  const error = useAppSelector(selectUserError)
   const jwt = useAppSelector(selectUserAccessToken)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  useEffect(() => {
-    navigate('/', { replace: true })
-  }, [jwt])
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const input = e.target.value
     switch (e.target.name) {
@@ -41,7 +38,13 @@ export const SignInForm: React.FunctionComponent = () => {
     }
   }
   const handleSignIn = (): void => {
-    void dispatch(userSignIn({ inputName, inputPwd }))
+    dispatch(userSignIn({ inputName, inputPwd }))
+      .then(() => {
+        (jwt != null) && navigate('/', { replace: true })
+      })
+      .catch(() => {
+        error ?? alert(error)
+      })
   }
   return (
     <Box>

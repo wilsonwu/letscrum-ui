@@ -6,6 +6,7 @@ interface SignInFormProps {
 }
 
 export const SignInLayout: React.FC<SignInFormProps> = (props: SignInFormProps) => {
+  console.log('sign in layout')
   return (
     <Box>
       <Container sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
