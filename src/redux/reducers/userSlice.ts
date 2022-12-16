@@ -36,7 +36,6 @@ export const userSignIn = createAsyncThunk(
     try {
       param.inputName = 'admin'
       param.inputPwd = 'aaaaaa'
-      console.log('trying async', param.inputName, param.inputPwd)
       const response = await axios.post('https://imoogoo.com/api/v1/signin', {
         name: param.inputName,
         password: param.inputPwd
