@@ -1,12 +1,14 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { SideNav, TopNav } from './components'
-import { OrganizationPage, SignInPage, RouteErrorPage } from './pages'
+import { PrivateRoute, SideNav, SideNavInProject, TopNav } from './components'
+import { ProjectsPage, SignInPage, RouteErrorPage } from './pages'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <TopNav/>,
+    element: <PrivateRoute>
+      <TopNav />
+    </PrivateRoute>,
     errorElement: <RouteErrorPage />,
     children: [
       {
@@ -15,7 +17,17 @@ const router = createBrowserRouter([
         children: [
           {
             path: '/',
-            element: <OrganizationPage />
+            element: <ProjectsPage />
+          }
+        ]
+      },
+      {
+        path: '/projectName',
+        element: <SideNavInProject />,
+        children: [
+          {
+            path: '/projectName/',
+            element: <ProjectsPage />
           }
         ]
       }
@@ -23,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/signIn',
-    element: <SignInPage/>,
+    element: <SignInPage />,
     errorElement: <RouteErrorPage />
   }
 ])

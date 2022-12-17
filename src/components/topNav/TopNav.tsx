@@ -5,7 +5,7 @@ import { SearchOutlined, PlaylistAddCheckOutlined, HelpOutlineOutlined, ManageAc
 import { deepPurple, grey } from '@mui/material/colors'
 import { useAppSelector } from '../../redux/hooks'
 import { selectUserName } from '../../redux/reducers/userSlice'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link as RouteLink } from 'react-router-dom'
 
 const BreadcrumbItems = styled(Breadcrumbs)({
   '& .MuiBreadcrumbs-li': {
@@ -199,7 +199,14 @@ export const TopNav: React.FunctionComponent = () => {
         </TopNavItem>
         <TopNavItem>
           <Avatar sx={{ bgcolor: deepPurple[500], width: '1.5rem', height: '1.5rem' }}>
-            {displayLetter ?? 'X'}
+            {
+              displayLetter ??
+              <RouteLink to={'/signIn'}>
+                <Typography>
+                  X
+                </Typography>
+              </RouteLink>
+            }
           </Avatar>
         </TopNavItem>
       </TopNavContainer>
