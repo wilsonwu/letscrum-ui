@@ -7,13 +7,13 @@ interface ProjectsState {
     loading: boolean
     error: any
   }
-  items: {
+  items: Array<{
     id: string | null
     name: string | null
     displayName: string | null
     createdAt: string | null
     updatedAt: string | null
-  }
+  }>
   pagination: {
     total: number
     page: number
@@ -26,13 +26,13 @@ const initialState: ProjectsState = {
     loading: false,
     error: null
   },
-  items: {
+  items: [{
     id: null,
     name: null,
     displayName: null,
     createdAt: null,
     updatedAt: null
-  },
+  }],
   pagination: {
     total: 0,
     page: 0,
@@ -74,13 +74,13 @@ export const projectsSlice = createSlice({
 
 export const selectProjectsLoading = (state: RootState): boolean => state.projects.process.loading
 export const selectProjectsError = (state: RootState): any => state.projects.process.error
-export const selectProjectsItems = (state: RootState): {
+export const selectProjectsItems = (state: RootState): Array<{
   id: string | null
   name: string | null
   displayName: string | null
   createdAt: string | null
   updatedAt: string | null
-} => state.projects.items
+}> => state.projects.items
 export const selectProjectsPagination = (state: RootState): {
   total: number
   page: number
