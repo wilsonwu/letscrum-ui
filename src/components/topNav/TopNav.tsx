@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Box, Stack, Breadcrumbs, Link, Typography, TextField, InputAdornment, Avatar } from '@mui/material'
 import { SearchOutlined, PlaylistAddCheckOutlined, HelpOutlineOutlined, ManageAccountsOutlined } from '@mui/icons-material'
-import { deepPurple, grey } from '@mui/material/colors'
+import { deepPurple, grey, blue } from '@mui/material/colors'
 import { useAppSelector } from '../../redux/hooks'
 import { selectUserName } from '../../redux/reducers/userSlice'
-import { Outlet, Link as RouteLink } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const BreadcrumbItems = styled(Breadcrumbs)({
   '& .MuiBreadcrumbs-li': {
@@ -102,10 +102,16 @@ const TopNavContainer = styled(Stack)({
 const LogoContainer = styled('div')({
   display: 'flex',
   width: 'auto',
+  color: blue[700],
   padding: '0 .5rem',
   lineHeight: '3rem',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  '&:hover': {
+    backgroundColor: grey[100],
+    color: grey[800],
+    cursor: 'pointer'
+  }
 })
 const SearchBarContainer = styled('div')({
   display: 'flex',
@@ -130,10 +136,11 @@ export const TopNav: React.FunctionComponent = () => {
   const [isFoucs, setIsFocus] = useState<boolean>(false)
   const name = useAppSelector(selectUserName)
   const displayLetter = name?.toString().toUpperCase().charAt(0)
+  const navigate = useNavigate()
   return (
     <Box>
       <TopNavContainer direction='row'>
-        <LogoContainer>
+        <LogoContainer onClick={() => navigate('/')}>
           <Typography>
             LetScrum
           </Typography>
@@ -198,15 +205,8 @@ export const TopNav: React.FunctionComponent = () => {
           <ManageAccountsOutlined sx={{ fontSize: '1rem', color: grey[500] }} />
         </TopNavItem>
         <TopNavItem>
-          <Avatar sx={{ bgcolor: deepPurple[500], width: '1.5rem', height: '1.5rem' }}>
-            {
-              displayLetter ??
-              <RouteLink to={'/signIn'}>
-                <Typography>
-                  X
-                </Typography>
-              </RouteLink>
-            }
+          <Avatar sx={{ bgcolor: deepPurple[500], width: '1.875rem', height: '1.875rem', fontSize: '.875rem', fontWeight: '300' }}>
+            {displayLetter}
           </Avatar>
         </TopNavItem>
       </TopNavContainer>

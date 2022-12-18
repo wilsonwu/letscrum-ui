@@ -1,15 +1,18 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Box, MenuList, MenuItem, ListItemText, Avatar, Typography } from '@mui/material'
+import { Box, MenuList, MenuItem, ListItemText, Avatar, Typography, Button, Stack } from '@mui/material'
 import { grey, green, blue } from '@mui/material/colors'
+import SettingsIcon from '@mui/icons-material/Settings'
 import { styled } from '@mui/system'
 import { useAppSelector } from '../../redux/hooks'
 import { selectUserName } from '../../redux/reducers/userSlice'
 
-const SideNavList = styled(MenuList)({
-  width: '20rem',
-  height: '100vh',
+const SideNavWrapper = styled(Stack)({
+  display: 'flex',
+  width: '16rem',
+  height: 'calc(100vh - 5rem - 1px)',
   paddingTop: '1rem',
+  paddingBottom: '1rem',
   borderRightWidth: '1px',
   borderRightStyle: 'solid',
   borderRightColor: grey[300]
@@ -28,28 +31,56 @@ const SideMenuItemText = styled(ListItemText)({
     color: grey[800]
   }
 })
+const AddOrgButton = styled(Button)({
+  display: 'flex',
+  justifyContent: 'start',
+  paddingLeft: '1rem',
+  color: blue[800],
+  fontSize: '.75rem',
+  '&:hover': {
+    backgroundColor: grey[100]
+  }
+})
+const SetOrgButton = styled(Button)({
+  width: '16rem',
+  color: grey[800],
+  justifyContent: 'start',
+  paddingLeft: '1rem',
+  fontSize: '.75rem',
+  // position: 'fixed',
+  // bottom: '.875rem',
+  // left: 0,
+  marginTop: 'auto',
+  '&:hover': {
+    backgroundColor: grey[100]
+  }
+})
 
 export const SideNav: React.FunctionComponent = () => {
   const displayName = useAppSelector(selectUserName)
   const displayLetter = displayName?.toString().toUpperCase().charAt(0)
   return (
-    <Box sx={{ display: 'flex' }}>
-      <SideNavList>
+    <Box display='flex'>
+      <SideNavWrapper>
+      <MenuList>
         <SideMenuItem>
           <Avatar sx={{ width: '1.5rem', height: '1.5rem', bgcolor: green[800] }} variant="rounded">
             <Typography sx={{ fontSize: '.875rem', fontWeight: 300 }}>
-              {displayLetter ?? 'X'}
+              {displayLetter}
             </Typography>
           </Avatar>
-          {/* cannot route to sign in page, use text instead */}
           <SideMenuItemText>
-            {displayName ?? 'without authentication'}
+            {displayName}
           </SideMenuItemText>
         </SideMenuItem>
-        <MenuItem>
-          <ListItemText>Web Clipboard</ListItemText>
-        </MenuItem>
-      </SideNavList>
+      </MenuList>
+      <AddOrgButton>
+        Web Clipboard
+        </AddOrgButton>
+      <SetOrgButton startIcon={<SettingsIcon />}>
+        Organization settings
+        </SetOrgButton>
+      </SideNavWrapper>
       <Outlet />
     </Box>
   )
