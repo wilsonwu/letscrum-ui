@@ -8,10 +8,19 @@ import store from './redux/store'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+import axios from 'axios'
+import { useAppSelector } from './redux/hooks'
+import { selectUserAccessToken } from './redux/reducers/userSlice'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
+
+const jwt = useAppSelector(selectUserAccessToken)
+// axios.defaults.baseURL = 'http://127.0.0.1:8081/api';
+axios.defaults.baseURL = 'https://imoogoo.com/api'
+// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+axios.defaults.headers.Authorization = `Bearer ${jwt}`
 
 const persistor = persistStore(store)
 

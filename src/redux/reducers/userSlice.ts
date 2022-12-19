@@ -14,7 +14,6 @@ interface UserState {
     accessToken: string | null
   }
 }
-
 const initialState: UserState = {
   loading: false,
   error: null,
@@ -30,14 +29,15 @@ const initialState: UserState = {
 
 export const userSignIn = createAsyncThunk(
   'user/signIn',
-  async (param: { inputName: string | null, inputPwd: string | null }): Promise<UserState> => {
+  async (params: { inputName: string | null, inputPwd: string | null }) => {
     try {
-      param.inputName = 'admin'
-      param.inputPwd = 'aaaaaa'
+      params.inputName = 'admin'
+      params.inputPwd = 'aaaaaa'
       const response = await axios.post('https://imoogoo.com/api/v1/signin', {
-        name: param.inputName,
-        password: param.inputPwd
+        name: params.inputName,
+        password: params.inputPwd
       })
+      console.log(response.data.item)
       return response.data.item
     } catch (e: any) {
       return e.message
