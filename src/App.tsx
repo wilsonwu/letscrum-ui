@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { PrivateRoute, SideNav, SideNavInProject, TopNav } from './components'
-import { ProjectsPage, SignInPage, RouteErrorPage } from './pages'
+import { ProjectListPage, SignInPage, RouteErrorPage } from './pages'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: '/',
-            element: <ProjectsPage />
+            element: <ProjectListPage />
           }
         ]
       },
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: '/projectName/',
-            element: <ProjectsPage />
+            element: <ProjectListPage />
           }
         ]
       }
