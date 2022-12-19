@@ -37,7 +37,6 @@ export const userSignIn = createAsyncThunk(
         name: params.inputName,
         password: params.inputPwd
       })
-      console.log(response.data.item)
       return response.data.item
     } catch (e: any) {
       return e.message
