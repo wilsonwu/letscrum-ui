@@ -12,7 +12,6 @@ interface UserState {
   inSuperAdmin: boolean
   token: {
     accessToken: string | null
-    refreshToken: string | null
   }
 }
 
@@ -25,8 +24,7 @@ const initialState: UserState = {
   password: null,
   inSuperAdmin: false,
   token: {
-    accessToken: null,
-    refreshToken: null
+    accessToken: null
   }
 }
 
@@ -67,7 +65,6 @@ export const userSlice = createSlice({
       })
   }
 })
-
 export const selectUserLoading = (state: RootState): boolean => state.user.loading
 export const selectUserError = (state: RootState): any => state.user.error
 export const selectUserAccessToken = (state: RootState): string | null => state.user.token.accessToken

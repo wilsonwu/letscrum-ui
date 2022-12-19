@@ -47,9 +47,6 @@ const SetOrgButton = styled(Button)({
   justifyContent: 'start',
   paddingLeft: '1rem',
   fontSize: '.75rem',
-  // position: 'fixed',
-  // bottom: '.875rem',
-  // left: 0,
   marginTop: 'auto',
   '&:hover': {
     backgroundColor: grey[100]
