@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { FilterAlt } from '@mui/icons-material'
 import { useAppSelector } from '../../redux/hooks'
 import { selectUserName } from '../../redux/reducers/userSlice'
+
 const Wrapper = styled(Box)({
   width: '100%',
   backgroundColor: grey[100],
@@ -28,7 +29,6 @@ const CreateProjectBtn = styled(Button)({
   borderRadius: '2px'
 })
 const ProjectTabs = styled(Tabs)({
-  paddingTop: '.5rem',
   '& .MuiTab-root': {
     padding: 0,
     minWidth: 0,
