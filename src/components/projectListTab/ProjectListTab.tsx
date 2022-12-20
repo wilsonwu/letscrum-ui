@@ -1,16 +1,12 @@
 import React, { ReactElement, useState } from 'react'
-import { Box, Typography, Tab, Tabs, TextField, InputAdornment, Stack, Button } from '@mui/material'
+import { Typography, Tab, Tabs, TextField, InputAdornment, Stack, Button } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import styled from '@emotion/styled'
 import { FilterAlt } from '@mui/icons-material'
 import { useAppSelector } from '../../redux/hooks'
 import { selectUserName } from '../../redux/reducers/userSlice'
+import { ProjectListTable } from '../projectListTable'
 
-const Wrapper = styled(Box)({
-  width: '100%',
-  backgroundColor: grey[100],
-  padding: '1rem 1.5rem'
-})
 const HeaderWrapper = styled(Stack)({
   width: '100%',
   height: '3rem',
@@ -28,20 +24,21 @@ const CreateProjectBtn = styled(Button)({
   padding: '.2rem auto',
   borderRadius: '2px'
 })
-const ProjectTabs = styled(Tabs)({
-  '& .MuiTab-root': {
-    padding: 0,
-    minWidth: 0,
-    marginRight: '1rem'
-  },
-  '& .Mui-selected': {
-    fontWeight: 'bold',
-    color: grey[900]
-  }
-})
 const ProjectTab = styled(Tab)({
   fontSize: '.75rem',
-  color: grey[800]
+  color: grey[800],
+  padding: 0,
+  minWidth: 0,
+  marginRight: '1rem',
+  '& .MuiButtonBase-root': {
+    '& .MuiTab-root': {
+      '& .MuiTab-textColorPrimary': {
+        '& .MuiTab-selected': {
+          color: grey[900]
+        }
+      }
+    }
+  }
 })
 const FilterInput = styled(TextField)({
   marginLeft: 'auto',
@@ -80,7 +77,7 @@ interface TabPanelProps {
   index: number
   value: number
 }
-function TabPanel (props: TabPanelProps): ReactElement {
+const TabPanel = (props: TabPanelProps): ReactElement => {
   const { children, value, index, ...other } = props
   return (
     <div
@@ -91,14 +88,12 @@ function TabPanel (props: TabPanelProps): ReactElement {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
+        <Typography>{children}</Typography>
       )}
     </div>
   )
 }
-function a11yProps (index: number): { id: string, 'aria-controls': string } {
+const a11yProps = (index: number): { id: string, 'aria-controls': string } => {
   return {
     id: `${index}`,
     'aria-controls': `tabpanel-${index}`
@@ -111,7 +106,7 @@ export const ProjectListTab: React.FunctionComponent = () => {
     setValue(newValue)
   }
   return (
-    <Wrapper>
+    <>
       <HeaderWrapper direction='row'>
         <HeaderTitle>
           {name}
@@ -122,11 +117,11 @@ export const ProjectListTab: React.FunctionComponent = () => {
         }
       </HeaderWrapper>
       <Stack direction='row' sx={{ display: 'flex', alignItems: 'center' }}>
-        <ProjectTabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <ProjectTab label="Projects" {...a11yProps(0)} />
           <ProjectTab label="My work items" {...a11yProps(1)} />
           <ProjectTab label="My pull requests" {...a11yProps(2)} />
-        </ProjectTabs>
+        </Tabs>
         {(value === 0) && <FilterInput
           placeholder="Filter projects"
           size='small'
@@ -141,7 +136,7 @@ export const ProjectListTab: React.FunctionComponent = () => {
         }
       </Stack>
       <TabPanel value={value} index={0}>
-        Projects List no data
+        <ProjectListTable />
       </TabPanel>
       <TabPanel value={value} index={1}>
         My work item List no data
@@ -149,6 +144,6 @@ export const ProjectListTab: React.FunctionComponent = () => {
       <TabPanel value={value} index={2}>
         My pull request List no data
       </TabPanel>
-    </Wrapper>
+    </>
   )
 }
