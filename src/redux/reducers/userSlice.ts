@@ -33,7 +33,7 @@ export const userSignIn = createAsyncThunk(
   async (params: { inputName: string | null, inputPwd: string }) => {
     try {
       const cryptedData = md5(params.inputPwd)
-      const response = await axios.post('https://imoogoo.com/api/v1/signin', {
+      const response = await axios.post('/v1/signin', {
         name: params.inputName,
         password: cryptedData
       })
