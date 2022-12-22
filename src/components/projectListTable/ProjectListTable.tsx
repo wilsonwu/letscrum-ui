@@ -83,9 +83,11 @@ const ProjectAvatar = styled(Avatar)({
   height: '3rem'
 })
 const AvatarPalette = [grey[700], red[700], teal[700], deepOrange[700], blue[700], deepPurple[700], pink[700], amber[700], cyan[700], green[700]]
-const PickAvatarColor = (colorSet: string[]): string => {
-  const i = Math.floor(Math.random() * 10)
-  const pickedColor = colorSet[i]
+const PickAvatarColor = (id: string, colorSet: string[]): string => {
+  const i = id.length
+  const code = id[i - 1]
+  const codeNumber = Number(code)
+  const pickedColor = colorSet[codeNumber]
   return pickedColor
 }
 export const ProjectListTable = (): any => {
@@ -130,26 +132,26 @@ export const ProjectListTable = (): any => {
                   <Grid xs={4}>
                     <Stack direction='row'>
                       <LoadingCircular variant="circular" />
-                      <LoadingRectangular variant="rectangular" />
+                      <LoadingRectangular variant="rectangular" animation="wave"/>
                     </Stack>
                   </Grid>
                   <Grid xs={4}>
                     <Stack direction='row'>
                       <LoadingCircular variant="circular" />
-                      <LoadingRectangular variant="rectangular" />
+                      <LoadingRectangular variant="rectangular" animation="wave"/>
                     </Stack>
                   </Grid>
                   <Grid xs={4}>
                     <Stack direction='row'>
                       <LoadingCircular variant="circular" />
-                      <LoadingRectangular variant="rectangular" />
+                      <LoadingRectangular variant="rectangular" animation="wave"/>
                     </Stack>
                   </Grid>
                 </Stack>
                 <Grid xs={12}>
                 <Stack direction='row'>
                   <LoadingCircular variant="circular" />
-                  <LoadingLongerRectangular variant="rectangular" />
+                  <LoadingLongerRectangular variant="rectangular" animation="wave"/>
                 </Stack>
                 </Grid>
               </>
@@ -162,7 +164,7 @@ export const ProjectListTable = (): any => {
                           <HeadCardContent>
                             <Stack direction='row'>
                               <ProjectAvatarWrapper>
-                                <ProjectAvatar variant="rounded" sx={{ backgroundColor: PickAvatarColor(AvatarPalette) }}>
+                                <ProjectAvatar variant="rounded" sx={{ backgroundColor: PickAvatarColor(item.id, AvatarPalette) }}>
                                   I
                                 </ProjectAvatar>
                               </ProjectAvatarWrapper>
@@ -239,7 +241,7 @@ export const ProjectListTable = (): any => {
                   <TailItemCardContent>
                     <Stack direction='row'>
                       <TailAvatarWrapper>
-                        <ProjectAvatar variant="rounded" sx={{ backgroundColor: PickAvatarColor(AvatarPalette) }}>
+                        <ProjectAvatar variant="rounded" sx={{ backgroundColor: PickAvatarColor(item.id, AvatarPalette) }}>
                           I
                         </ProjectAvatar>
                       </TailAvatarWrapper>
