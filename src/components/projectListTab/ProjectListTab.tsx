@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react'
-import { Typography, Tab, Tabs, TextField, InputAdornment, Stack, Button } from '@mui/material'
+import { Box, Typography, Tab, Tabs, TextField, InputAdornment, Stack, Button } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import styled from '@emotion/styled'
 import { FilterAlt } from '@mui/icons-material'
@@ -106,7 +106,7 @@ export const ProjectListTab: React.FunctionComponent = () => {
     setValue(newValue)
   }
   return (
-    <>
+    <Box width='calc(100wh - 16rem - 1px)'>
       <HeaderWrapper direction='row'>
         <HeaderTitle>
           {name}
@@ -144,6 +144,6 @@ export const ProjectListTab: React.FunctionComponent = () => {
       <TabPanel value={value} index={2}>
         My pull request List no data
       </TabPanel>
-    </>
+    </Box>
   )
 }
