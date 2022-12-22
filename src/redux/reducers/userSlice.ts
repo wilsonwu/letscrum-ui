@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
 import axios from 'axios'
+import md5 from 'md5'
 
 interface UserState {
   loading: boolean
@@ -29,22 +30,19 @@ const initialState: UserState = {
 
 export const userSignIn = createAsyncThunk(
   'user/signIn',
-  async (params: { inputName: string | null, inputPwd: string | null }) => {
+  async (params: { inputName: string | null, inputPwd: string }) => {
     try {
-      params.inputName = 'admin'
-      params.inputPwd = 'aaaaaa'
-      const response = await axios.post('https://imoogoo.com/api/v1/signin', {
+      const cryptedData = md5(params.inputPwd)
+      const response = await axios.post('/v1/signin', {
         name: params.inputName,
-        password: params.inputPwd
+        password: cryptedData
       })
-      console.log(response.data.item)
       return response.data.item
     } catch (e: any) {
       return e.message
     }
   }
 )
-
 export const userSlice = createSlice({
   name: 'user',
   initialState,

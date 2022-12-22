@@ -14,17 +14,16 @@ const SubmitContainer = styled(Stack)({
   width: '20rem',
   padding: '6rem 0 0 0'
 })
-
 export const SignInForm: React.FunctionComponent = () => {
   const [inputName, setInputName] = useState<string | null>(null)
-  const [inputPwd, setInputPwd] = useState<string | null>(null)
+  const [inputPwd, setInputPwd] = useState<string>('')
   const loading = useAppSelector(selectUserLoading)
   const error = useAppSelector(selectUserError)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const input = e.target.value
-    switch (e.target.name) {
+    switch (e.target.id) {
       case 'name': {
         setInputName(input)
         break
@@ -55,8 +54,7 @@ export const SignInForm: React.FunctionComponent = () => {
                 name="name"
                 label="Enter your nanme"
                 variant="standard"
-                onChange={handleChange}
-                defaultValue='admin'
+                defaultValue={inputName}
                 disabled
               />
             </InputContainer>
@@ -67,8 +65,7 @@ export const SignInForm: React.FunctionComponent = () => {
                 label="Enter password"
                 type="password"
                 variant="standard"
-                onChange={handleChange}
-                defaultValue='aaaaaa'
+                defaultValue={inputPwd}
                 disabled
               />
             </InputContainer>
@@ -83,10 +80,9 @@ export const SignInForm: React.FunctionComponent = () => {
               <TextField
                 required
                 id="name"
-                label="Enter your nanme"
+                label="Enter your name"
                 variant="standard"
                 onChange={handleChange}
-                defaultValue='admin'
               />
             </InputContainer>
             <InputContainer>
@@ -97,7 +93,6 @@ export const SignInForm: React.FunctionComponent = () => {
                 type="password"
                 variant="standard"
                 onChange={handleChange}
-                defaultValue='aaaaaa'
               />
             </InputContainer>
             <SubmitContainer>
