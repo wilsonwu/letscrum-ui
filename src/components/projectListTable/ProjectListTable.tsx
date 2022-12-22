@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Stack, Card, CardContent, Typography, CardActions, Avatar, Paper, Divider } from '@mui/material'
+import { Stack, Card, CardContent, Typography, CardActions, Avatar, Paper, Divider, Skeleton } from '@mui/material'
 import styled from '@emotion/styled'
 import { FiberManualRecord, FactCheck, AccountTree, RocketLaunch, Science, Widgets } from '@mui/icons-material'
 import { grey, red, teal, deepOrange, blue, deepPurple, pink, amber, cyan, green } from '@mui/material/colors'
@@ -12,9 +12,33 @@ interface ProjectProps {
   displayName: string
   updatedAt: string
 }
-const TopProjectsWrapper = styled(Stack)({
+const LoadingCircular = styled(Skeleton)({
+  height: '3rem',
+  width: '3rem',
+  margin: '1.5rem'
+})
+const LoadingRectangular = styled(Skeleton)({
+  height: '12rem',
+  width: '19rem',
+  margin: '1.5rem 0 1rem 0',
+  borderRadius: '3px'
+})
+const LoadingLongerRectangular = styled(Skeleton)({
+  height: '12rem',
+  width: '91%',
+  margin: '1.5rem 0 1rem 0',
+  borderRadius: '3px'
+})
+const HeadProjectsWrapper = styled(Stack)({
   width: '100%',
   padding: '1rem 0'
+})
+const HeadProjectCard = styled(Card)({
+  minWidth: '18rem',
+  height: '12rem'
+})
+const HeadCardContent = styled(CardContent)({
+  height: '7rem'
 })
 const CardActionsWrapper = styled(CardActions)({
   display: 'flex',
@@ -34,9 +58,29 @@ const FiberManualRecordIcon = styled(FiberManualRecord)({
   height: '.5rem'
 })
 const TailItemCardContent = styled(CardContent)({
+  height: '4rem',
+  padding: '1rem',
   '&:last-child': {
     paddingBottom: '1rem'
   }
+})
+const ProjectAvatarWrapper = styled(Grid)({
+  width: '4rem'
+})
+const ProjectNameWrapper = styled(Grid)({
+  width: 'auto'
+})
+const TailAvatarWrapper = styled(Grid)({
+  width: '4rem',
+  padding: '.5rem'
+})
+const TailNameWrapper = styled(Grid)({
+  width: 'auto',
+  padding: '.5rem'
+})
+const ProjectAvatar = styled(Avatar)({
+  width: '3rem',
+  height: '3rem'
 })
 const AvatarPalette = [grey[700], red[700], teal[700], deepOrange[700], blue[700], deepPurple[700], pink[700], amber[700], cyan[700], green[700]]
 const PickAvatarColor = (colorSet: string[]): string => {
@@ -77,34 +121,61 @@ export const ProjectListTable = (): any => {
   }
   return (
     <>
-      <TopProjectsWrapper direction='row'>
+      <HeadProjectsWrapper direction='row'>
         <Grid container spacing={2} sx={{ flexGrow: 1, width: '100%' }}>
           {
             loading
-              ? <>loading</>
+              ? <>
+                <Stack direction='row'>
+                  <Grid xs={4}>
+                    <Stack direction='row'>
+                      <LoadingCircular variant="circular" />
+                      <LoadingRectangular variant="rectangular" />
+                    </Stack>
+                  </Grid>
+                  <Grid xs={4}>
+                    <Stack direction='row'>
+                      <LoadingCircular variant="circular" />
+                      <LoadingRectangular variant="rectangular" />
+                    </Stack>
+                  </Grid>
+                  <Grid xs={4}>
+                    <Stack direction='row'>
+                      <LoadingCircular variant="circular" />
+                      <LoadingRectangular variant="rectangular" />
+                    </Stack>
+                  </Grid>
+                </Stack>
+                <Grid xs={12}>
+                <Stack direction='row'>
+                  <LoadingCircular variant="circular" />
+                  <LoadingLongerRectangular variant="rectangular" />
+                </Stack>
+                </Grid>
+              </>
               : <>
                 {
                   itemsHead.map((item) => {
                     return (
                       <Grid xs={4} key={item.id}>
-                        <Card sx={{ minWidth: '18rem', height: '12rem' }}>
-                          <CardContent sx={{ height: '7rem' }}>
+                        <HeadProjectCard>
+                          <HeadCardContent>
                             <Stack direction='row'>
-                              <Grid sx={{ width: '4rem' }}>
-                                <Avatar sx={{ backgroundColor: PickAvatarColor(AvatarPalette), width: '3rem', height: '3rem' }} variant="rounded">
+                              <ProjectAvatarWrapper>
+                                <ProjectAvatar variant="rounded" sx={{ backgroundColor: PickAvatarColor(AvatarPalette) }}>
                                   I
-                                </Avatar>
-                              </Grid>
-                              <Grid sx={{ width: 'auto' }}>
+                                </ProjectAvatar>
+                              </ProjectAvatarWrapper>
+                              <ProjectNameWrapper>
                                 <Typography sx={{ fontSize: '1.125rem' }}>
-                                  {item.name} {item.id}
+                                  {item.name}
                                 </Typography>
                                 <Typography sx={{ color: grey[400] }}>
                                   {item.displayName}
                                 </Typography>
-                              </Grid>
+                              </ProjectNameWrapper>
                             </Stack>
-                          </CardContent>
+                          </HeadCardContent>
                           <CardActionsWrapper
                             id={item.id}
                             key={item.id}
@@ -150,7 +221,7 @@ export const ProjectListTable = (): any => {
                                 </>
                             }
                           </CardActionsWrapper>
-                        </Card>
+                        </HeadProjectCard>
                       </Grid>
                     )
                   })
@@ -158,28 +229,28 @@ export const ProjectListTable = (): any => {
               </>
           }
         </Grid>
-      </TopProjectsWrapper>
+      </HeadProjectsWrapper>
       <Paper>
         {
           itemsTail.map((item) => {
             return (
               <>
                 <Stack key={item.id} direction='row'>
-                  <TailItemCardContent sx={{ height: '3rem', padding: '1rem' }}>
+                  <TailItemCardContent>
                     <Stack direction='row'>
-                      <Grid sx={{ width: '4rem' }}>
-                        <Avatar sx={{ backgroundColor: PickAvatarColor(AvatarPalette), width: '3rem', height: '3rem' }} variant="rounded">
+                      <TailAvatarWrapper>
+                        <ProjectAvatar variant="rounded" sx={{ backgroundColor: PickAvatarColor(AvatarPalette) }}>
                           I
-                        </Avatar>
-                      </Grid>
-                      <Grid sx={{ width: 'auto' }}>
+                        </ProjectAvatar>
+                      </TailAvatarWrapper>
+                      <TailNameWrapper>
                         <Typography sx={{ fontSize: '1.125rem' }}>
                           {item.name} {item.id}
                         </Typography>
                         <Typography sx={{ color: grey[400] }}>
                           {item.displayName}
                         </Typography>
-                      </Grid>
+                      </TailNameWrapper>
                     </Stack>
                   </TailItemCardContent>
                   <CardActionsWrapper
